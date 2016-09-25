@@ -1,4 +1,5 @@
-﻿using WolfEngine.Entiity;
+﻿using System;
+using WolfEngine.Entiity;
 using Xunit;
 
 namespace WolfEngine.Tests.Entity
@@ -27,7 +28,66 @@ namespace WolfEngine.Tests.Entity
 
         #region Properties
 
-        // TODO: Test the indexer.
+        [Fact]
+        public void TestIndexerSet()
+        {
+            int invSize = 8;
+            var inv = FillInventoryToSize(0, invSize);
+
+            var item = new Item();
+            inv[2] = item;
+            for (int i = 0; i < invSize; i++)
+            {
+                if (i != 2)
+                {
+                    Assert.Null(inv[i]);
+                }
+                else
+                {
+                    Assert.Equal(item, inv[i]);
+                }
+            }
+        }
+
+        [Fact]
+        public void TestIndexerSetOverwrite()
+        {
+            var invSize = 5;
+            var name = "Test Item";
+            var inv = FillInventoryToSize(0, invSize);
+            inv[2] = new Item();
+            inv[2] = new Item()
+            {
+                Name = name
+            };
+
+            Assert.NotNull(inv[2]);
+            Assert.Equal(name, inv[2].Name);
+        }
+
+        [Fact]
+        public void TestIndexorGetWhenEmpty()
+        {
+            var inv = NewInstance(5);
+            for (int i = 0; i < 5; i++)
+            {
+                Assert.Null(inv[i]);
+            }
+        }
+
+        [Fact]
+        public void TestIndexerGetWhenFull()
+        {
+            int invSize = 8;
+            var inv = FillInventoryToSize(0, invSize);
+
+            var item = new Item();
+            for (int i = 0; i < invSize; i++)
+            {
+                inv[i] = item;
+                Assert.Equal(item, inv[i]);
+            }
+        }
 
         [Theory]
         [InlineData(0, 0)]

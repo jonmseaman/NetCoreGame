@@ -11,7 +11,7 @@ namespace WolfEngine.Entiity
         /// <summary>
         /// Underlying container for <see cref="Inventory"/>
         /// </summary>
-        private Item[] _inventory;
+        private readonly Item[] _inventory;
 
         /// <summary>
         /// Number of items currently stored in this.
@@ -30,7 +30,6 @@ namespace WolfEngine.Entiity
                 _inventory[i] = null;
             }
         }
-
 
         #region IInventory
 
