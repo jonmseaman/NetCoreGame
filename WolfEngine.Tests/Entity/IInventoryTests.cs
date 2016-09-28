@@ -1,5 +1,4 @@
-﻿using System;
-using WolfEngine.Entiity;
+﻿using WolfEngine.Entiity;
 using Xunit;
 
 namespace WolfEngine.Tests.Entity
@@ -10,7 +9,7 @@ namespace WolfEngine.Tests.Entity
         public abstract IInventory NewInstance(int capacity);
 
         /// <summary>
-        /// Creates a new inventory with <see cref="size"/> items.
+        ///     Creates a new inventory with <see cref="size" /> items.
         /// </summary>
         /// <param name="size">The number of items to be put in inv.</param>
         /// <param name="capacity">The capacity of the new inventory.</param>
@@ -19,74 +18,9 @@ namespace WolfEngine.Tests.Entity
         {
             var inv = NewInstance(capacity);
             for (var i = 0; i < size; ++i)
-            {
                 inv.Add(new Item());
-            }
 
             return inv;
-        }
-
-        #region Properties
-
-        [Fact]
-        public void TestIndexerSet()
-        {
-            int invSize = 8;
-            var inv = FillInventoryToSize(0, invSize);
-
-            var item = new Item();
-            inv[2] = item;
-            for (int i = 0; i < invSize; i++)
-            {
-                if (i != 2)
-                {
-                    Assert.Null(inv[i]);
-                }
-                else
-                {
-                    Assert.Equal(item, inv[i]);
-                }
-            }
-        }
-
-        [Fact]
-        public void TestIndexerSetOverwrite()
-        {
-            var invSize = 5;
-            var name = "Test Item";
-            var inv = FillInventoryToSize(0, invSize);
-            inv[2] = new Item();
-            inv[2] = new Item()
-            {
-                Name = name
-            };
-
-            Assert.NotNull(inv[2]);
-            Assert.Equal(name, inv[2].Name);
-        }
-
-        [Fact]
-        public void TestIndexorGetWhenEmpty()
-        {
-            var inv = NewInstance(5);
-            for (int i = 0; i < 5; i++)
-            {
-                Assert.Null(inv[i]);
-            }
-        }
-
-        [Fact]
-        public void TestIndexerGetWhenFull()
-        {
-            int invSize = 8;
-            var inv = FillInventoryToSize(0, invSize);
-
-            var item = new Item();
-            for (int i = 0; i < invSize; i++)
-            {
-                inv[i] = item;
-                Assert.Equal(item, inv[i]);
-            }
         }
 
         [Theory]
@@ -132,7 +66,102 @@ namespace WolfEngine.Tests.Entity
             var inv = FillInventoryToSize(size, capacity);
             Assert.Equal(capacity == size, inv.Full);
         }
-        #endregion
+
+        [Theory]
+        [InlineData(0, 8)]
+        [InlineData(3, 8)]
+        [InlineData(8, 8)]
+        public void TestClear(int size, int capacity)
+        {
+            var inv = FillInventoryToSize(size, capacity);
+            inv.Clear();
+            Assert.Equal(0, inv.Size);
+        }
+
+        [Fact]
+        public void TestAddAtToFull()
+        {
+            var inv = FillInventoryToSize(0, 8);
+            for (var i = 0; i < 8; i++)
+            {
+                var added = inv.AddAt(new Item(), i);
+                Assert.True(added);
+            }
+        }
+
+        [Fact]
+        public void TestAddAtWhenEmpty()
+        {
+            var inv = FillInventoryToSize(0, 8);
+            inv.AddAt(new Item(), 0);
+        }
+
+        [Fact]
+        public void TestAddAtWhenFull()
+        {
+            // Build a full inventory.
+            var inv = FillInventoryToSize(8, 8);
+
+            // Test adding when the slot is taken:
+            for (var i = 0; i < 8; i++)
+            {
+                var added = inv.AddAt(new Item(), 0);
+                Assert.False(added);
+            }
+        }
+
+        [Fact]
+        public void TestIndexerGetWhenFull()
+        {
+            var invSize = 8;
+            var inv = FillInventoryToSize(0, invSize);
+
+            var item = new Item();
+            for (var i = 0; i < invSize; i++)
+            {
+                inv[i] = item;
+                Assert.Equal(item, inv[i]);
+            }
+        }
+
+        [Fact]
+        public void TestIndexerSet()
+        {
+            var invSize = 8;
+            var inv = FillInventoryToSize(0, invSize);
+
+            var item = new Item();
+            inv[2] = item;
+            for (var i = 0; i < invSize; i++)
+                if (i != 2)
+                    Assert.Null(inv[i]);
+                else
+                    Assert.Equal(item, inv[i]);
+        }
+
+        [Fact]
+        public void TestIndexerSetOverwrite()
+        {
+            var invSize = 5;
+            var name = "Test Item";
+            var inv = FillInventoryToSize(0, invSize);
+            inv[2] = new Item();
+            inv[2] = new Item
+            {
+                Name = name
+            };
+
+            Assert.NotNull(inv[2]);
+            Assert.Equal(name, inv[2].Name);
+        }
+
+        [Fact]
+        public void TestIndexorGetWhenEmpty()
+        {
+            var inv = NewInstance(5);
+            for (var i = 0; i < 5; i++)
+                Assert.Null(inv[i]);
+        }
 
         [Fact]
         public void TestInventoryAddWhenEmpty()
@@ -153,45 +182,26 @@ namespace WolfEngine.Tests.Entity
         }
 
         [Fact]
-        public void TestAddAtWhenEmpty()
-        {
-            var inv = FillInventoryToSize(0, 8);
-            inv.AddAt(new Item(), 0);
-        }
-
-        [Fact]
-        public void TestAddAtToFull()
+        public void TestRemoveAtWhenEmpty()
         {
             var inv = FillInventoryToSize(0, 8);
             for (var i = 0; i < 8; i++)
             {
-                var added = inv.AddAt(new Item(), i);
-                Assert.True(added);
+                var removed = inv.RemoveAt(i);
+                Assert.False(removed);
             }
+            Assert.Equal(0, inv.Size);
         }
 
         [Fact]
-        public void TestAddAtWhenFull()
+        public void TestRemoveAtWhenFull()
         {
-            // Build a full inventory.
             var inv = FillInventoryToSize(8, 8);
-
-            // Test adding when the slot is taken:
             for (var i = 0; i < 8; i++)
             {
-                var added = inv.AddAt(new Item(), 0);
-                Assert.False(added);
+                var removed = inv.RemoveAt(i);
+                Assert.True(removed);
             }
-        }
-
-        [Theory]
-        [InlineData(0, 8)]
-        [InlineData(3, 8)]
-        [InlineData(8, 8)]
-        public void TestClear(int size, int capacity)
-        {
-            var inv = FillInventoryToSize(size, capacity);
-            inv.Clear();
             Assert.Equal(0, inv.Size);
         }
 
@@ -206,53 +216,25 @@ namespace WolfEngine.Tests.Entity
         [Fact]
         public void TestRemoveWhenFull()
         {
-            int invSize = 8;
-            Item[] items = new Item[invSize];
+            var invSize = 8;
+            var items = new Item[invSize];
             var inv = new Inventory(invSize);
 
             // Get some items to add to the inventory.
-            for (int i = 0; i < invSize; i++)
-            {
+            for (var i = 0; i < invSize; i++)
                 items[i] = new Item();
-            }
 
             // Add items
-            for (int i = 0; i < invSize; i++)
-            {
+            for (var i = 0; i < invSize; i++)
                 inv.Add(items[i]);
-            }
 
             // Remove items
-            for (int i = 0; i < invSize; i++)
+            for (var i = 0; i < invSize; i++)
             {
                 var removed = inv.Remove(items[i]);
                 Assert.True(removed);
             }
 
-            Assert.Equal(0, inv.Size);
-        }
-
-        [Fact]
-        public void TestRemoveAtWhenEmpty()
-        {
-            var inv = FillInventoryToSize(0, 8);
-            for (int i = 0; i < 8; i++)
-            {
-                var removed = inv.RemoveAt(i);
-                Assert.False(removed);
-            }
-            Assert.Equal(0, inv.Size);
-        }
-
-        [Fact]
-        public void TestRemoveAtWhenFull()
-        {
-            var inv = FillInventoryToSize(8, 8);
-            for (int i = 0; i < 8; i++)
-            {
-                var removed = inv.RemoveAt(i);
-                Assert.True(removed);
-            }
             Assert.Equal(0, inv.Size);
         }
     }

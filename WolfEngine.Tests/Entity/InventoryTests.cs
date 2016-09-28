@@ -1,7 +1,6 @@
 ﻿using WolfEngine.Entiity;
 using Xunit;
 
-
 namespace WolfEngine.Tests.Entity
 {
     public class InventoryTests : IInventoryTests
@@ -12,7 +11,6 @@ namespace WolfEngine.Tests.Entity
         {
             return new Inventory(capacity);
         }
-
 
         #endregion
 
@@ -28,6 +26,5 @@ namespace WolfEngine.Tests.Entity
             Assert.Equal(true, inv.Empty);
             Assert.Equal(capacity == 0, inv.Full);
         }
-
     }
 }
