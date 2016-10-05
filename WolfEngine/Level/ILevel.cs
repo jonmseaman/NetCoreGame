@@ -8,12 +8,17 @@ namespace WolfEngine.Level
     /// </summary>
     public interface ILevel
     {
-        Dictionary<Location, IEnumerable<Creature>> Creatures { get; }
 
-        // Tiles
-        // Indexor to add tiles?
-        // API for getting and setting nodes / tiles.
-        int this[int x, int y] { get; set; }
-        int this[Location location] { get; set; }
+        IDictionary<Location, IEnumerable<Creature>> Creatures { get; }
+
+        /// <summary>
+        /// Gets or sets the Tile at Location(x,y)
+        /// </summary>
+        ushort this[int x, int y] { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Tile at Location
+        /// </summary>
+        ushort this[Location location] { get; set; }
     }
 }
