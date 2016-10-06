@@ -8,24 +8,25 @@ namespace WolfEngine.Level
         public SquareLevel(int width)
         {
             _levelWidth = width;
+            _tiles = new Tile[width * width];
         }
 
-        private Tile[] _tiles;
+        private readonly Tile[] _tiles;
 
-        private int _levelWidth;
+        private readonly int _levelWidth;
 
         public IDictionary<Location, IEnumerable<Creature>> Creatures { get; }
 
-        ushort ILevel.this[int x, int y]
+        Tile ILevel.this[int x, int y]
         {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
+            get { return _tiles[_levelWidth * y + x]; }
+            set { _tiles[_levelWidth * y + x] = value; }
         }
 
-        ushort ILevel.this[Location location]
+        Tile ILevel.this[Location l]
         {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
+            get { return _tiles[_levelWidth * l.Y + l.X]; }
+            set { _tiles[_levelWidth * l.Y + l.X] = value; }
         }
     }
 }

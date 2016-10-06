@@ -9,16 +9,19 @@ namespace WolfEngine.Level
     public interface ILevel
     {
 
+        /// <summary>
+        /// The creatures in the level by Location.
+        /// </summary>
         IDictionary<Location, IEnumerable<Creature>> Creatures { get; }
 
         /// <summary>
         /// Gets or sets the Tile at Location(x,y)
         /// </summary>
-        ushort this[int x, int y] { get; set; }
+        Tile this[int x, int y] { get; set; }
 
         /// <summary>
         /// Gets or sets the Tile at Location
         /// </summary>
-        ushort this[Location location] { get; set; }
+        Tile this[Location l] { get; set; }
     }
 }
