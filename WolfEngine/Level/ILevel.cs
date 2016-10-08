@@ -12,7 +12,7 @@ namespace WolfEngine.Level
         /// <summary>
         /// The creatures in the level by Location.
         /// </summary>
-        IDictionary<Location, IEnumerable<Creature>> Creatures { get; }
+        IDictionary<Location, IList<Creature>> Creatures { get; }
 
         /// <summary>
         /// Gets or sets the Tile at Location(x,y)
