@@ -1,4 +1,5 @@
 ﻿using System;
+using WolfEngine.Level;
 
 namespace WolfEngine.Entiity
 {
@@ -9,12 +10,22 @@ namespace WolfEngine.Entiity
     {
         public CreatureAttributes Attributes { get; set; }
 
-        public event ItemUsedEventHandler ItemUsed;
+        public Location Location { get; set; }
 
-        // TODO: Add an inventory
-        public Inventory Inventory { get; }
-        // TODO: Add equipment for equipable items
+        public CreatureMovedEventHandler Move;
 
+    }
+
+    public delegate void CreatureMovedEventHandler(object sender, CreatureMovedEventArgs e);
+
+    public class CreatureMovedEventArgs : EventArgs
+    {
+        public CreatureMovedEventArgs(Direction dir)
+        {
+            Direction = dir;
+        }
+
+        public Direction Direction { get; set; }
     }
 
     public delegate void ItemUsedEventHandler(object sender, ItemUsedEventArgs e);
