@@ -14,6 +14,18 @@ namespace WolfEngine.Level
         /// </summary>
         IDictionary<Location, IList<Creature>> Creatures { get; }
 
+        void Add(Location l, Creature c);
+
+        Creature Remove(Creature c);
+
+
+
+        void Move(Location to, Creature c);
+
+        void Clear();
+
+        void Clear(Location l);
+
         /// <summary>
         /// Gets or sets the Tile at Location(x,y)
         /// </summary>

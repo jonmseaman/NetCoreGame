@@ -12,7 +12,15 @@ namespace WolfEngine.Entiity
 
         public Location Location { get; set; }
 
-        public CreatureMovedEventHandler Move;
+        public event CreatureMovedEventHandler Moved;
+
+        public void Move(Direction dir)
+        {
+            if (Moved == null) return;
+
+            var args = new CreatureMovedEventArgs(dir);
+            Moved(this, args);
+        }
 
     }
 
