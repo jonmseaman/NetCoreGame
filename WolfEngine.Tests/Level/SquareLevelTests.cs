@@ -14,6 +14,13 @@ namespace WolfEngine.Tests.Level
         {
             var level = new SquareLevel(width);
             Assert.Equal(width, level.LevelWidth);
+
+            // Test contains location
+            var origin = new Location(0, 0);
+            Assert.True(level.Contains(origin));
+            var max = level.LevelWidth - 1;
+            var topRight = new Location(max, max);
+            Assert.True(level.Contains(topRight));
         }
 
     }

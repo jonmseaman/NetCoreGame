@@ -19,10 +19,22 @@ namespace WolfEngine.Level
 
         void Clear();
 
+        /// <summary>
+        /// Removes Creatures from location l.
+        /// </summary>
+        /// <param name="l">The location which Creatures will be removed from.</param>
         void Clear(Location l);
 
+        /// <summary>
+        /// Checks if a location l is part of the level.
+        /// </summary>
+        /// <returns>True if the location is part of the level.</returns>
         bool Contains(Location l);
 
+        /// <summary>
+        /// Checks if a creature c is part of the level.
+        /// </summary>
+        /// <returns>True if c is in the level.</returns>
         bool Contains(Creature c);
 
         /// <summary>
