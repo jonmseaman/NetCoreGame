@@ -41,6 +41,7 @@ namespace WolfEngine.Level
 
         public void Add(Location l, Creature c)
         {
+            // Update private variables
             Creatures[l].Add(c);
             CreatureLocations.Add(c, l);
 
