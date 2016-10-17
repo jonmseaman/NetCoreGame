@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
 
 namespace WolfEngine.Level
 {
@@ -16,5 +17,30 @@ namespace WolfEngine.Level
         public int X { get; set; }
         public int Y { get; set; }
 
+        public static Location Add(Location start, Direction dir, int distance)
+        {
+            var end = start;
+            switch (dir)
+            {
+                case Direction.North:
+                    end.Y += distance;
+                    break;
+                case Direction.East:
+                    end.X += distance;
+                    break;
+                case Direction.South:
+                    end.Y -= distance;
+                    break;
+                case Direction.West:
+                    end.X -= distance;
+                    break;
+                case Direction.None:
+                default:
+                    // Nothing to do.
+                    break;
+            }
+
+            return end;
+        }
     }
 }

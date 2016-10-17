@@ -10,8 +10,6 @@ namespace WolfEngine.Entiity
     {
         public CreatureAttributes Attributes { get; set; }
 
-        public Location Location { get; set; }
-
         public event CreatureMovedEventHandler Moved;
 
         public void Move(Direction dir)

@@ -9,22 +9,21 @@ namespace WolfEngine.Level
     public interface ILevel
     {
 
-        /// <summary>
-        /// The creatures in the level by Location.
-        /// </summary>
-        IDictionary<Location, IList<Creature>> Creatures { get; }
-
         void Add(Location l, Creature c);
 
-        Creature Remove(Creature c);
+        bool Remove(Creature c);
 
+        IList<Creature> Creatures(Location l);
 
-
-        void Move(Location to, Creature c);
+        void MoveCreature(object sender, CreatureMovedEventArgs args);
 
         void Clear();
 
         void Clear(Location l);
+
+        bool Contains(Location l);
+
+        bool Contains(Creature c);
 
         /// <summary>
         /// Gets or sets the Tile at Location(x,y)
