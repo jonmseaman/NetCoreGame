@@ -41,21 +41,23 @@ namespace WolfEngine.Level
 
         public void Add(Location l, Creature c)
         {
-            if (Creatures.ContainsKey(l))
-                Creatures[l].Add(c);
-            else
-                Creatures[l] = new List<Creature> {c};
+            Creatures[l].Add(c);
             CreatureLocations.Add(c, l);
+
+            // Observe creature.
             c.Moved += MoveCreature;
         }
 
         public bool Remove(Creature c)
         {
-            var removed = false;
-
             var l = CreatureLocations[c];
-            removed = Creatures[l].Remove(c);
+
+            // Update private variables
+            var removed = Creatures[l].Remove(c);
             CreatureLocations.Remove(c);
+
+            // Stop observing creature.
+            c.Moved -= MoveCreature;
 
             return removed;
         }
