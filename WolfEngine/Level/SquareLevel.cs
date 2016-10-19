@@ -18,9 +18,9 @@ namespace WolfEngine.Level
             CreateNewRep();
         }
 
-        private IDictionary<Location, IList<Creature>> Creatures { get; set; }
+        private IDictionary<Location, IList<Creature>> LocationCreaturesDictionary { get; set; }
 
-        private IDictionary<Creature, Location> CreatureLocations { get; set; }
+        private IDictionary<Creature, Location> CreatureLocationDictionary { get; set; }
 
         /// <summary>
         ///     The width of the level.
@@ -42,8 +42,8 @@ namespace WolfEngine.Level
         public void Add(Location l, Creature c)
         {
             // Update private variables
-            Creatures[l].Add(c);
-            CreatureLocations.Add(c, l);
+            LocationCreaturesDictionary[l].Add(c);
+            CreatureLocationDictionary.Add(c, l);
 
             // Observe creature.
             c.Moved += MoveCreature;
@@ -51,11 +51,11 @@ namespace WolfEngine.Level
 
         public bool Remove(Creature c)
         {
-            var l = CreatureLocations[c];
+            var l = CreatureLocationDictionary[c];
 
             // Update private variables
-            var removed = Creatures[l].Remove(c);
-            CreatureLocations.Remove(c);
+            var removed = LocationCreaturesDictionary[l].Remove(c);
+            CreatureLocationDictionary.Remove(c);
 
             // Stop observing creature.
             c.Moved -= MoveCreature;
@@ -63,16 +63,16 @@ namespace WolfEngine.Level
             return removed;
         }
 
-        IList<Creature> ILevel.Creatures(Location l)
+        public IList<Creature> Creatures(Location l)
         {
-            return Creatures[l];
+            return LocationCreaturesDictionary[l];
         }
 
         public void MoveCreature(object sender, CreatureMovedEventArgs args)
         {
             var c = (Creature) sender;
 
-            var currentLocation = CreatureLocations[c];
+            var currentLocation = CreatureLocationDictionary[c];
             var nextLocation = Location.Add(currentLocation, args.Direction, 1);
 
             Remove(c);
@@ -86,11 +86,11 @@ namespace WolfEngine.Level
 
         public void Clear(Location l)
         {
-            if (!Creatures.ContainsKey(l)) return;
+            if (!LocationCreaturesDictionary.ContainsKey(l)) return;
 
-            var list = Creatures[l];
+            var list = LocationCreaturesDictionary[l];
             foreach (var c in list)
-                CreatureLocations.Remove(c);
+                CreatureLocationDictionary.Remove(c);
 
             list.Clear();
         }
@@ -103,7 +103,7 @@ namespace WolfEngine.Level
 
         public bool Contains(Creature c)
         {
-            return CreatureLocations.ContainsKey(c);
+            return CreatureLocationDictionary.ContainsKey(c);
         }
 
         /// <summary>
@@ -134,11 +134,11 @@ namespace WolfEngine.Level
         private void CreateNewRep()
         {
             _tiles = new Tile[LevelWidth*LevelWidth];
-            Creatures = new Dictionary<Location, IList<Creature>>(5);
-            CreatureLocations = new Dictionary<Creature, Location>(5);
+            LocationCreaturesDictionary = new Dictionary<Location, IList<Creature>>(5);
+            CreatureLocationDictionary = new Dictionary<Creature, Location>(5);
 
             foreach (var l in this)
-                Creatures[l] = new List<Creature>();
+                LocationCreaturesDictionary[l] = new List<Creature>();
         }
     }
 }

@@ -1,11 +1,17 @@
-﻿using WolfEngine.Entiity;
+﻿using System;
+using WolfEngine.Entiity;
 using WolfEngine.Level;
 using Xunit;
 
 namespace WolfEngine.Tests.Level
 {
-    public class SquareLevelTests
+    public class SquareLevelTests : ILevelTests
     {
+        public override ILevel CreateLevel()
+        {
+            return new SquareLevel(5);
+        }
+
         [Theory]
         [InlineData(1)]
         [InlineData(5)]
