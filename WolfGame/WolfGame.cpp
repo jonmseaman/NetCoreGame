@@ -46,18 +46,13 @@ int main(array<System::String ^> ^args) {
 
 		render();
 
-#pragma warning(disable:4244)  
+#pragma warning(disable:4244)
 		elapsed = system_clock::now() - previous;
 		double ms = (timePerUpdate - elapsed).count() * 1000.0;
 		int msUntilUpdate = (int)ms;
-#pragma warning(default:4244)  
+#pragma warning(default:4244)
 		if (msUntilUpdate > 0) {
 			System::Threading::Thread::Sleep(msUntilUpdate);
 		}
 	}
-
-
-
-
 }
-
