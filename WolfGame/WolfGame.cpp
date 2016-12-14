@@ -33,7 +33,7 @@ int main(array<System::String ^> ^args) {
 	duration<double> elapsed = duration<double>(0.0);
 	duration<double> lag = duration<double>(0);
 
-	duration<double> timePerUpdate = milliseconds(1000);
+	duration<double> timePerUpdate = milliseconds(40);
 
 	while (true) {
 		current = system_clock::now();

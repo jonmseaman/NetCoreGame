@@ -45,7 +45,7 @@ namespace WolfEngine.Level
             LocationCreaturesDictionary[l].Add(c);
             CreatureLocationDictionary.Add(c, l);
 
-            // Observe creature.
+            // Observe creature movement.
             c.Moved += MoveCreature;
         }
 
@@ -143,7 +143,11 @@ namespace WolfEngine.Level
 
         public void Update()
         {
-            throw new NotImplementedException();
+            // Update each entity in this.
+            foreach (var pair in CreatureLocationDictionary)
+            {
+                pair.Key.Update();
+            }
         }
     }
 }
