@@ -6,7 +6,7 @@ namespace WolfEngine.Entiity
     /// <summary>
     ///     Encapsulates basic behavior of creatures.
     /// </summary>
-    public class Creature
+    public class Creature : IEntity
     {
         public CreatureAttributes Attributes { get; set; }
 
@@ -20,6 +20,11 @@ namespace WolfEngine.Entiity
             Moved(this, args);
         }
 
+        public void Update()
+        {
+            // TODO: Implement Update
+            throw new NotImplementedException();
+        }
     }
 
     public delegate void CreatureMovedEventHandler(object sender, CreatureMovedEventArgs e);
