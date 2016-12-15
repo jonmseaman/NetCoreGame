@@ -1,5 +1,7 @@
-﻿#include "Player.h"
+﻿#include "stdafx.h"
+#include "Player.h"
+#include "PlayerInputComponent.h"
 
 Player::Player() {
-	throw gcnew System::NotImplementedException();
+	this->Input = gcnew PlayerInputComponent();
 }
