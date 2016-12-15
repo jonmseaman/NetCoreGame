@@ -1,6 +1,7 @@
 // WolfGame.cpp : main project file.
 
 #include "stdafx.h"
+#include "Player.h"
 
 using namespace System;
 
@@ -24,7 +25,9 @@ int main(array<System::String ^> ^args) {
 	using namespace WolfEngine::Entiity;
 
 	// Entity being updated
-	IEntity^ entity = gcnew SquareLevel(5);
+	auto entity = gcnew SquareLevel(5);
+	entity->Add(Location(2, 2), gcnew Player());
+	
 	
 	
 	// Times for managing game loop.
