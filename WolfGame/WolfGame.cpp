@@ -6,16 +6,36 @@
 using namespace System;
 
 void render() {
-	// TODO: Implement render()
-	using namespace std;
 	using namespace std::chrono;
-	cout << "Time: " << system_clock::to_time_t(system_clock::now()) << endl;
+	move(0, 0);
+	printw("Time: ");
+	time_t time = system_clock::to_time_t(system_clock::now());
+	printw(ctime(&time));
+	refresh();
 }
 
 void processInput() {
-	// TODO: Implement processInput()
+	int input = getch();
+	switch (input) {
+		case 27:
+			system("Pause");
+			break;
+		default:
+			break;
+	}
 }
 
+void setupCurses()
+{
+	// Setup curses
+	initscr();
+	cbreak();
+	noecho();
+	nodelay(stdscr, TRUE);
+	nonl();
+	intrflush(stdscr, FALSE);
+	keypad(stdscr, TRUE);
+}
 
 int main() {
 	using namespace std::chrono;
@@ -23,11 +43,13 @@ int main() {
 	using namespace WolfEngine::Level;
 	using namespace WolfEngine::Entiity;
 
+	
 	// Entity being updated
 	auto entity = gcnew SquareLevel(5);
 	entity->Add(Location(2, 2), gcnew Player());
 	
-	
+	// Curses is used for user input.
+	setupCurses();
 	
 	// Times for managing game loop.
 	time_point<system_clock> previous = system_clock::now();
@@ -61,4 +83,7 @@ int main() {
 			System::Threading::Thread::Sleep(msUntilUpdate);
 		}
 	}
+
+	// Stop curses mode
+	endwin();
 }
