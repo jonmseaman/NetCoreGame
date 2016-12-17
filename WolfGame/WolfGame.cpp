@@ -17,7 +17,7 @@ void processInput() {
 }
 
 
-int main(array<System::String ^> ^args) {
+int main() {
 	using namespace std;
 	using namespace std::chrono;
 
