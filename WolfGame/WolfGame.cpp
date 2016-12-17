@@ -18,7 +18,6 @@ void processInput() {
 
 
 int main() {
-	using namespace std;
 	using namespace std::chrono;
 
 	using namespace WolfEngine::Level;
@@ -53,6 +52,7 @@ int main() {
 
 		render();
 
+		// Sleep until next time to update.
 		elapsed = system_clock::now() - previous;
 		double ms = (timePerUpdate - elapsed).count() * 1000.0;
 		int msUntilUpdate = (int)ms;
