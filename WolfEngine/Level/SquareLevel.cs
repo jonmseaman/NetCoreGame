@@ -39,14 +39,36 @@ namespace WolfEngine.Level
             return GetEnumerator();
         }
 
+        public void MoveCreature(object sender, CreatureMovedEventArgs args)
+        {
+            var c = (Creature)sender;
+
+            var currentLocation = CreatureLocationDictionary[c];
+            var nextLocation = Location.Add(currentLocation, args.Direction, 1);
+
+            Remove(c);
+            Add(nextLocation, c);
+        }
+
+        public void HandleEntityEvent(object sender, EventArgs e)
+        {
+            // TODO: Implement HandleEntityEvent
+            if (e is CreatureMovedEventArgs)
+            {
+                MoveCreature(sender, (CreatureMovedEventArgs)e);
+            }
+        }
+
+        #region ILevel
+
         public void Add(Location l, Creature c)
         {
             // Update private variables
             LocationCreaturesDictionary[l].Add(c);
             CreatureLocationDictionary.Add(c, l);
 
-            // Observe creature movement.
-            c.Moved += MoveCreature;
+            // Observe creature events.
+            c.HandleEvent += HandleEntityEvent;
         }
 
         public bool Remove(Creature c)
@@ -57,8 +79,8 @@ namespace WolfEngine.Level
             var removed = LocationCreaturesDictionary[l].Remove(c);
             CreatureLocationDictionary.Remove(c);
 
-            // Stop observing creature.
-            c.Moved -= MoveCreature;
+            // Stop observing creature events.
+            c.HandleEvent -= HandleEntityEvent;
 
             return removed;
         }
@@ -66,17 +88,6 @@ namespace WolfEngine.Level
         public IList<Creature> Creatures(Location l)
         {
             return LocationCreaturesDictionary[l];
-        }
-
-        public void MoveCreature(object sender, CreatureMovedEventArgs args)
-        {
-            var c = (Creature) sender;
-
-            var currentLocation = CreatureLocationDictionary[c];
-            var nextLocation = Location.Add(currentLocation, args.Direction, 1);
-
-            Remove(c);
-            Add(nextLocation, c);
         }
 
         public void Clear()
@@ -110,7 +121,7 @@ namespace WolfEngine.Level
         ///     Gets or sets the Tile at location (x, y).
         /// </summary>
         /// <param name="x">
-        ///     0 <= x < LevelWidth
+        /// x in interval [0, LevelWidth)
         /// </param>
         /// <param name="y">
         ///     0 <= y < width
@@ -140,6 +151,8 @@ namespace WolfEngine.Level
             foreach (var l in this)
                 LocationCreaturesDictionary[l] = new List<Creature>();
         }
+        
+        #endregion
 
         public void Update()
         {
@@ -149,5 +162,7 @@ namespace WolfEngine.Level
                 pair.Key.Update();
             }
         }
+
+
     }
 }

@@ -12,14 +12,17 @@ namespace WolfEngine.Entiity
 
         protected IInputComponent Input;
 
-        public event CreatureMovedEventHandler Moved;
+        /// <summary>
+        /// Send events to be handled.
+        /// </summary>
+        public event CreatureEventHandler HandleEvent;
 
         public void Move(Direction dir)
         {
-            if (Moved == null) return;
+            if (HandleEvent == null) return;
 
             var args = new CreatureMovedEventArgs(dir);
-            Moved(this, args);
+            HandleEvent(this, args);
         }
 
         public void Update()
@@ -30,7 +33,7 @@ namespace WolfEngine.Entiity
 
     #region Helpers
 
-    public delegate void CreatureMovedEventHandler(object sender, CreatureMovedEventArgs e);
+    public delegate void CreatureEventHandler(object sender, EventArgs e);
 
     public class CreatureMovedEventArgs : EventArgs
     {
