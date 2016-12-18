@@ -17,10 +17,14 @@ void render() {
 void processInput() {
 	int input = getch();
 	switch (input) {
+		case ERR:
+			break;
 		case 27:
 			system("Pause");
 			break;
 		default:
+			// Don't want to remove char if it cannot be processed here.
+			ungetch(input);
 			break;
 	}
 }

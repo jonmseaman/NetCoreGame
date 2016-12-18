@@ -14,8 +14,6 @@ void PlayerInputComponent::Update(Creature^ c) {
 		case 'W':
 		case 'w':
 			c->Move(Direction::North);
-			System::Console::WriteLine(L"Default for PlayerInputComponentUpdate");
-
 			break;
 		case 'A':
 		case 'a':
