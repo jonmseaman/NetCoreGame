@@ -1,31 +1,59 @@
 // WolfGame.cpp : main project file.
 
 #include "stdafx.h"
+#include "Player.h"
 
 using namespace System;
 
 void render() {
-	// TODO: Implement render()
-	using namespace std;
 	using namespace std::chrono;
-	cout << "Time: " << system_clock::to_time_t(system_clock::now()) << endl;
+	move(0, 0);
+	printw("Time: ");
+	time_t time = system_clock::to_time_t(system_clock::now());
+	printw(ctime(&time));
+	refresh();
 }
 
 void processInput() {
-	// TODO: Implement processInput()
+	int input = getch();
+	switch (input) {
+		case ERR:
+			break;
+		case 27:
+			system("Pause");
+			break;
+		default:
+			// Don't want to remove char if it cannot be processed here.
+			ungetch(input);
+			break;
+	}
 }
 
+void setupCurses()
+{
+	// Setup curses
+	initscr();
+	cbreak();
+	noecho();
+	nodelay(stdscr, TRUE);
+	nonl();
+	intrflush(stdscr, FALSE);
+	keypad(stdscr, TRUE);
+}
 
-int main(array<System::String ^> ^args) {
-	using namespace std;
+int main() {
 	using namespace std::chrono;
 
 	using namespace WolfEngine::Level;
 	using namespace WolfEngine::Entiity;
 
-	// Entity being updated
-	IEntity^ entity = gcnew SquareLevel(5);
 	
+	// Entity being updated
+	auto entity = gcnew SquareLevel(5);
+	entity->Add(Location(2, 2), gcnew Player());
+	
+	// Curses is used for user input.
+	setupCurses();
 	
 	// Times for managing game loop.
 	time_point<system_clock> previous = system_clock::now();
@@ -50,6 +78,7 @@ int main(array<System::String ^> ^args) {
 
 		render();
 
+		// Sleep until next time to update.
 		elapsed = system_clock::now() - previous;
 		double ms = (timePerUpdate - elapsed).count() * 1000.0;
 		int msUntilUpdate = (int)ms;
@@ -58,4 +87,7 @@ int main(array<System::String ^> ^args) {
 			System::Threading::Thread::Sleep(msUntilUpdate);
 		}
 	}
+
+	// Stop curses mode
+	endwin();
 }

@@ -143,7 +143,7 @@ namespace WolfEngine.Level
 
         public void Update()
         {
-            // Update each entity in this.
+            // Update each entity in this
             foreach (var pair in CreatureLocationDictionary)
             {
                 pair.Key.Update();

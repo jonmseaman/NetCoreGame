@@ -9,3 +9,4 @@
 #include <chrono>
 #include <iostream>
 #include <cmath>
+#include <curses.h>

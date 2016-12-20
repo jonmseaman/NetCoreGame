@@ -10,6 +10,8 @@ namespace WolfEngine.Entiity
     {
         public CreatureAttributes Attributes { get; set; }
 
+        protected IInputComponent Input;
+
         public event CreatureMovedEventHandler Moved;
 
         public void Move(Direction dir)
@@ -22,10 +24,11 @@ namespace WolfEngine.Entiity
 
         public void Update()
         {
-            // TODO: Implement Update
-            throw new NotImplementedException();
+            Input?.Update(this);
         }
     }
+
+    #region Helpers
 
     public delegate void CreatureMovedEventHandler(object sender, CreatureMovedEventArgs e);
 
@@ -52,4 +55,6 @@ namespace WolfEngine.Entiity
         public Creature UsedOn { get; }
         public Item ItemUsed { get; }
     }
+
+    #endregion
 }
