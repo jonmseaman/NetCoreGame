@@ -21,6 +21,7 @@ void processInput() {
 			break;
 		case 27:
 			system("Pause");
+			clear();
 			break;
 		default:
 			// Don't want to remove char if it cannot be processed here.

@@ -124,7 +124,7 @@ namespace WolfEngine.Level
         /// x in interval [0, LevelWidth)
         /// </param>
         /// <param name="y">
-        ///     0 <= y < width
+        /// y in interval [0, LevelWidth)
         /// </param>
         Tile ILevel.this[int x, int y]
         {
