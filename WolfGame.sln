@@ -15,6 +15,9 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "WolfEngine.Tests", "WolfEngine.Tests\WolfEngine.Tests.xproj", "{72A8EF57-7554-4AE2-A838-C7E1E1453ECD}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WolfGame", "WolfGame\WolfGame.vcxproj", "{B7F70A08-27F1-4725-8335-F370334A868E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8F7426FE-A819-4DAB-BD87-5CCCC1B29B23} = {8F7426FE-A819-4DAB-BD87-5CCCC1B29B23}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

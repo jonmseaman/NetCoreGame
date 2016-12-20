@@ -8,7 +8,7 @@ namespace WolfEngine.Level
     /// <summary>
     ///     Represents a square level of fixed size.
     /// </summary>
-    public class SquareLevel : ILevel, IEnumerable<Location>
+    public class SquareLevel : ILevel, IEnumerable<Location>, IEntity
     {
         private Tile[] _tiles;
 
@@ -45,7 +45,7 @@ namespace WolfEngine.Level
             LocationCreaturesDictionary[l].Add(c);
             CreatureLocationDictionary.Add(c, l);
 
-            // Observe creature.
+            // Observe creature movement.
             c.Moved += MoveCreature;
         }
 
@@ -139,6 +139,15 @@ namespace WolfEngine.Level
 
             foreach (var l in this)
                 LocationCreaturesDictionary[l] = new List<Creature>();
+        }
+
+        public void Update()
+        {
+            // Update each entity in this.
+            foreach (var pair in CreatureLocationDictionary)
+            {
+                pair.Key.Update();
+            }
         }
     }
 }
