@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using WolfEngine.Entiity;
 
@@ -34,13 +35,38 @@ namespace WolfEngine.Level
             var currentLocation = CreatureLocationDictionary[c];
             var nextLocation = Location.Add(currentLocation, args.Direction, 1);
 
-            Remove(c);
-            Add(nextLocation, c);
+            if (IsLocationValid(nextLocation))
+            {
+                Remove(c);
+                Add(nextLocation, c);
+            }
         }
 
-        public void HandleEntityEvent(object sender, EventArgs e)
+        private bool IsLocationValid(Location loc)
         {
-            // TODO: Implement HandleEntityEvent
+            var valid = 0 <= loc.X && 0 <= loc.Y
+                         && loc.X <= LevelWidth && loc.Y <= LevelWidth;
+            return valid;
+        }
+
+        private readonly Queue<KeyValuePair<object, EventArgs>> _creatureEventQueue 
+            = new Queue<KeyValuePair<object, EventArgs>>(100);
+
+        private void EnqueueEntityEvent(object sender, EventArgs e)
+        {
+            var pair = new KeyValuePair<object, EventArgs>(sender, e);
+            _creatureEventQueue.Enqueue(pair);
+        }
+
+        private void ProcessEntityEvents()
+        {
+            // Make sure there is something to process.
+            if (_creatureEventQueue.Count == 0) return;
+
+            var pair = _creatureEventQueue.Dequeue();
+            var e = pair.Value;
+            var sender = pair.Key;
+
             if (e is CreatureMovedEventArgs)
             {
                 MoveCreature(sender, (CreatureMovedEventArgs)e);
@@ -72,7 +98,7 @@ namespace WolfEngine.Level
             CreatureLocationDictionary.Add(c, l);
 
             // Observe creature events.
-            c.HandleEvent += HandleEntityEvent;
+            c.HandleEvent += EnqueueEntityEvent;
         }
 
         public bool Remove(Creature c)
@@ -84,7 +110,7 @@ namespace WolfEngine.Level
             CreatureLocationDictionary.Remove(c);
 
             // Stop observing creature events.
-            c.HandleEvent -= HandleEntityEvent;
+            c.HandleEvent -= EnqueueEntityEvent;
 
             return removed;
         }
@@ -165,6 +191,8 @@ namespace WolfEngine.Level
             {
                 pair.Key.Update();
             }
+
+            ProcessEntityEvents();
         }
 
 
