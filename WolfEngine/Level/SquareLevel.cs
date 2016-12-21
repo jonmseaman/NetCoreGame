@@ -27,18 +27,6 @@ namespace WolfEngine.Level
         /// </summary>
         public int LevelWidth { get; }
 
-        public IEnumerator<Location> GetEnumerator()
-        {
-            for (var y = 0; y < LevelWidth; y++)
-                for (var x = 0; x < LevelWidth; x++)
-                    yield return new Location(x, y);
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
         public void MoveCreature(object sender, CreatureMovedEventArgs args)
         {
             var c = (Creature)sender;
@@ -58,6 +46,22 @@ namespace WolfEngine.Level
                 MoveCreature(sender, (CreatureMovedEventArgs)e);
             }
         }
+
+        #region IEnumerable
+
+        public IEnumerator<Location> GetEnumerator()
+        {
+            for (var y = 0; y < LevelWidth; y++)
+                for (var x = 0; x < LevelWidth; x++)
+                    yield return new Location(x, y);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
 
         #region ILevel
 

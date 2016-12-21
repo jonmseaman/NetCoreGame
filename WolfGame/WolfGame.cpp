@@ -48,7 +48,6 @@ int main() {
 	using namespace WolfEngine::Level;
 	using namespace WolfEngine::Entiity;
 
-	
 	// Entity being updated
 	auto entity = gcnew SquareLevel(5);
 	entity->Add(Location(2, 2), gcnew Player());
