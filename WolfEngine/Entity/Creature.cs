@@ -17,10 +17,16 @@ namespace WolfEngine.Entity
 
         public void Move(Direction dir)
         {
-            if (OnMove == null) return;
+            // Update location
+            this.Location = Location.Add(Location, dir, 1);
+
+            // OnMove event
+            if (OnMove == null) return;            
 
             var args = new CreatureMovedEventArgs(dir);
             OnMove?.Invoke(this, args);
+
+            Console.WriteLine($"Location: ({Location.X}, {Location.Y}).");
         }
 
         public override void Update()

@@ -30,16 +30,14 @@ namespace WolfEngine.Level
         {
             var c = (Creature)sender;
 
-            if (!IsLocationValid(c.Location))
-            {
-                var x = c.Location.X;
-                c.Location.X = x < 0 ? 0 : x;
-                c.Location.X = x > LevelWidth ? LevelWidth - 1 : x;
+            // Keep the creature in the level.
+            var x = c.Location.X;
+            c.Location.X = x < 0 ? 0 : c.Location.X;
+            c.Location.X = x >= LevelWidth ? LevelWidth - 1 : c.Location.X;
 
-                var y = c.Location.Y;
-                c.Location.Y = y < 0 ? 0 : y;
-                c.Location.Y = y > LevelWidth ? LevelWidth - 1 : y;
-            }
+            var y = c.Location.Y;
+            c.Location.Y = y < 0 ? 0 : c.Location.Y;
+            c.Location.Y = y >= LevelWidth ? LevelWidth - 1 : c.Location.Y;
         }
 
         private bool IsLocationValid(Location loc)
