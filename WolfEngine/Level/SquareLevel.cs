@@ -45,7 +45,7 @@ namespace WolfEngine.Level
         private bool IsLocationValid(Location loc)
         {
             var valid = 0 <= loc.X && 0 <= loc.Y
-                         && loc.X <= LevelWidth && loc.Y <= LevelWidth;
+                         && loc.X < LevelWidth && loc.Y < LevelWidth;
             return valid;
         }
 
