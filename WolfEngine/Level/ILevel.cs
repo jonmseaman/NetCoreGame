@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WolfEngine.Entiity;
+using WolfEngine.Entity;
 
 namespace WolfEngine.Level
 {
@@ -13,17 +13,9 @@ namespace WolfEngine.Level
 
         bool Remove(Creature c);
 
-        IList<Creature> Creatures(Location l);
-
         void MoveCreature(object sender, CreatureMovedEventArgs args);
 
         void Clear();
-
-        /// <summary>
-        /// Removes Creatures from location l.
-        /// </summary>
-        /// <param name="l">The location which Creatures will be removed from.</param>
-        void Clear(Location l);
 
         /// <summary>
         /// Checks if a location l is part of the level.

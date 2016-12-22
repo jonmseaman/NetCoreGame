@@ -1,4 +1,4 @@
-﻿namespace WolfEngine.Entiity
+﻿namespace WolfEngine.Entity
 {
     public class Item
     {

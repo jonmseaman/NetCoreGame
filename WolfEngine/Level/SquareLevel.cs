@@ -2,14 +2,14 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using WolfEngine.Entiity;
+using WolfEngine.Entity;
 
 namespace WolfEngine.Level
 {
     /// <summary>
     ///     Represents a square level of fixed size.
     /// </summary>
-    public class SquareLevel : ILevel, IEnumerable<Location>, IEntity
+    public class SquareLevel : Entity.Entity, ILevel, IEnumerable<Location>
     {
         private Tile[] _tiles;
 
@@ -19,9 +19,7 @@ namespace WolfEngine.Level
             CreateNewRep();
         }
 
-        private IDictionary<Location, IList<Creature>> LocationCreaturesDictionary { get; set; }
-
-        private IDictionary<Creature, Location> CreatureLocationDictionary { get; set; }
+        private readonly List<Creature> _creatureList = new List<Creature>();
 
         /// <summary>
         ///     The width of the level.
@@ -32,13 +30,15 @@ namespace WolfEngine.Level
         {
             var c = (Creature)sender;
 
-            var currentLocation = CreatureLocationDictionary[c];
-            var nextLocation = Location.Add(currentLocation, args.Direction, 1);
-
-            if (IsLocationValid(nextLocation))
+            if (!IsLocationValid(c.Location))
             {
-                Remove(c);
-                Add(nextLocation, c);
+                var x = c.Location.X;
+                c.Location.X = x < 0 ? 0 : x;
+                c.Location.X = x > LevelWidth ? LevelWidth - 1 : x;
+
+                var y = c.Location.Y;
+                c.Location.Y = y < 0 ? 0 : y;
+                c.Location.Y = y > LevelWidth ? LevelWidth - 1 : y;
             }
         }
 
@@ -54,8 +54,8 @@ namespace WolfEngine.Level
         public void Add(Location l, Creature c)
         {
             // Update private variables
-            LocationCreaturesDictionary[l].Add(c);
-            CreatureLocationDictionary.Add(c, l);
+            _creatureList.Add(c);
+            c.Location = l;
 
             // Observe creature events.
             c.OnMove += MoveCreature;
@@ -63,37 +63,17 @@ namespace WolfEngine.Level
 
         public bool Remove(Creature c)
         {
-            var l = CreatureLocationDictionary[c];
-
-            // Update private variables
-            var removed = LocationCreaturesDictionary[l].Remove(c);
-            CreatureLocationDictionary.Remove(c);
+            var removed = _creatureList.Remove(c);
 
             // Stop observing creature events.
-            c.HandleEvent -= EnqueueEntityEvent;
+            c.OnMove -= MoveCreature;
 
             return removed;
-        }
-
-        public IList<Creature> Creatures(Location l)
-        {
-            return LocationCreaturesDictionary[l];
         }
 
         public void Clear()
         {
             CreateNewRep();
-        }
-
-        public void Clear(Location l)
-        {
-            if (!LocationCreaturesDictionary.ContainsKey(l)) return;
-
-            var list = LocationCreaturesDictionary[l];
-            foreach (var c in list)
-                CreatureLocationDictionary.Remove(c);
-
-            list.Clear();
         }
 
         public bool Contains(Location l)
@@ -104,7 +84,7 @@ namespace WolfEngine.Level
 
         public bool Contains(Creature c)
         {
-            return CreatureLocationDictionary.ContainsKey(c);
+            return _creatureList.Contains(c);
         }
 
         /// <summary>
@@ -135,11 +115,7 @@ namespace WolfEngine.Level
         private void CreateNewRep()
         {
             _tiles = new Tile[LevelWidth*LevelWidth];
-            LocationCreaturesDictionary = new Dictionary<Location, IList<Creature>>(5);
-            CreatureLocationDictionary = new Dictionary<Creature, Location>(5);
-
-            foreach (var l in this)
-                LocationCreaturesDictionary[l] = new List<Creature>();
+            _creatureList.Capacity = 0;
         }
 
         #endregion
@@ -160,12 +136,12 @@ namespace WolfEngine.Level
 
         #endregion
 
-        public void Update()
+        public override void Update()
         {
             // Update each entity in this
-            foreach (var pair in CreatureLocationDictionary)
+            foreach (var creature in _creatureList)
             {
-                pair.Key.Update();
+                creature.Update();
             }
         }
 

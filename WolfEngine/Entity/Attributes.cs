@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WolfEngine.Entiity
+﻿namespace WolfEngine.Entity
 {
     /// <summary>
     /// Represents the attributes of a Creature.

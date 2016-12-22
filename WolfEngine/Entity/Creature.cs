@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using WolfEngine.Level;
 
-namespace WolfEngine.Entiity
+namespace WolfEngine.Entity
 {
     /// <summary>
     ///     Encapsulates basic behavior of creatures.
     /// </summary>
-    public class Creature : IEntity
+    public class Creature : Entity
     {
         public CreatureAttributes Attributes { get; set; }
 
@@ -23,7 +23,7 @@ namespace WolfEngine.Entiity
             OnMove?.Invoke(this, args);
         }
 
-        public void Update()
+        public override void Update()
         {
             Input?.Update(this);
         }

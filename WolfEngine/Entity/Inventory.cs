@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace WolfEngine.Entiity
+﻿namespace WolfEngine.Entity
 {
     /// <summary>
     /// An inventory with a fixed capacity.

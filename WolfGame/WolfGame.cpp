@@ -46,7 +46,7 @@ int main() {
 	using namespace std::chrono;
 
 	using namespace WolfEngine::Level;
-	using namespace WolfEngine::Entiity;
+	using namespace WolfEngine::Entity;
 
 	// Entity being updated
 	auto entity = gcnew SquareLevel(5);
@@ -61,7 +61,7 @@ int main() {
 	duration<double> elapsed = duration<double>(0.0);
 	duration<double> lag = duration<double>(0);
 
-	duration<double> timePerUpdate = milliseconds(40);
+	duration<double> timePerUpdate = milliseconds(20);
 
 	while (true) {
 		current = system_clock::now();

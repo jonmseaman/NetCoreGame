@@ -2,7 +2,7 @@
 #include "PlayerInputComponent.h"
 #include <curses.h>
 
-using namespace WolfEngine::Entiity;
+using namespace WolfEngine::Entity;
 using namespace WolfEngine::Level;
 
 PlayerInputComponent::PlayerInputComponent() {}
