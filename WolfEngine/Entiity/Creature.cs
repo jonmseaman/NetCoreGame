@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WolfEngine.Level;
 
 namespace WolfEngine.Entiity
@@ -12,17 +13,14 @@ namespace WolfEngine.Entiity
 
         protected IInputComponent Input;
 
-        /// <summary>
-        /// Send events to be handled.
-        /// </summary>
-        public event CreatureEventHandler HandleEvent;
+        public event CreatureMovedEventHandler OnMove;
 
         public void Move(Direction dir)
         {
-            if (HandleEvent == null) return;
+            if (OnMove == null) return;
 
             var args = new CreatureMovedEventArgs(dir);
-            HandleEvent(this, args);
+            OnMove?.Invoke(this, args);
         }
 
         public void Update()
@@ -34,6 +32,8 @@ namespace WolfEngine.Entiity
     #region Helpers
 
     public delegate void CreatureEventHandler(object sender, EventArgs e);
+
+    public delegate void CreatureMovedEventHandler(object sender, CreatureMovedEventArgs e);
 
     public class CreatureMovedEventArgs : EventArgs
     {

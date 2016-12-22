@@ -49,46 +49,6 @@ namespace WolfEngine.Level
             return valid;
         }
 
-        private readonly Queue<KeyValuePair<object, EventArgs>> _creatureEventQueue 
-            = new Queue<KeyValuePair<object, EventArgs>>(100);
-
-        private void EnqueueEntityEvent(object sender, EventArgs e)
-        {
-            var pair = new KeyValuePair<object, EventArgs>(sender, e);
-            _creatureEventQueue.Enqueue(pair);
-        }
-
-        private void ProcessEntityEvents()
-        {
-            // Make sure there is something to process.
-            if (_creatureEventQueue.Count == 0) return;
-
-            var pair = _creatureEventQueue.Dequeue();
-            var e = pair.Value;
-            var sender = pair.Key;
-
-            if (e is CreatureMovedEventArgs)
-            {
-                MoveCreature(sender, (CreatureMovedEventArgs)e);
-            }
-        }
-
-        #region IEnumerable
-
-        public IEnumerator<Location> GetEnumerator()
-        {
-            for (var y = 0; y < LevelWidth; y++)
-                for (var x = 0; x < LevelWidth; x++)
-                    yield return new Location(x, y);
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        #endregion
-
         #region ILevel
 
         public void Add(Location l, Creature c)
@@ -98,7 +58,7 @@ namespace WolfEngine.Level
             CreatureLocationDictionary.Add(c, l);
 
             // Observe creature events.
-            c.HandleEvent += EnqueueEntityEvent;
+            c.OnMove += MoveCreature;
         }
 
         public bool Remove(Creature c)
@@ -181,7 +141,23 @@ namespace WolfEngine.Level
             foreach (var l in this)
                 LocationCreaturesDictionary[l] = new List<Creature>();
         }
-        
+
+        #endregion
+
+        #region IEnumerable
+
+        public IEnumerator<Location> GetEnumerator()
+        {
+            for (var y = 0; y < LevelWidth; y++)
+                for (var x = 0; x < LevelWidth; x++)
+                    yield return new Location(x, y);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         #endregion
 
         public void Update()
@@ -191,8 +167,6 @@ namespace WolfEngine.Level
             {
                 pair.Key.Update();
             }
-
-            ProcessEntityEvents();
         }
 
 
