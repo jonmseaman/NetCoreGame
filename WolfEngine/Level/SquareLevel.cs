@@ -13,18 +13,21 @@ namespace WolfEngine.Level
     {
         private Tile[] _tiles;
 
-        public SquareLevel(int width)
-        {
-            LevelWidth = width;
-            CreateNewRep();
-        }
-
+        /// <summary>
+        /// Contains all the creatures in the level.
+        /// </summary>
         private readonly List<Creature> _creatureList = new List<Creature>();
 
         /// <summary>
         ///     The width of the level.
         /// </summary>
         public int LevelWidth { get; }
+
+        public SquareLevel(int width)
+        {
+            LevelWidth = width;
+            CreateNewRep();
+        }
 
         public void MoveCreature(object sender, CreatureMovedEventArgs args)
         {
@@ -45,6 +48,11 @@ namespace WolfEngine.Level
             var valid = 0 <= loc.X && 0 <= loc.Y
                          && loc.X < LevelWidth && loc.Y < LevelWidth;
             return valid;
+        }
+
+        public Tile GetTile(int x, int y)
+        {
+            return _tiles[LevelWidth*y + x];
         }
 
         #region ILevel
