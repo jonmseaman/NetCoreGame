@@ -18,8 +18,6 @@ namespace WolfEngine.Tests.Level
 
             level.Add(l, c);
             Assert.True(level.Contains(c));
-            var list = level.Creatures(l);
-            Assert.Contains(c, list);
         }
 
         [Fact]
@@ -32,7 +30,7 @@ namespace WolfEngine.Tests.Level
 
             level.Add(l, c);
             c.Move(Direction.North);
-            Assert.True(level.Creatures(to).Contains(c));
+            Assert.Equal(to, c.Location);
         }
     }
 }
