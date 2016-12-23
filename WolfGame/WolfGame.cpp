@@ -26,8 +26,9 @@ int main() {
 	using namespace WolfEngine::Entity;
 
 	// Entity being updated
-	auto level = gcnew SquareLevel(5);
+	auto level = gcnew SquareLevel(25);
 	level->Add(Location(2, 2), gcnew Player());
+
 	
 	// Curses is used for user input.
 	setupCurses();

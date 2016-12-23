@@ -53,6 +53,7 @@ void GameLoop::processInput() {
 			break;
 		case ALT_X:
 			Running = false;
+			break;
 		default:
 			// Don't want to remove char if it cannot be processed here.
 			ungetch(input);

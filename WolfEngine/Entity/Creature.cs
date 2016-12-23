@@ -13,6 +13,11 @@ namespace WolfEngine.Entity
 
         protected IInputComponent Input;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        protected ICreatureGraphicsComponent Graphics;
+
         public event CreatureMovedEventHandler OnMove;
 
         public void Move(Direction dir)
@@ -32,6 +37,7 @@ namespace WolfEngine.Entity
         public override void Update()
         {
             Input?.Update(this);
+            Graphics?.Update(this);
         }
     }
 
