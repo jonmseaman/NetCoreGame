@@ -4,13 +4,33 @@
 #include "Player.h"
 
 using namespace System;
+using namespace WolfEngine::Level;
 
-void render() {
+void render(SquareLevel^ level) {
 	using namespace std::chrono;
 	move(0, 0);
 	printw("Time: ");
 	time_t time = system_clock::to_time_t(system_clock::now());
 	printw(ctime(&time));
+
+	// Print Level
+	move(1, 0);
+	for (int y = 0; y < level->LevelWidth; y++)
+	{
+		printw("|");
+		for (int x = 0; x < level->LevelWidth; x++)
+		{
+
+			//int tileNum = 'a' + level->default[x, y].TileNum;
+			int tileNum = 'a';
+			char data[2];
+			data[0] = 'a' + level->GetTile(x, y).TileNum;
+			data[1] = '\0';
+			printw(data);
+		}
+
+		printw("|\n");
+	}
 	refresh();
 }
 
@@ -21,6 +41,7 @@ void processInput() {
 			break;
 		case 27:
 			system("Pause");
+			clear();
 			break;
 		default:
 			// Don't want to remove char if it cannot be processed here.
@@ -45,9 +66,8 @@ int main() {
 	using namespace std::chrono;
 
 	using namespace WolfEngine::Level;
-	using namespace WolfEngine::Entiity;
+	using namespace WolfEngine::Entity;
 
-	
 	// Entity being updated
 	auto entity = gcnew SquareLevel(5);
 	entity->Add(Location(2, 2), gcnew Player());
@@ -61,7 +81,7 @@ int main() {
 	duration<double> elapsed = duration<double>(0.0);
 	duration<double> lag = duration<double>(0);
 
-	duration<double> timePerUpdate = milliseconds(40);
+	duration<double> timePerUpdate = milliseconds(20);
 
 	while (true) {
 		current = system_clock::now();
@@ -76,7 +96,7 @@ int main() {
 			lag -= timePerUpdate;
 		}
 
-		render();
+		render(entity);
 
 		// Sleep until next time to update.
 		elapsed = system_clock::now() - previous;

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-ref class Player : WolfEngine::Entiity::Creature
+ref class Player : WolfEngine::Entity::Creature
 {
 public:
 	Player();

@@ -1,7 +1,7 @@
 #pragma once
 #include "Player.h"
 
-using namespace WolfEngine::Entiity;
+using namespace WolfEngine::Entity;
 
 ref class PlayerInputComponent :
 	public IInputComponent {

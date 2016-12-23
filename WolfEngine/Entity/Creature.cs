@@ -1,34 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
 using WolfEngine.Level;
 
-namespace WolfEngine.Entiity
+namespace WolfEngine.Entity
 {
     /// <summary>
     ///     Encapsulates basic behavior of creatures.
     /// </summary>
-    public class Creature : IEntity
+    public class Creature : Entity
     {
         public CreatureAttributes Attributes { get; set; }
 
         protected IInputComponent Input;
 
-        public event CreatureMovedEventHandler Moved;
+        public event CreatureMovedEventHandler OnMove;
 
         public void Move(Direction dir)
         {
-            if (Moved == null) return;
+            // Update location
+            this.Location = Location.Add(Location, dir, 1);
+
+            // OnMove event
+            if (OnMove == null) return;            
 
             var args = new CreatureMovedEventArgs(dir);
-            Moved(this, args);
+            OnMove?.Invoke(this, args);
+
+            Console.WriteLine($"Location: ({Location.X}, {Location.Y}).");
         }
 
-        public void Update()
+        public override void Update()
         {
             Input?.Update(this);
         }
     }
 
     #region Helpers
+
+    public delegate void CreatureEventHandler(object sender, EventArgs e);
 
     public delegate void CreatureMovedEventHandler(object sender, CreatureMovedEventArgs e);
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using WolfEngine.Entiity;
+using WolfEngine.Entity;
 
 namespace WolfEngine.Tests.Entity
 {

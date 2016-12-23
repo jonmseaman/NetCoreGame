@@ -1,4 +1,4 @@
-﻿using WolfEngine.Entiity;
+﻿using WolfEngine.Entity;
 using Xunit;
 
 namespace WolfEngine.Tests.Entity

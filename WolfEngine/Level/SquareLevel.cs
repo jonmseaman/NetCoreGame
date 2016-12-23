@@ -1,16 +1,27 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using WolfEngine.Entiity;
+using WolfEngine.Entity;
 
 namespace WolfEngine.Level
 {
     /// <summary>
     ///     Represents a square level of fixed size.
     /// </summary>
-    public class SquareLevel : ILevel, IEnumerable<Location>, IEntity
+    public class SquareLevel : Entity.Entity, ILevel, IEnumerable<Location>
     {
         private Tile[] _tiles;
+
+        /// <summary>
+        /// Contains all the creatures in the level.
+        /// </summary>
+        private readonly List<Creature> _creatureList = new List<Creature>();
+
+        /// <summary>
+        ///     The width of the level.
+        /// </summary>
+        public int LevelWidth { get; }
 
         public SquareLevel(int width)
         {
@@ -18,81 +29,57 @@ namespace WolfEngine.Level
             CreateNewRep();
         }
 
-        private IDictionary<Location, IList<Creature>> LocationCreaturesDictionary { get; set; }
-
-        private IDictionary<Creature, Location> CreatureLocationDictionary { get; set; }
-
-        /// <summary>
-        ///     The width of the level.
-        /// </summary>
-        public int LevelWidth { get; }
-
-        public IEnumerator<Location> GetEnumerator()
+        public void MoveCreature(object sender, CreatureMovedEventArgs args)
         {
-            for (var y = 0; y < LevelWidth; y++)
-                for (var x = 0; x < LevelWidth; x++)
-                    yield return new Location(x, y);
+            var c = (Creature)sender;
+
+            // Keep the creature in the level.
+            var x = c.Location.X;
+            c.Location.X = x < 0 ? 0 : c.Location.X;
+            c.Location.X = x >= LevelWidth ? LevelWidth - 1 : c.Location.X;
+
+            var y = c.Location.Y;
+            c.Location.Y = y < 0 ? 0 : c.Location.Y;
+            c.Location.Y = y >= LevelWidth ? LevelWidth - 1 : c.Location.Y;
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        private bool IsLocationValid(Location loc)
         {
-            return GetEnumerator();
+            var valid = 0 <= loc.X && 0 <= loc.Y
+                         && loc.X < LevelWidth && loc.Y < LevelWidth;
+            return valid;
         }
+
+        public Tile GetTile(int x, int y)
+        {
+            return _tiles[LevelWidth*y + x];
+        }
+
+        #region ILevel
 
         public void Add(Location l, Creature c)
         {
             // Update private variables
-            LocationCreaturesDictionary[l].Add(c);
-            CreatureLocationDictionary.Add(c, l);
+            _creatureList.Add(c);
+            c.Location = l;
 
-            // Observe creature movement.
-            c.Moved += MoveCreature;
+            // Observe creature events.
+            c.OnMove += MoveCreature;
         }
 
         public bool Remove(Creature c)
         {
-            var l = CreatureLocationDictionary[c];
+            var removed = _creatureList.Remove(c);
 
-            // Update private variables
-            var removed = LocationCreaturesDictionary[l].Remove(c);
-            CreatureLocationDictionary.Remove(c);
-
-            // Stop observing creature.
-            c.Moved -= MoveCreature;
+            // Stop observing creature events.
+            c.OnMove -= MoveCreature;
 
             return removed;
-        }
-
-        public IList<Creature> Creatures(Location l)
-        {
-            return LocationCreaturesDictionary[l];
-        }
-
-        public void MoveCreature(object sender, CreatureMovedEventArgs args)
-        {
-            var c = (Creature) sender;
-
-            var currentLocation = CreatureLocationDictionary[c];
-            var nextLocation = Location.Add(currentLocation, args.Direction, 1);
-
-            Remove(c);
-            Add(nextLocation, c);
         }
 
         public void Clear()
         {
             CreateNewRep();
-        }
-
-        public void Clear(Location l)
-        {
-            if (!LocationCreaturesDictionary.ContainsKey(l)) return;
-
-            var list = LocationCreaturesDictionary[l];
-            foreach (var c in list)
-                CreatureLocationDictionary.Remove(c);
-
-            list.Clear();
         }
 
         public bool Contains(Location l)
@@ -103,17 +90,17 @@ namespace WolfEngine.Level
 
         public bool Contains(Creature c)
         {
-            return CreatureLocationDictionary.ContainsKey(c);
+            return _creatureList.Contains(c);
         }
 
         /// <summary>
         ///     Gets or sets the Tile at location (x, y).
         /// </summary>
         /// <param name="x">
-        ///     0 <= x < LevelWidth
+        /// x in interval [0, LevelWidth)
         /// </param>
         /// <param name="y">
-        ///     0 <= y < width
+        /// y in interval [0, LevelWidth)
         /// </param>
         Tile ILevel.this[int x, int y]
         {
@@ -134,20 +121,36 @@ namespace WolfEngine.Level
         private void CreateNewRep()
         {
             _tiles = new Tile[LevelWidth*LevelWidth];
-            LocationCreaturesDictionary = new Dictionary<Location, IList<Creature>>(5);
-            CreatureLocationDictionary = new Dictionary<Creature, Location>(5);
-
-            foreach (var l in this)
-                LocationCreaturesDictionary[l] = new List<Creature>();
+            _creatureList.Capacity = 0;
         }
 
-        public void Update()
+        #endregion
+
+        #region IEnumerable
+
+        public IEnumerator<Location> GetEnumerator()
+        {
+            for (var y = 0; y < LevelWidth; y++)
+                for (var x = 0; x < LevelWidth; x++)
+                    yield return new Location(x, y);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
+
+        public override void Update()
         {
             // Update each entity in this
-            foreach (var pair in CreatureLocationDictionary)
+            foreach (var creature in _creatureList)
             {
-                pair.Key.Update();
+                creature.Update();
             }
         }
+
+
     }
 }

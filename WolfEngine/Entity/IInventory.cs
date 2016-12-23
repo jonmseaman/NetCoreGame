@@ -1,4 +1,4 @@
-﻿namespace WolfEngine.Entiity
+﻿namespace WolfEngine.Entity
 {
     /// <summary>
     /// Provides an interface for a container that holds <see cref="Item"/>.
