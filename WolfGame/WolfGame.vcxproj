@@ -147,12 +147,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CreatureGraphicsComponent.h" />
+    <ClInclude Include="Components\CreatureGraphicsComponent.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerInputComponent.h" />
+    <ClInclude Include="Components\PlayerInputComponent.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SquareLevelGraphicsComponent.h" />
+    <ClInclude Include="Components\SquareLevelGraphicsComponent.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -160,11 +160,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="CreatureGraphicsComponent.cpp" />
+    <ClCompile Include="Components\CreatureGraphicsComponent.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerInputComponent.cpp" />
-    <ClCompile Include="SquareLevelGraphicsComponent.cpp" />
+    <ClCompile Include="Components\PlayerInputComponent.cpp" />
+    <ClCompile Include="Components\SquareLevelGraphicsComponent.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

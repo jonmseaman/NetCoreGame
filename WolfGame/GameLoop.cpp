@@ -68,6 +68,8 @@ void GameLoop::render()
 	// TODO: Make graphics components for GameObjects.
 	// TEMP SOLUTION.
 
+	Focus->Render();
+
 	WolfEngine::Level::SquareLevel^ level = (WolfEngine::Level::SquareLevel^)Focus;
 
 	move(0, 0);

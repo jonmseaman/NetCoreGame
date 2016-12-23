@@ -1,6 +1,6 @@
 ﻿#include "stdafx.h"
 #include "Player.h"
-#include "PlayerInputComponent.h"
+#include "Components/PlayerInputComponent.h"
 
 Player::Player() {
 	this->Input = gcnew PlayerInputComponent();
