@@ -7,7 +7,7 @@ namespace WolfEngine.Entity
     /// <summary>
     ///     Encapsulates basic behavior of creatures.
     /// </summary>
-    public class Creature : Entity
+    public class Creature : GameObject
     {
         public CreatureAttributes Attributes { get; set; }
 

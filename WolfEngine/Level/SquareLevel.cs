@@ -9,7 +9,7 @@ namespace WolfEngine.Level
     /// <summary>
     ///     Represents a square level of fixed size.
     /// </summary>
-    public class SquareLevel : Entity.Entity, ILevel, IEnumerable<Location>
+    public class SquareLevel : Entity.GameObject, ILevel, IEnumerable<Location>
     {
         private Tile[] _tiles;
 

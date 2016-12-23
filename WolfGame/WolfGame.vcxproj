@@ -147,6 +147,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerInputComponent.h" />
     <ClInclude Include="resource.h" />
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerInputComponent.cpp" />
     <ClCompile Include="stdafx.cpp">

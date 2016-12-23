@@ -38,5 +38,10 @@ namespace WolfEngine.Level
         /// Gets or sets the Tile at Location
         /// </summary>
         Tile this[Location l] { get; set; }
+
+        /// <summary>
+        /// Updates the entities in the level.
+        /// </summary>
+        void Update();
     }
 }

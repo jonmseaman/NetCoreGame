@@ -4,7 +4,7 @@ using WolfEngine.Level;
 
 namespace WolfEngine.Entity
 {
-    public abstract class Entity
+    public abstract class GameObject
     {
         public abstract void Update();
 
