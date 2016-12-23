@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using WolfEngine.Entity;
+﻿using WolfEngine.Entity;
 
 namespace WolfEngine.Level
 {

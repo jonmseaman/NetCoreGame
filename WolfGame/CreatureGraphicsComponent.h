@@ -5,4 +5,3 @@ public:
 	virtual void Render(WolfEngine::Entity::Creature^);
 	virtual void Update(WolfEngine::Entity::Creature^);
 };
-

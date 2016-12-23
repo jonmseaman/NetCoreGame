@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using WolfEngine.Level;
 
 namespace WolfEngine.Entity
@@ -38,6 +37,11 @@ namespace WolfEngine.Entity
         {
             Input?.Update(this);
             Graphics?.Update(this);
+        }
+
+        public override void Render()
+        {
+            Graphics?.Render(this);
         }
     }
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
-using WolfEngine.Level;
+﻿using WolfEngine.Level;
 
 namespace WolfEngine.Entity
 {
@@ -10,6 +8,11 @@ namespace WolfEngine.Entity
         /// Update the GameObject by one tick.
         /// </summary>
         public abstract void Update();
+
+        /// <summary>
+        /// Renders the GameObject on screen.
+        /// </summary>
+        public abstract void Render();
 
         public Location Location;
     }
