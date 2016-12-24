@@ -26,14 +26,14 @@ int main() {
 	using namespace WolfEngine::Level;
 	using namespace WolfEngine::Entity;
 
-	// Entity being updated
-	auto level = gcnew SquareLevel(25);
-	level->Graphics = gcnew SquareLevelGraphicsComponent();
-	level->Add(Location(2, 2), gcnew Player());
-
-	
 	// Curses is used for user input.
 	setupCurses();
+
+	// Entity being updated
+	auto level = gcnew SquareLevel(25);
+
+	level->Graphics = gcnew SquareLevelGraphicsComponent(newwin(28, 120, 1, 0));
+	level->Add(Location(2, 2), gcnew Player());
 
 	// Prepare game loop
 	GameLoop^ loop = gcnew GameLoop();

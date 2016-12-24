@@ -3,6 +3,16 @@
 
 using namespace WolfEngine::Level;
 
+SquareLevelGraphicsComponent::SquareLevelGraphicsComponent(_win* scr)
+{
+	win = scr;
+}
+
+SquareLevelGraphicsComponent::~SquareLevelGraphicsComponent()
+{
+	delwin(win);
+}
+
 void SquareLevelGraphicsComponent::Update(ILevel^ level) {
 	// TODO: Implement this.
 }
