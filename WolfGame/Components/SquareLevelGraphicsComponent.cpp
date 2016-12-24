@@ -2,16 +2,15 @@
 #include "CreatureGraphicsComponent.h"
 #include "SquareLevelGraphicsComponent.h"
 
+using namespace WolfEngine::Entity;
 using namespace WolfEngine::Level;
 
-SquareLevelGraphicsComponent::SquareLevelGraphicsComponent(_win* scr)
-{
+SquareLevelGraphicsComponent::SquareLevelGraphicsComponent(_win* scr) {
 	win = scr;
 	CreatureGraphicsComponent::setRenderWindow(scr);
 }
 
-SquareLevelGraphicsComponent::~SquareLevelGraphicsComponent()
-{
+SquareLevelGraphicsComponent::~SquareLevelGraphicsComponent() {
 	delwin(win);
 }
 
@@ -19,7 +18,8 @@ void SquareLevelGraphicsComponent::Update(ILevel^ l) {
 	SquareLevel^ level = (SquareLevel^)l;
 
 	// Set the origin location so creatures know where to render.
-	CreatureGraphicsComponent::setOrigLocation(Location(0, level->LevelWidth - 1));
+	origin = Location(0, level->LevelWidth - 1);
+	CreatureGraphicsComponent::setOrigLocation(origin);
 	// TODO: For large levels, adjust this according to a 'Focus' Creature (The Player)
 }
 
@@ -28,17 +28,14 @@ void SquareLevelGraphicsComponent::Render(ILevel^ l) {
 
 	// Print Level
 	wmove(win, 0, 0);
-	for (int y = 0; y < level->LevelWidth; y++) {
-		for (int x = 0; x < level->LevelWidth; x++) {
-
-			//int tileNum = 'a' + level->default[x, y].TileNum;
-			int tileNum = 'a';
-			char data[2];
-			data[0] = 'a' + level->GetTile(x, y).TileNum;
-			data[1] = '\0';
-			wprintw(win, data);
+	int width = level->LevelWidth;
+	int scry = 0, scrx = 0; // Coords on screen.
+	for (int y = origin.Y; y >= 0 && win->_maxy >= scry; y--, scry++) {
+		wmove(win, scry, 0);
+		scrx = 0;
+		for (int x = origin.X; x < width && scrx <= win->_maxx; x++, scrx++) {
+			int tileNum = level->GetTile(x, y).TileNum;
+			waddch(win, '_' + tileNum);
 		}
-
-		wprintw(win, "\n");
 	}
 }

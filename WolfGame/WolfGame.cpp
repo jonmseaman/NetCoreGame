@@ -34,12 +34,15 @@ int main() {
 	setupCurses();
 
 	// Entity being updated
-	auto level = gcnew SquareLevel(25);
+	auto level = gcnew SquareLevel(120);
 
 	WINDOW* win = subwin(stdscr, stdscr->_maxy - 2, stdscr->_maxx, 1, 0);
 	SharedGraphicsData::addWin(win);
-	level->Graphics = gcnew SquareLevelGraphicsComponent(win);
-	level->Add(Location(2, 2), gcnew Player());
+	auto graphics = gcnew SquareLevelGraphicsComponent(win);
+	auto player = gcnew Player();
+	graphics->Focus = player;
+	level->Graphics = graphics;
+	level->Add(Location(2, 2), player);
 
 	// Prepare game loop
 	GameLoop^ loop = gcnew GameLoop();
