@@ -29,8 +29,6 @@ namespace WolfEngine.Entity
 
             var args = new CreatureMovedEventArgs(dir);
             OnMove?.Invoke(this, args);
-
-            Console.WriteLine($"Location: ({Location.X}, {Location.Y}).");
         }
 
         public override void Update()

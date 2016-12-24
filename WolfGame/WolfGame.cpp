@@ -18,6 +18,7 @@ void setupCurses()
 	nonl();
 	intrflush(stdscr, FALSE);
 	keypad(stdscr, TRUE);
+	//curs_set(0);
 }
 
 int main() {
