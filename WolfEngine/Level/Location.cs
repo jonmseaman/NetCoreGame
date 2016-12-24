@@ -1,7 +1,4 @@
-﻿using System.Net.Sockets;
-using System.Security.Cryptography.X509Certificates;
-
-namespace WolfEngine.Level
+﻿namespace WolfEngine.Level
 {
     /// <summary>
     /// Represents a location in a level.

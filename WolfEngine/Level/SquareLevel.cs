@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Concurrent;
+﻿using System.Collections;
 using System.Collections.Generic;
 using WolfEngine.Entity;
 
@@ -9,19 +7,24 @@ namespace WolfEngine.Level
     /// <summary>
     ///     Represents a square level of fixed size.
     /// </summary>
-    public class SquareLevel : Entity.Entity, ILevel, IEnumerable<Location>
+    public class SquareLevel : GameObject, ILevel, IEnumerable<Location>
     {
-        private Tile[] _tiles;
-
         /// <summary>
         /// Contains all the creatures in the level.
         /// </summary>
         private readonly List<Creature> _creatureList = new List<Creature>();
 
+        private Tile[] _tiles;
+
         /// <summary>
         ///     The width of the level.
         /// </summary>
         public int LevelWidth { get; }
+
+        /// <summary>
+        /// Renders the level.
+        /// </summary>
+        public ILevelGraphicsComponent Graphics;
 
         public SquareLevel(int width)
         {
@@ -41,13 +44,6 @@ namespace WolfEngine.Level
             var y = c.Location.Y;
             c.Location.Y = y < 0 ? 0 : c.Location.Y;
             c.Location.Y = y >= LevelWidth ? LevelWidth - 1 : c.Location.Y;
-        }
-
-        private bool IsLocationValid(Location loc)
-        {
-            var valid = 0 <= loc.X && 0 <= loc.Y
-                         && loc.X < LevelWidth && loc.Y < LevelWidth;
-            return valid;
         }
 
         public Tile GetTile(int x, int y)
@@ -142,8 +138,23 @@ namespace WolfEngine.Level
 
         #endregion
 
+        #region GameObject
+
+        public override void Render()
+        {
+            // Render lower layer first. Creatures will be on top of the level.
+            Graphics.Render(this);
+
+            foreach (var creature in _creatureList)
+            {
+                creature.Render();
+            }
+        }
+
         public override void Update()
         {
+            Graphics.Update(this);
+
             // Update each entity in this
             foreach (var creature in _creatureList)
             {
@@ -151,6 +162,7 @@ namespace WolfEngine.Level
             }
         }
 
+        #endregion
 
     }
 }

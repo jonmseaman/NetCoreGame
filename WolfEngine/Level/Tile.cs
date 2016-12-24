@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace WolfEngine.Level
+﻿namespace WolfEngine.Level
 {
     public struct Tile
     {

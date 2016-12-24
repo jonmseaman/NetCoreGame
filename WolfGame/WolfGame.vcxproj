@@ -74,7 +74,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\Lib\pdcurs34\</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\Lib\pdcurs34\;$(ProjectDir);</IncludePath>
     <LibraryPath>$(SolutionDir)\Lib\pdcurs34\win32\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -82,7 +82,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\Lib\pdcurs34\</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\Lib\pdcurs34\;$(ProjectDir);</IncludePath>
     <LibraryPath>$(SolutionDir)\Lib\pdcurs34\win32\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,9 +147,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\CreatureGraphicsComponent.h" />
+    <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerInputComponent.h" />
+    <ClInclude Include="Components\PlayerInputComponent.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Components\SquareLevelGraphicsComponent.h" />
+    <ClInclude Include="Components\SharedGraphicsData.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -157,8 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Components\CreatureGraphicsComponent.cpp" />
+    <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerInputComponent.cpp" />
+    <ClCompile Include="Components\PlayerInputComponent.cpp" />
+    <ClCompile Include="Components\SquareLevelGraphicsComponent.cpp" />
+    <ClCompile Include="Components\SharedGraphicsData.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

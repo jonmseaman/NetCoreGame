@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using WolfEngine.Entity;
+﻿using WolfEngine.Entity;
 
 namespace WolfEngine.Level
 {
@@ -38,5 +37,10 @@ namespace WolfEngine.Level
         /// Gets or sets the Tile at Location
         /// </summary>
         Tile this[Location l] { get; set; }
+
+        /// <summary>
+        /// Updates the entities in the level.
+        /// </summary>
+        void Update();
     }
 }

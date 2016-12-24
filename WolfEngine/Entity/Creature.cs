@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using WolfEngine.Level;
 
 namespace WolfEngine.Entity
@@ -7,11 +6,16 @@ namespace WolfEngine.Entity
     /// <summary>
     ///     Encapsulates basic behavior of creatures.
     /// </summary>
-    public class Creature : Entity
+    public class Creature : GameObject
     {
         public CreatureAttributes Attributes { get; set; }
 
         protected IInputComponent Input;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected ICreatureGraphicsComponent Graphics;
 
         public event CreatureMovedEventHandler OnMove;
 
@@ -25,13 +29,17 @@ namespace WolfEngine.Entity
 
             var args = new CreatureMovedEventArgs(dir);
             OnMove?.Invoke(this, args);
-
-            Console.WriteLine($"Location: ({Location.X}, {Location.Y}).");
         }
 
         public override void Update()
         {
             Input?.Update(this);
+            Graphics?.Update(this);
+        }
+
+        public override void Render()
+        {
+            Graphics?.Render(this);
         }
     }
 

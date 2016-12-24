@@ -1,0 +1,3 @@
+[submodule "pdcurses"]
+	path = Lib/pdcurs34
+	url = https://github.com/Bill-Gray/PDCurses
