@@ -36,7 +36,7 @@ int main() {
 	// Entity being updated
 	auto level = gcnew SquareLevel(25);
 
-	WINDOW* win = subwin(stdscr, 28, 120, 1, 0);
+	WINDOW* win = subwin(stdscr, stdscr->_maxy - 2, stdscr->_maxx, 1, 0);
 	SharedGraphicsData::addWin(win);
 	level->Graphics = gcnew SquareLevelGraphicsComponent(win);
 	level->Add(Location(2, 2), gcnew Player());
