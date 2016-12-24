@@ -142,7 +142,8 @@ namespace WolfEngine.Level
 
         public override void Render()
         {
-            // TODO: Render this level
+            // Render lower layer first. Creatures will be on top of the level.
+            Graphics.Render(this);
 
             foreach (var creature in _creatureList)
             {
@@ -152,6 +153,8 @@ namespace WolfEngine.Level
 
         public override void Update()
         {
+            Graphics.Update(this);
+
             // Update each entity in this
             foreach (var creature in _creatureList)
             {

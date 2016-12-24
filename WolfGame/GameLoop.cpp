@@ -65,34 +65,10 @@ void GameLoop::render()
 {
 	using namespace std::chrono;
 
-	// TODO: Make graphics components for GameObjects.
-	// TEMP SOLUTION.
-
-	Focus->Render();
-
-	WolfEngine::Level::SquareLevel^ level = (WolfEngine::Level::SquareLevel^)Focus;
-
 	move(0, 0);
 	printw("Time: ");
 	time_t time = system_clock::to_time_t(system_clock::now());
 	printw(ctime(&time));
 
-	// Print Level
-	move(1, 0);
-	for (int y = 0; y < level->LevelWidth; y++) {
-		printw("|");
-		for (int x = 0; x < level->LevelWidth; x++) {
-
-			//int tileNum = 'a' + level->default[x, y].TileNum;
-			int tileNum = 'a';
-			char data[2];
-			data[0] = 'a' + level->GetTile(x, y).TileNum;
-			data[1] = '\0';
-			printw(data);
-		}
-
-		printw("|\n");
-	}
-	refresh();
-
+	Focus->Render();
 }
