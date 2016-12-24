@@ -1,4 +1,5 @@
 ﻿#include "stdafx.h"
+#include "Components/SharedGraphicsData.h"
 #include "GameLoop.h"
 
 void GameLoop::Loop()
@@ -71,4 +72,8 @@ void GameLoop::render()
 	printw(ctime(&time));
 
 	Focus->Render();
+	
+	// Refresh the window
+	SharedGraphicsData::refresh();
+	
 }

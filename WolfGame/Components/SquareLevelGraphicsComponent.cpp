@@ -1,4 +1,5 @@
 ﻿#include "stdafx.h"
+#include "CreatureGraphicsComponent.h"
 #include "SquareLevelGraphicsComponent.h"
 
 using namespace WolfEngine::Level;
@@ -6,6 +7,7 @@ using namespace WolfEngine::Level;
 SquareLevelGraphicsComponent::SquareLevelGraphicsComponent(_win* scr)
 {
 	win = scr;
+	CreatureGraphicsComponent::setRenderWindow(scr);
 }
 
 SquareLevelGraphicsComponent::~SquareLevelGraphicsComponent()
@@ -14,7 +16,11 @@ SquareLevelGraphicsComponent::~SquareLevelGraphicsComponent()
 }
 
 void SquareLevelGraphicsComponent::Update(ILevel^ l) {
-	// TODO: Implement this.
+	SquareLevel^ level = (SquareLevel^)l;
+
+	// Set the origin location so creatures know where to render.
+	CreatureGraphicsComponent::setOrigLocation(Location(0, level->LevelWidth - 1));
+	// TODO: For large levels, adjust this according to a 'Focus' Creature (The Player)
 }
 
 void SquareLevelGraphicsComponent::Render(ILevel^ l) {
@@ -23,7 +29,6 @@ void SquareLevelGraphicsComponent::Render(ILevel^ l) {
 	// Print Level
 	wmove(win, 0, 0);
 	for (int y = 0; y < level->LevelWidth; y++) {
-		wprintw(win, "|");
 		for (int x = 0; x < level->LevelWidth; x++) {
 
 			//int tileNum = 'a' + level->default[x, y].TileNum;
@@ -34,7 +39,6 @@ void SquareLevelGraphicsComponent::Render(ILevel^ l) {
 			wprintw(win, data);
 		}
 
-		wprintw(win, "|\n");
+		wprintw(win, "\n");
 	}
-	wrefresh(win);
 }

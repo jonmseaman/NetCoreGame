@@ -42,6 +42,9 @@
     <ClInclude Include="Components\CreatureGraphicsComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Components\SharedGraphicsData.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -71,6 +74,9 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Components\SquareLevelGraphicsComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SharedGraphicsData.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

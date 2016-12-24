@@ -3,7 +3,10 @@
 #include "stdafx.h"
 #include "GameLoop.h"
 #include "Player.h"
+#include "Components/CreatureGraphicsComponent.h"
+#include "Components/SharedGraphicsData.h"
 #include "Components/SquareLevelGraphicsComponent.h"
+
 
 using namespace System;
 using namespace WolfEngine::Level;
@@ -33,7 +36,9 @@ int main() {
 	// Entity being updated
 	auto level = gcnew SquareLevel(25);
 
-	level->Graphics = gcnew SquareLevelGraphicsComponent(newwin(28, 120, 1, 0));
+	WINDOW* win = subwin(stdscr, 28, 120, 1, 0);
+	SharedGraphicsData::addWin(win);
+	level->Graphics = gcnew SquareLevelGraphicsComponent(win);
 	level->Add(Location(2, 2), gcnew Player());
 
 	// Prepare game loop
