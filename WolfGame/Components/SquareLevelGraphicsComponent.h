@@ -21,4 +21,13 @@ private:
 	
 	// Window which the level will be rendered on.
 	_win* win;
+
+	/*
+	* Method used for moving the screen origin to focus on a location.
+	* @param origin The previous origin.
+	* @param focus The location to focus on.
+	* @return A new location to serve as the screen's origin.
+	*/
+	WolfEngine::Level::Location shiftFocus(WolfEngine::Level::SquareLevel^ level, _win* window, 
+		WolfEngine::Level::Location origin, WolfEngine::Level::Location focus);
 };

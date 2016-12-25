@@ -26,5 +26,5 @@ private:
 	 */
 	static _win* win;
 
-	static WolfEngine::Level::Location origLocation;
+	static WolfEngine::Level::Location origin;
 };

@@ -17,10 +17,19 @@ SquareLevelGraphicsComponent::~SquareLevelGraphicsComponent() {
 void SquareLevelGraphicsComponent::Update(ILevel^ l) {
 	SquareLevel^ level = (SquareLevel^)l;
 
+	Location loc = Focus->Location;
+
+	// If the GameObject would be out of view, adjust the view;
+	Location br = Location(origin.X + win->_maxx, origin.Y - win->_maxy);
+	bool onScreen = origin.X <= loc.X && loc.X <= br.X
+		&& br.Y <= loc.Y && loc.Y <= origin.Y;
+	// Shift view to focus
+	if (!onScreen) {
+		origin = shiftFocus(level, win, origin, loc);
+	}
+
 	// Set the origin location so creatures know where to render.
-	origin = Location(0, level->LevelWidth - 1);
 	CreatureGraphicsComponent::setOrigLocation(origin);
-	// TODO: For large levels, adjust this according to a 'Focus' Creature (The Player)
 }
 
 void SquareLevelGraphicsComponent::Render(ILevel^ l) {
@@ -35,7 +44,44 @@ void SquareLevelGraphicsComponent::Render(ILevel^ l) {
 		scrx = 0;
 		for (int x = origin.X; x < width && scrx <= win->_maxx; x++, scrx++) {
 			int tileNum = level->GetTile(x, y).TileNum;
-			waddch(win, '_' + tileNum);
+			waddch(win, '#' + tileNum);
 		}
 	}
+}
+
+Location SquareLevelGraphicsComponent::shiftFocus(SquareLevel^ level, _win* window, Location origin, Location focus) {
+	Location br = Location(origin.X + window->_maxx - 1, origin.Y - window->_maxy + 1);
+
+	int xshift = window->_maxx / 3;
+	int yshift = window->_maxy / 3;
+
+	if (focus.X < origin.X) {
+		origin.X -= xshift;
+	} else if (br.X < focus.X) {
+		origin.X += xshift;
+	} else if (focus.Y < br.Y) {
+		origin.Y -= yshift;
+	} else if (origin.Y < focus.Y) {
+		origin.Y += yshift;
+	}
+
+	// Make sure x coordinate is acceptable.
+	int minx = 0, 
+		maxx = __max(level->LevelWidth - win->_maxx, 0);
+	if (origin.X < minx) {
+		origin.X = minx;
+	} else if (origin.X > maxx) {
+		origin.X = maxx;
+	}
+
+	// Make sure y coordinate is acceptable.
+	int miny = __min(level->LevelWidth - 1, win->_maxy - 1), 
+		maxy = level->LevelWidth - 1;
+	if (origin.Y < miny) {
+		origin.Y = miny;
+	} else if (origin.Y > maxy) {
+		origin.Y = maxy;
+	}
+
+	return origin;
 }

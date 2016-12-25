@@ -34,7 +34,7 @@ int main() {
 	setupCurses();
 
 	// Entity being updated
-	auto level = gcnew SquareLevel(120);
+	auto level = gcnew SquareLevel(125);
 
 	WINDOW* win = subwin(stdscr, stdscr->_maxy - 2, stdscr->_maxx, 1, 0);
 	SharedGraphicsData::addWin(win);
