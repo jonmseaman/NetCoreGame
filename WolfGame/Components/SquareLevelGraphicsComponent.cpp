@@ -17,6 +17,12 @@ SquareLevelGraphicsComponent::~SquareLevelGraphicsComponent() {
 void SquareLevelGraphicsComponent::Update(ILevel^ l) {
 	SquareLevel^ level = (SquareLevel^)l;
 
+	// Default origin when there is no focus.
+	if (Focus == nullptr) {
+		origin = Location(0, level->LevelWidth - 1);
+		return;
+	}
+
 	Location loc = Focus->Location;
 
 	// If the GameObject would be out of view, adjust the view;
@@ -66,7 +72,7 @@ Location SquareLevelGraphicsComponent::shiftFocus(SquareLevel^ level, _win* wind
 	}
 
 	// Make sure x coordinate is acceptable.
-	int minx = 0, 
+	int minx = 0,
 		maxx = __max(level->LevelWidth - win->_maxx, 0);
 	if (origin.X < minx) {
 		origin.X = minx;
@@ -75,7 +81,7 @@ Location SquareLevelGraphicsComponent::shiftFocus(SquareLevel^ level, _win* wind
 	}
 
 	// Make sure y coordinate is acceptable.
-	int miny = __min(level->LevelWidth - 1, win->_maxy - 1), 
+	int miny = __min(level->LevelWidth - 1, win->_maxy - 1),
 		maxy = level->LevelWidth - 1;
 	if (origin.Y < miny) {
 		origin.Y = miny;
