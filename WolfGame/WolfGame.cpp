@@ -21,7 +21,10 @@ void setupCurses()
 	nonl();
 	intrflush(stdscr, FALSE);
 	keypad(stdscr, TRUE);
-	curs_set(0);
+	curs_set(0); // Invisible cursor
+
+	// Color
+	start_color();
 }
 
 int main() {

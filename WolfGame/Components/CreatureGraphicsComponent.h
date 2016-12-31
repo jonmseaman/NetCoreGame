@@ -19,7 +19,7 @@ public:
 	static void setOrigLocation(WolfEngine::Level::Location);
 
 private:
-	char repChar = 'C';
+	chtype repChar = 'C';
 
 	/*
 	 * The window that creatures will be rendered in.

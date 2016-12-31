@@ -50,7 +50,7 @@ void SquareLevelGraphicsComponent::Render(ILevel^ l) {
 		scrx = 0;
 		for (int x = origin.X; x < width && scrx <= win->_maxx; x++, scrx++) {
 			int tileNum = level->GetTile(x, y).TileNum;
-			waddch(win, '#' + tileNum);
+			waddch(win, ' ' + tileNum);
 		}
 	}
 }

@@ -8,12 +8,13 @@ void CreatureGraphicsComponent::Render(WolfEngine::Entity::Creature^ c) {
 
 	if (0 <= x && x < win->_maxx && 0 <= y && y < win->_maxy) {
 		wmove(win, y, x);
-		waddch(win, 'O');
+		init_pair(1, COLOR_GREEN, COLOR_BLACK);
+		waddch(win, repChar);
 	}
 }
 
 void CreatureGraphicsComponent::Update(WolfEngine::Entity::Creature^ c) {
-	// TODO: Implement this.
+	// Nothing to do.
 }
 
 void CreatureGraphicsComponent::setRenderWindow(WINDOW* window) {
