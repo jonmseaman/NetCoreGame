@@ -8,7 +8,6 @@ void CreatureGraphicsComponent::Render(WolfEngine::Entity::Creature^ c) {
 
 	if (0 <= x && x < win->_maxx && 0 <= y && y < win->_maxy) {
 		wmove(win, y, x);
-		init_pair(1, COLOR_GREEN, COLOR_BLACK);
 		waddch(win, repChar);
 	}
 }

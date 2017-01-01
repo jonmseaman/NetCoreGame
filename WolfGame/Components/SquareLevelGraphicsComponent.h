@@ -16,6 +16,8 @@ public:
 	virtual void Render(WolfEngine::Level::ILevel^);
 
 private:
+	array<chtype>^ repChars;
+
 	// The location on the level that will be rendered at (0, 0) on screen.
 	WolfEngine::Level::Location origin;
 	

@@ -8,6 +8,12 @@ using namespace WolfEngine::Level;
 SquareLevelGraphicsComponent::SquareLevelGraphicsComponent(_win* scr) {
 	win = scr;
 	CreatureGraphicsComponent::setRenderWindow(scr);
+
+	repChars = gcnew array<chtype>(2);
+	init_pair(1, COLOR_WHITE, COLOR_GREEN);
+	repChars[0] = ' ' | COLOR_PAIR(1);
+	repChars[1] = '#';
+
 }
 
 SquareLevelGraphicsComponent::~SquareLevelGraphicsComponent() {
@@ -50,7 +56,7 @@ void SquareLevelGraphicsComponent::Render(ILevel^ l) {
 		scrx = 0;
 		for (int x = origin.X; x < width && scrx <= win->_maxx; x++, scrx++) {
 			int tileNum = level->GetTile(x, y).TileNum;
-			waddch(win, ' ' + tileNum);
+			waddch(win, repChars[tileNum]);
 		}
 	}
 }
