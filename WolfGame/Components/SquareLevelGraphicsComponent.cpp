@@ -10,10 +10,9 @@ SquareLevelGraphicsComponent::SquareLevelGraphicsComponent(_win* scr) {
 	CreatureGraphicsComponent::setRenderWindow(scr);
 
 	repChars = gcnew array<chtype>(2);
-	init_pair(1, COLOR_WHITE, COLOR_GREEN);
+	init_pair(1, COLOR_BLUE, COLOR_GREEN);
 	repChars[0] = ' ' | COLOR_PAIR(1);
 	repChars[1] = '#';
-
 }
 
 SquareLevelGraphicsComponent::~SquareLevelGraphicsComponent() {

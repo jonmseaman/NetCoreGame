@@ -4,7 +4,7 @@
 struct _win;
 
 /**
- * Holds some graphics data used by multiple GraphicsComponents.
+ * Holds some graphics data and methods used by multiple GraphicsComponents.
  */
 class SharedGraphicsData {
 public:
@@ -20,6 +20,16 @@ public:
 	 * Removes the window from the list.
 	 */
 	static bool removeWin(_win*);
+
+	/**
+	 * Initializes all colors pairs.
+	 */
+	static int init_pairs();
+
+	/**
+	 *
+	 */
+	static int color_pair(short fg, short bg);
 
 private:
 	static std::vector<_win*> windows;

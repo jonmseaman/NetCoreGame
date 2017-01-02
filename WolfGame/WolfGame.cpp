@@ -25,6 +25,7 @@ void setupCurses()
 
 	// Color
 	start_color();
+	SharedGraphicsData::init_pairs();
 }
 
 int main() {

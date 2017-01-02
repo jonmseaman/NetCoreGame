@@ -13,6 +13,25 @@ int SharedGraphicsData::refresh() {
 	return failed ? ERR : OK;
 }
 
+int SharedGraphicsData::init_pairs() {
+
+	short pair = 1;
+	for (int bg = 0; bg < COLORS; bg++) {
+		for (int fg = 0; fg < COLORS && pair < COLOR_PAIRS; fg++) {
+			int status = init_pair(pair++, fg, bg);
+			if (status == ERR) {
+				return ERR;
+			}
+		}
+	}
+
+	return OK;
+}
+
+int SharedGraphicsData::color_pair(short fg, short bg) {
+	return 1 + bg * COLORS + fg;
+}
+
 void SharedGraphicsData::addWin(WINDOW* window) {
 	windows.push_back(window);
 }
