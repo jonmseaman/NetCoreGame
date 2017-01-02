@@ -29,7 +29,7 @@ public:
 	/**
 	 *
 	 */
-	static int color_pair(short fg, short bg);
+	static chtype color_pair(short fg, short bg);
 
 private:
 	static std::vector<_win*> windows;

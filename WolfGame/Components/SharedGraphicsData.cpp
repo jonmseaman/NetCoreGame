@@ -28,8 +28,8 @@ int SharedGraphicsData::init_pairs() {
 	return OK;
 }
 
-int SharedGraphicsData::color_pair(short fg, short bg) {
-	return 1 + bg * COLORS + fg;
+chtype SharedGraphicsData::color_pair(short fg, short bg) {
+	return COLOR_PAIR(1 + bg * COLORS + fg);
 }
 
 void SharedGraphicsData::addWin(WINDOW* window) {
