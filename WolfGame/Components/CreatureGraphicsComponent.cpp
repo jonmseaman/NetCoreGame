@@ -9,7 +9,7 @@ void CreatureGraphicsComponent::Render(WolfEngine::Entity::Creature^ c) {
 	if (0 <= x && x < win->_maxx && 0 <= y && y < win->_maxy) {
 		wmove(win, y, x);
 		chtype ch = inch();
-		waddch(win, ch - (uint32_t)ch + (uint32_t)repChar);
+		waddch(win, ch - (uint32_t)ch + (uint32_t)_repChar);
 	}
 }
 
@@ -23,4 +23,12 @@ void CreatureGraphicsComponent::setRenderWindow(WINDOW* window) {
 
 void CreatureGraphicsComponent::setOrigLocation(WolfEngine::Level::Location loc) {
 	origin = loc;
+}
+
+short CreatureGraphicsComponent::color() {
+	return _color;
+}
+
+char CreatureGraphicsComponent::repChar() {
+	return _repChar;
 }

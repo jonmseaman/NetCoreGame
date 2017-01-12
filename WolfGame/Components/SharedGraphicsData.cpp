@@ -14,7 +14,6 @@ int SharedGraphicsData::refresh() {
 }
 
 int SharedGraphicsData::init_pairs() {
-
 	short pair = 1;
 	for (int bg = 0; bg < COLORS; bg++) {
 		for (int fg = 0; fg < COLORS && pair < COLOR_PAIRS; fg++) {

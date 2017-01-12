@@ -12,10 +12,7 @@ namespace WolfEngine.Entity
 
         protected IInputComponent Input;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        protected ICreatureGraphicsComponent Graphics;
+        public ICreatureGraphicsComponent Graphics;
 
         public event CreatureMovedEventHandler OnMove;
 
