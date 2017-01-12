@@ -12,7 +12,7 @@ SquareLevelGraphicsComponent::SquareLevelGraphicsComponent(_win* scr) {
 
 	repChars = gcnew array<chtype>(2);
 	init_pair(1, COLOR_BLUE, COLOR_GREEN);
-	repChars[0] = ' ' | SharedGraphicsData::color_pair(COLOR_BLUE, COLOR_GREEN);
+	repChars[0] = ' ' | Graphics::color_pair(COLOR_BLUE, COLOR_GREEN);
 	repChars[1] = '#';
 }
 

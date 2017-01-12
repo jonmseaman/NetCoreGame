@@ -74,6 +74,6 @@ void GameLoop::render()
 	Focus->Render();
 	
 	// Refresh the window
-	SharedGraphicsData::refresh();
+	Graphics::refresh();
 	
 }

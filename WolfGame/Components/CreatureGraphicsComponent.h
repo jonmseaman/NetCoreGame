@@ -23,7 +23,7 @@ public:
 
 private:
 	char _repChar = 'C';
-	short _color = 1;
+	short _color = COLOR_CYAN;
 
 	/*
 	 * The window that creatures will be rendered in.

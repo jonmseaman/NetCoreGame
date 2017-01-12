@@ -1,9 +1,9 @@
 ﻿#include "stdafx.h"
 #include "SharedGraphicsData.h"
 
-std::vector<WINDOW*> SharedGraphicsData::windows = std::vector<WINDOW*>();
+std::vector<WINDOW*> Graphics::windows = std::vector<WINDOW*>();
 
-int SharedGraphicsData::refresh() {
+int Graphics::refresh() {
 	bool failed = false;
 
 	for (auto window : windows) {
@@ -13,7 +13,7 @@ int SharedGraphicsData::refresh() {
 	return failed ? ERR : OK;
 }
 
-int SharedGraphicsData::init_pairs() {
+int Graphics::init_pairs() {
 	short pair = 1;
 	for (int bg = 0; bg < COLORS; bg++) {
 		for (int fg = 0; fg < COLORS && pair < COLOR_PAIRS; fg++) {
@@ -27,15 +27,15 @@ int SharedGraphicsData::init_pairs() {
 	return OK;
 }
 
-chtype SharedGraphicsData::color_pair(short fg, short bg) {
+chtype Graphics::color_pair(short fg, short bg) {
 	return COLOR_PAIR(1 + bg * COLORS + fg);
 }
 
-void SharedGraphicsData::addWin(WINDOW* window) {
+void Graphics::addWin(WINDOW* window) {
 	windows.push_back(window);
 }
 
-bool SharedGraphicsData::removeWin(WINDOW* window) {
+bool Graphics::removeWin(WINDOW* window) {
 	bool found = false;
 
 	for (int i = 0; i < windows.size(); i++) {

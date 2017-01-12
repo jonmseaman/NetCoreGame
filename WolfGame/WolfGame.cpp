@@ -25,7 +25,7 @@ void setupCurses()
 
 	// Color
 	start_color();
-	SharedGraphicsData::init_pairs();
+	Graphics::init_pairs();
 }
 
 int main() {
@@ -41,7 +41,7 @@ int main() {
 	auto level = gcnew SquareLevel(125);
 
 	WINDOW* win = subwin(stdscr, stdscr->_maxy - 2, stdscr->_maxx, 1, 0);
-	SharedGraphicsData::addWin(win);
+	Graphics::addWin(win);
 	auto graphics = gcnew SquareLevelGraphicsComponent(win);
 	auto player = gcnew Player();
 	graphics->Focus = player;

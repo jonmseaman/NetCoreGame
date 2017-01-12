@@ -6,10 +6,10 @@ struct _win;
 /**
  * Holds some graphics data and methods used by multiple GraphicsComponents.
  */
-class SharedGraphicsData {
+class Graphics {
 public:
 	/**
-	 * Refreshes all windows added to SharedGraphicsData.
+	 * Refreshes all windows added to Graphics.
 	 * @return OK if all window refreshes were OK.
 	 */
 	static int refresh();
