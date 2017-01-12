@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "Components/SharedGraphicsData.h"
+#include "Components/Graphics.h"
 #include "GameLoop.h"
 
 void GameLoop::Loop()

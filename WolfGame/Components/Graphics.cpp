@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "SharedGraphicsData.h"
+#include "Graphics.h"
 
 std::vector<WINDOW*> Graphics::windows = std::vector<WINDOW*>();
 

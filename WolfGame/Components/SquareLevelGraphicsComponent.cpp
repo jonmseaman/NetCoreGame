@@ -1,6 +1,6 @@
 ﻿#include "stdafx.h"
 #include "CreatureGraphicsComponent.h"
-#include "SharedGraphicsData.h"
+#include "Graphics.h"
 #include "SquareLevelGraphicsComponent.h"
 
 using namespace WolfEngine::Entity;

@@ -4,7 +4,7 @@
 #include "GameLoop.h"
 #include "Player.h"
 #include "Components/CreatureGraphicsComponent.h"
-#include "Components/SharedGraphicsData.h"
+#include "Components/Graphics.h"
 #include "Components/SquareLevelGraphicsComponent.h"
 
 
