@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "Components/Graphics.h"
+#include "Components/TerminalGraphics.h"
 #include "GameLoop.h"
 
 void GameLoop::Loop()
@@ -74,6 +74,6 @@ void GameLoop::render()
 	Focus->Render();
 	
 	// Refresh the window
-	Graphics::refresh();
+	TerminalGraphics::refresh();
 	
 }

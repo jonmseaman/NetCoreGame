@@ -1,6 +1,6 @@
 ﻿#include "stdafx.h"
 #include "CreatureGraphicsComponent.h"
-#include "Graphics.h"
+#include "TerminalGraphics.h"
 #include "SquareLevelGraphicsComponent.h"
 
 using namespace WolfEngine::Entity;
@@ -12,7 +12,7 @@ SquareLevelGraphicsComponent::SquareLevelGraphicsComponent(_win* scr) {
 
 	repChars = gcnew array<chtype>(2);
 	init_pair(1, COLOR_BLUE, COLOR_GREEN);
-	repChars[0] = ' ' | Graphics::color_pair(COLOR_BLUE, COLOR_GREEN);
+	repChars[0] = ' ' | TerminalGraphics::color_pair(COLOR_BLUE, COLOR_GREEN);
 	repChars[1] = '#';
 }
 

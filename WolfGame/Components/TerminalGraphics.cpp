@@ -1,9 +1,9 @@
 ﻿#include "stdafx.h"
-#include "Graphics.h"
+#include "TerminalGraphics.h"
 
-std::vector<WINDOW*> Graphics::windows = std::vector<WINDOW*>();
+std::vector<WINDOW*> TerminalGraphics::windows = std::vector<WINDOW*>();
 
-int Graphics::refresh() {
+int TerminalGraphics::refresh() {
 	bool failed = false;
 
 	for (auto window : windows) {
@@ -13,7 +13,7 @@ int Graphics::refresh() {
 	return failed ? ERR : OK;
 }
 
-int Graphics::init_pairs() {
+int TerminalGraphics::init_pairs() {
 	short pair = 1;
 	for (int bg = 0; bg < COLORS; bg++) {
 		for (int fg = 0; fg < COLORS && pair < COLOR_PAIRS; fg++) {
@@ -27,15 +27,15 @@ int Graphics::init_pairs() {
 	return OK;
 }
 
-chtype Graphics::color_pair(short fg, short bg) {
+chtype TerminalGraphics::color_pair(short fg, short bg) {
 	return COLOR_PAIR(1 + bg * COLORS + fg);
 }
 
-void Graphics::addWin(WINDOW* window) {
+void TerminalGraphics::addWin(WINDOW* window) {
 	windows.push_back(window);
 }
 
-bool Graphics::removeWin(WINDOW* window) {
+bool TerminalGraphics::removeWin(WINDOW* window) {
 	bool found = false;
 
 	for (int i = 0; i < windows.size(); i++) {

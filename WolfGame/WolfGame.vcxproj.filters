@@ -42,7 +42,7 @@
     <ClInclude Include="Components\CreatureGraphicsComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Graphics.h">
+    <ClInclude Include="Components\TerminalGraphics.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -76,7 +76,7 @@
     <ClCompile Include="Components\SquareLevelGraphicsComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Graphics.cpp">
+    <ClCompile Include="Components\TerminalGraphics.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

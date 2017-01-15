@@ -4,7 +4,7 @@
 #include "GameLoop.h"
 #include "Player.h"
 #include "Components/CreatureGraphicsComponent.h"
-#include "Components/Graphics.h"
+#include "Components/TerminalGraphics.h"
 #include "Components/SquareLevelGraphicsComponent.h"
 
 
@@ -25,7 +25,7 @@ void setupCurses()
 
 	// Color
 	start_color();
-	Graphics::init_pairs();
+	TerminalGraphics::init_pairs();
 }
 
 int main() {
@@ -41,7 +41,7 @@ int main() {
 	auto level = gcnew SquareLevel(125);
 
 	WINDOW* win = subwin(stdscr, stdscr->_maxy - 2, stdscr->_maxx, 1, 0);
-	Graphics::addWin(win);
+	TerminalGraphics::addWin(win);
 	auto graphics = gcnew SquareLevelGraphicsComponent(win);
 	auto player = gcnew Player();
 	graphics->Focus = player;

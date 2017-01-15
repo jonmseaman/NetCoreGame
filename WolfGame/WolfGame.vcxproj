@@ -153,7 +153,7 @@
     <ClInclude Include="Components\PlayerInputComponent.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Components\SquareLevelGraphicsComponent.h" />
-    <ClInclude Include="Components\Graphics.h" />
+    <ClInclude Include="Components\TerminalGraphics.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +166,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Components\PlayerInputComponent.cpp" />
     <ClCompile Include="Components\SquareLevelGraphicsComponent.cpp" />
-    <ClCompile Include="Components\Graphics.cpp" />
+    <ClCompile Include="Components\TerminalGraphics.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
