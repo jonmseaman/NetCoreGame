@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WolfEngine.GraphicsStuff
+namespace WolfEngine.Graphics
 {
     interface IGraphicsObject
     {
