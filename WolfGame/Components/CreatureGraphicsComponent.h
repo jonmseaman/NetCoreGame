@@ -3,6 +3,9 @@
 // Curses WINDOW declaration.
 struct _win;
 
+/**
+ * Updates and renders the Creature's graphics.
+ */
 ref class CreatureGraphicsComponent : WolfEngine::Entity::ICreatureGraphicsComponent {
 public:
 	virtual void Render(WolfEngine::Entity::Creature^);
