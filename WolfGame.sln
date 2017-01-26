@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WolfGame", "WolfGame\WolfGa
 		{8F7426FE-A819-4DAB-BD87-5CCCC1B29B23} = {8F7426FE-A819-4DAB-BD87-5CCCC1B29B23}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics", "Graphics\Graphics.vcxproj", "{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,16 @@ Global
 		{B7F70A08-27F1-4725-8335-F370334A868E}.Release|x64.Build.0 = Release|x64
 		{B7F70A08-27F1-4725-8335-F370334A868E}.Release|x86.ActiveCfg = Release|Win32
 		{B7F70A08-27F1-4725-8335-F370334A868E}.Release|x86.Build.0 = Release|Win32
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Debug|x64.ActiveCfg = Debug|x64
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Debug|x64.Build.0 = Debug|x64
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Debug|x86.ActiveCfg = Debug|Win32
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Debug|x86.Build.0 = Debug|Win32
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Release|Any CPU.ActiveCfg = Release|Win32
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Release|x64.ActiveCfg = Release|x64
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Release|x64.Build.0 = Release|x64
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Release|x86.ActiveCfg = Release|Win32
+		{EF3FAFD0-776E-4ED0-92ED-9174FFF6CCE6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

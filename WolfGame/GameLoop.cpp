@@ -75,5 +75,4 @@ void GameLoop::render()
 	
 	// Refresh the window
 	TerminalGraphics::refresh();
-	
 }

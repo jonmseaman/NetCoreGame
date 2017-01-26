@@ -4,8 +4,9 @@ using System.Text;
 
 namespace WolfEngine.Graphics
 {
-    interface IGraphicsComponent
+    interface ITexture
     {
-        void Render(IGraphicsObject obj);
+        int Height { get; set; }
+        int Width { get; set; }
     }
 }
