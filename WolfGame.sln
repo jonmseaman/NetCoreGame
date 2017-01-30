@@ -20,6 +20,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WolfGame", "WolfGame\WolfGa
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TerminalGraphics", "TerminalGraphics\TerminalGraphics.vcxproj", "{C9942F0F-0702-41C7-83F2-9086C3561CBD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8F7426FE-A819-4DAB-BD87-5CCCC1B29B23} = {8F7426FE-A819-4DAB-BD87-5CCCC1B29B23}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
