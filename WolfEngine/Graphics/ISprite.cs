@@ -4,9 +4,8 @@ using System.Text;
 
 namespace WolfEngine.Graphics
 {
-    public interface ITexture
+    public interface ISprite
     {
-        int Height { get; set; }
-        int Width { get; set; }
+        void Draw(IWindow win, int x, int y);
     }
 }

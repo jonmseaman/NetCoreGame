@@ -79,9 +79,6 @@
     <ClCompile Include="Components\TerminalGraphics.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="TerminalWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico">

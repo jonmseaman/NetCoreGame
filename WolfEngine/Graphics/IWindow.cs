@@ -8,6 +8,5 @@ namespace WolfEngine.Graphics
     {
         int Height { get; set; }
         int Width { get; set; }
-        void Draw(int x, int y, ITexture texture);
     }
 }
