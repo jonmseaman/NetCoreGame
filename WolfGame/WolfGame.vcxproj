@@ -178,6 +178,11 @@
   <ItemGroup>
     <Image Include="app.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TerminalGraphics\TerminalGraphics.vcxproj">
+      <Project>{c9942f0f-0702-41c7-83f2-9086c3561cbd}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
