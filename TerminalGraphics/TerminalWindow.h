@@ -5,5 +5,7 @@ public:
 	TerminalWindow();
 	virtual property int Height;
 	virtual property int Width;
+
+
 };
 
