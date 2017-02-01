@@ -183,6 +183,9 @@
     <ProjectReference Include="..\TerminalGraphics\TerminalGraphics.vcxproj">
       <Project>{c9942f0f-0702-41c7-83f2-9086c3561cbd}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\WolfEngine\WolfEngine.csproj">
+      <Project>{8f7426fe-a819-4dab-bd87-5cccc1b29b23}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

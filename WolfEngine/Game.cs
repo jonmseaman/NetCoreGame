@@ -5,10 +5,14 @@ using WolfEngine.Entity;
 
 namespace WolfEngine
 {
-    public class Game : IGameLoop
+    public abstract class Game : IGameLoop
     {
         public GameObject Focus { get; set; }
         public bool Running { get; set; }
+
+        public abstract void ProcessUserInput();
+        public abstract void Render(TimeSpan dt);
+
 
         public void Loop()
         {
@@ -29,7 +33,7 @@ namespace WolfEngine
                 previous = current;
                 lag += elapsed;
 
-                // TODO: Process Input.
+                ProcessUserInput();
 
                 while (lag >= dt)
                 {
@@ -37,7 +41,7 @@ namespace WolfEngine
                     lag -= dt;
                 }
 
-                // TODO: Render
+                Render(dt);
 
                 // Sleep until next time to update.
                 elapsed = DateTime.Now - previous;
@@ -45,8 +49,7 @@ namespace WolfEngine
                 var sleep = dt - elapsed;
                 if (sleep > TimeSpan.Zero)
                 {
-                    //System.Threading.Thread.Sleep(sleep);
-                    System.Threading.Thread.Sleep(sleep);
+                    Thread.Sleep(sleep);
                 }
             }
         }
