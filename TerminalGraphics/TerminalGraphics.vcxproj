@@ -24,6 +24,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TerminalPixel.h" />
     <ClInclude Include="TerminalWindow.h" />
   </ItemGroup>
   <ItemGroup>

@@ -2,8 +2,6 @@
 {
     public struct Vector2
     {
-
-
         #region Public Fields
 
         public int X;
@@ -27,9 +25,9 @@
 
         #endregion
 
+        #region Operators
         // Operators code taken and modifed from MonoGame.Vector2.
         // MIT License - Copyright (C) The Mono.Xna Team
-        #region Operators
 
         /// <summary>
         /// Inverts values in the specified <see cref="Vector2"/>.
