@@ -30,6 +30,11 @@
   <ItemGroup>
     <ClCompile Include="TerminalWindow.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WolfEngine\WolfEngine.csproj">
+      <Project>{8f7426fe-a819-4dab-bd87-5cccc1b29b23}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C9942F0F-0702-41C7-83F2-9086C3561CBD}</ProjectGuid>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

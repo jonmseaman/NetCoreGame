@@ -1,8 +1,7 @@
 #pragma once
 #include "TerminalPixel.h"
 
-ref class TerminalWindow :
-	public WolfEngine::Graphics::IWindow {
+ref class TerminalWindow : public WolfEngine::Graphics::ITermWindow {
 private:
 
 	array<TerminalPixel^>^ pixels;
