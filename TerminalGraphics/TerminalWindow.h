@@ -10,13 +10,13 @@ public:
 	virtual property int Height;
 	virtual property int Width;
 
-	void setbg(short col, int x, int y);
-	void setfg(short col, int x, int y);
-	void setch(int ch, int x, int y);
+	virtual void SetBg(short col, int x, int y);
+	virtual void SetFg(short col, int x, int y);
+	virtual void SetCh(int ch, int x, int y);
 
-	short getbg(int x, int y);
-	short getfg(int x, int y);
-	int getch(int x, int y);
+	virtual short GetBg(int x, int y);
+	virtual short GetFg(int x, int y);
+	virtual int GetCh(int x, int y);
 
 	void Render();
 };

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WolfEngine.Graphics
 {
-    interface ITermWindow : IWindow
+    public interface ITermWindow : IWindow
     {
         void SetBg(short bg, int x, int y);
         void SetFg(short fg, int x, int y);
