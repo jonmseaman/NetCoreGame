@@ -37,7 +37,7 @@ namespace WolfEngine
 
                 while (lag >= dt)
                 {
-                    Focus.Update();
+                    Focus.Update(dt);
                     lag -= dt;
                 }
 

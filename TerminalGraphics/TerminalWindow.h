@@ -11,9 +11,9 @@ public:
 	virtual property int Height;
 	virtual property int Width;
 
-	void setbg(short col);
-	void setfg(short col);
-	void setch(int ch);
+	void setbg(short col, int x, int y);
+	void setfg(short col, int x, int y);
+	void setch(int ch, int x, int y);
 
 	short getbg(int x, int y);
 	short getfg(int x, int y);

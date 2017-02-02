@@ -8,15 +8,15 @@ TerminalWindow::TerminalWindow() {
 
 #pragma region EditCh
 
-void TerminalWindow::setbg(short col) {
+void TerminalWindow::setbg(short col, int x, int y) {
 	throw gcnew System::NotImplementedException();
 }
 
-void TerminalWindow::setfg(short col) {
+void TerminalWindow::setfg(short col, int x, int y) {
 	throw gcnew System::NotImplementedException();
 }
 
-void TerminalWindow::setch(int ch) {
+void TerminalWindow::setch(int ch, int x, int y) {
 	throw gcnew System::NotImplementedException();
 }
 

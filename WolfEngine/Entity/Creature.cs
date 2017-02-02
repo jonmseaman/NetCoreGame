@@ -28,7 +28,7 @@ namespace WolfEngine.Entity
             OnMove?.Invoke(this, args);
         }
 
-        public override void Update()
+        public override void Update(TimeSpan dt)
         {
             Input?.Update(this);
             Graphics?.Update(this);

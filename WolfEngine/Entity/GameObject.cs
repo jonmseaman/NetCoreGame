@@ -1,4 +1,5 @@
-﻿using WolfEngine.Level;
+﻿using System;
+using WolfEngine.Level;
 
 namespace WolfEngine.Entity
 {
@@ -7,7 +8,7 @@ namespace WolfEngine.Entity
         /// <summary>
         /// Update the GameObject by one tick.
         /// </summary>
-        public abstract void Update();
+        public abstract void Update(TimeSpan dt);
 
         /// <summary>
         /// Renders the GameObject on screen.

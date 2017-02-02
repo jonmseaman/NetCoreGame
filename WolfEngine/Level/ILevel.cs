@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WolfEngine.Entity;
 
 namespace WolfEngine.Level
@@ -47,6 +48,6 @@ namespace WolfEngine.Level
         /// <summary>
         /// Updates the entities in the level.
         /// </summary>
-        void Update();
+        void Update(TimeSpan dt);
     }
 }

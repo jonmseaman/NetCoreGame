@@ -155,14 +155,14 @@ namespace WolfEngine.Level
             }
         }
 
-        public override void Update()
+        public override void Update(TimeSpan dt)
         {
             Graphics.Update(this);
 
             // Update each entity in this
             foreach (var creature in _creatureList)
             {
-                creature.Update();
+                creature.Update(dt);
             }
         }
 
