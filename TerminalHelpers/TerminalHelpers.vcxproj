@@ -149,7 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CreatureGraphicsComponent.h" />
-    <ClInclude Include="CursesHelper.h" />
+    <ClInclude Include="Terminal\CursesHelper.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Components\PlayerInputComponent.h" />
@@ -157,8 +157,8 @@
     <ClInclude Include="Components\SquareLevelGraphicsComponent.h" />
     <ClInclude Include="Components\TerminalGraphics.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TerminalPixel.h" />
-    <ClInclude Include="TerminalWindow.h" />
+    <ClInclude Include="Terminal\TerminalPixel.h" />
+    <ClInclude Include="Terminal\TerminalWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
@@ -166,7 +166,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Components\CreatureGraphicsComponent.cpp" />
-    <ClCompile Include="CursesHelper.cpp" />
+    <ClCompile Include="Terminal\CursesHelper.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Components\PlayerInputComponent.cpp" />
@@ -178,7 +178,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TerminalWindow.cpp" />
+    <ClCompile Include="Terminal\TerminalWindow.cpp" />
     <ClCompile Include="WolfGame.cpp" />
   </ItemGroup>
   <ItemGroup>

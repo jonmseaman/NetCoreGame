@@ -53,7 +53,7 @@
       <Project>{8f7426fe-a819-4dab-bd87-5cccc1b29b23}</Project>
       <Name>WolfEngine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WolfGame\WolfGame.vcxproj">
+    <ProjectReference Include="..\TerminalHelpers\TerminalHelpers.vcxproj">
       <Project>{b7f70a08-27f1-4725-8335-f370334a868e}</Project>
       <Name>TerminalHelpers</Name>
     </ProjectReference>

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "../Components/TerminalGraphics.h"
 #include "CursesHelper.h"
 
 void setupCurses() {
@@ -14,5 +15,5 @@ void setupCurses() {
 
 				 // Color
 	start_color();
-	// FIXME: TerminalGraphics::init_pairs();
+	TerminalGraphics::init_pairs();
 }

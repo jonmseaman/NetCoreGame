@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "GameLoop.h"
+#include "Terminal/CursesHelper.h"
 #include "Player.h"
 #include "Components/CreatureGraphicsComponent.h"
 #include "Components/TerminalGraphics.h"
@@ -10,23 +11,6 @@
 
 using namespace System;
 using namespace WolfEngine::Level;
-
-void setupCurses() {
-	// Setup curses
-	initscr();
-	cbreak();
-	noecho();
-	nodelay(stdscr, TRUE);
-	nonl();
-	intrflush(stdscr, FALSE);
-	keypad(stdscr, TRUE);
-	curs_set(0); // Invisible cursor
-
-				 // Color
-	start_color();
-	TerminalGraphics::init_pairs();
-}
-
 
 int main() {
 	using namespace std::chrono;
