@@ -3,7 +3,7 @@
 
 ref class TerminalWindow : public WolfEngine::Graphics::ITermWindow {
 private:
-
+	static bool startedCurses = false;
 	array<TerminalPixel^>^ pixels;
 public:
 	TerminalWindow();

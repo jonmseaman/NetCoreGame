@@ -1,9 +1,11 @@
 #include "TerminalWindow.h"
 
-
+// Helper Functions
 
 TerminalWindow::TerminalWindow() {
+	if (!startedCurses) {
 
+	}
 }
 
 #pragma region EditCh

@@ -21,9 +21,15 @@
     <ClInclude Include="TerminalPixel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CursesHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TerminalWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CursesHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
