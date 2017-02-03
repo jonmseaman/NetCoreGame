@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "CursesHelper.h"
 
 void setupCurses() {

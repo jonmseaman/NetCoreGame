@@ -24,7 +24,7 @@
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>WolfGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
-    <ProjectName>WolfGame</ProjectName>
+    <ProjectName>TerminalHelpers</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CreatureGraphicsComponent.h" />
+    <ClInclude Include="CursesHelper.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Components\PlayerInputComponent.h" />
@@ -156,6 +157,8 @@
     <ClInclude Include="Components\SquareLevelGraphicsComponent.h" />
     <ClInclude Include="Components\TerminalGraphics.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TerminalPixel.h" />
+    <ClInclude Include="TerminalWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
@@ -163,6 +166,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Components\CreatureGraphicsComponent.cpp" />
+    <ClCompile Include="CursesHelper.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Components\PlayerInputComponent.cpp" />
@@ -174,15 +178,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TerminalWindow.cpp" />
     <ClCompile Include="WolfGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TerminalGraphics\TerminalGraphics.vcxproj">
-      <Project>{c9942f0f-0702-41c7-83f2-9086c3561cbd}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\WolfEngine\WolfEngine.csproj">
       <Project>{8f7426fe-a819-4dab-bd87-5cccc1b29b23}</Project>
     </ProjectReference>

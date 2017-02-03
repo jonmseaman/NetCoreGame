@@ -14,12 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WolfEngine", "WolfEngine\Wo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WolfEngine.Tests", "WolfEngine.Tests\WolfEngine.Tests.csproj", "{72A8EF57-7554-4AE2-A838-C7E1E1453ECD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WolfGame", "WolfGame\WolfGame.vcxproj", "{B7F70A08-27F1-4725-8335-F370334A868E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8F7426FE-A819-4DAB-BD87-5CCCC1B29B23} = {8F7426FE-A819-4DAB-BD87-5CCCC1B29B23}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TerminalGraphics", "TerminalGraphics\TerminalGraphics.vcxproj", "{C9942F0F-0702-41C7-83F2-9086C3561CBD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TerminalHelpers", "TerminalHelpers\TerminalHelpers.vcxproj", "{B7F70A08-27F1-4725-8335-F370334A868E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8F7426FE-A819-4DAB-BD87-5CCCC1B29B23} = {8F7426FE-A819-4DAB-BD87-5CCCC1B29B23}
 	EndProjectSection
@@ -70,16 +65,6 @@ Global
 		{B7F70A08-27F1-4725-8335-F370334A868E}.Release|x64.Build.0 = Release|x64
 		{B7F70A08-27F1-4725-8335-F370334A868E}.Release|x86.ActiveCfg = Release|Win32
 		{B7F70A08-27F1-4725-8335-F370334A868E}.Release|x86.Build.0 = Release|Win32
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Debug|x64.ActiveCfg = Debug|x64
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Debug|x64.Build.0 = Debug|x64
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Debug|x86.ActiveCfg = Debug|Win32
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Debug|x86.Build.0 = Debug|Win32
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Release|Any CPU.ActiveCfg = Release|Win32
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Release|x64.ActiveCfg = Release|x64
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Release|x64.Build.0 = Release|x64
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Release|x86.ActiveCfg = Release|Win32
-		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Release|x86.Build.0 = Release|Win32
 		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Debug|x64.ActiveCfg = Debug|Any CPU

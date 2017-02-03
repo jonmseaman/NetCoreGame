@@ -49,13 +49,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TerminalGraphics\TerminalGraphics.vcxproj">
-      <Project>{c9942f0f-0702-41c7-83f2-9086c3561cbd}</Project>
-      <Name>TerminalGraphics</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WolfEngine\WolfEngine.csproj">
       <Project>{8f7426fe-a819-4dab-bd87-5cccc1b29b23}</Project>
       <Name>WolfEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WolfGame\WolfGame.vcxproj">
+      <Project>{b7f70a08-27f1-4725-8335-f370334a868e}</Project>
+      <Name>TerminalHelpers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
