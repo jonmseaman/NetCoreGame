@@ -24,6 +24,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TerminalGraphics", "Termina
 		{8F7426FE-A819-4DAB-BD87-5CCCC1B29B23} = {8F7426FE-A819-4DAB-BD87-5CCCC1B29B23}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolf", "Wolf\Wolf.csproj", "{D85454A9-F964-486F-AFF8-1DDFB98061D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,18 @@ Global
 		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Release|x64.Build.0 = Release|x64
 		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Release|x86.ActiveCfg = Release|Win32
 		{C9942F0F-0702-41C7-83F2-9086C3561CBD}.Release|x86.Build.0 = Release|Win32
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Debug|x64.Build.0 = Debug|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Debug|x86.Build.0 = Debug|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Release|x64.ActiveCfg = Release|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Release|x64.Build.0 = Release|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Release|x86.ActiveCfg = Release|Any CPU
+		{D85454A9-F964-486F-AFF8-1DDFB98061D8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
