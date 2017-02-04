@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "Components/TerminalGraphics.h"
+#include "Terminal/CursesHelper.h"
 #include "GameLoop.h"
 
 void GameLoop::ProcessUserInput() {
@@ -23,15 +23,5 @@ void GameLoop::ProcessUserInput() {
 
 void GameLoop::Render(System::TimeSpan dt)
 {
-	using namespace std::chrono;
-
-	move(0, 0);
-	printw("Time: ");
-	time_t time = system_clock::to_time_t(system_clock::now());
-	printw(ctime(&time));
-
-	Focus->Render();
-	
-	// Refresh the window
-	TerminalGraphics::refresh();
+	throw gcnew System::NotImplementedException();
 }

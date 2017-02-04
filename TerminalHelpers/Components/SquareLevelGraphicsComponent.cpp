@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "CreatureGraphicsComponent.h"
-#include "TerminalGraphics.h"
 #include "SquareLevelGraphicsComponent.h"
+#include "../Terminal/CursesHelper.h"
 
 using namespace WolfEngine::Entity;
 using namespace WolfEngine::Level;
@@ -12,7 +12,7 @@ SquareLevelGraphicsComponent::SquareLevelGraphicsComponent(_win* scr) {
 
 	repChars = gcnew array<chtype>(2);
 	init_pair(1, COLOR_BLUE, COLOR_GREEN);
-	repChars[0] = ' ' | TerminalGraphics::color_pair(COLOR_BLUE, COLOR_GREEN);
+	repChars[0] = ' ' | color_pair(COLOR_BLUE, COLOR_GREEN);
 	repChars[1] = '#';
 }
 
