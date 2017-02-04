@@ -104,6 +104,7 @@
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib\pdcurs34\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(SolutionDir)Lib\pdcurs34\win32\pdcurses.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent />
     <PostBuildEvent />
@@ -117,6 +118,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,6 +130,7 @@
     <Link>
       <AdditionalDependencies>$(SolutionDir)Lib\pdcurs34\win32\pdcurses.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -138,6 +141,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -153,13 +157,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CreatureGraphicsComponent.h" />
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="Terminal\CursesHelper.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Components\PlayerInputComponent.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Components\SquareLevelGraphicsComponent.h" />
-    <ClInclude Include="Components\TerminalGraphics.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Terminal\TerminalPixel.h" />
     <ClInclude Include="Terminal\TerminalWindow.h" />
@@ -170,12 +174,12 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Components\CreatureGraphicsComponent.cpp" />
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="Terminal\CursesHelper.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Components\PlayerInputComponent.cpp" />
     <ClCompile Include="Components\SquareLevelGraphicsComponent.cpp" />
-    <ClCompile Include="Components\TerminalGraphics.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -183,7 +187,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Terminal\TerminalWindow.cpp" />
-    <ClCompile Include="WolfGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />

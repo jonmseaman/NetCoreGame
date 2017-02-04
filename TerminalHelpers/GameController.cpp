@@ -1,8 +1,10 @@
-﻿#include "stdafx.h"
-#include "Terminal/CursesHelper.h"
-#include "GameLoop.h"
+#include "stdafx.h"
+#include "GameController.h"
 
-void GameLoop::ProcessUserInput() {
+/**
+ * Processes input related to game menus.
+ */
+void GameController::ProcessUserInput() {
 	int input = getch();
 	switch (input) {
 		case ERR:
@@ -12,16 +14,11 @@ void GameLoop::ProcessUserInput() {
 			clear();
 			break;
 		case ALT_X:
-			Running = false;
+			exit(1);
 			break;
 		default:
 			// Don't want to remove char if it cannot be processed here.
 			ungetch(input);
 			break;
 	}
-}
-
-void GameLoop::Render(System::TimeSpan dt)
-{
-	throw gcnew System::NotImplementedException();
 }
