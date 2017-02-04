@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CreatureGraphicsComponent.h" />
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="Terminal\CursesHelper.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Player.h" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Components\CreatureGraphicsComponent.cpp" />
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="Terminal\CursesHelper.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Player.cpp" />
