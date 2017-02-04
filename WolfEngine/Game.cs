@@ -7,11 +7,11 @@ namespace WolfEngine
 {
     public abstract class Game : IGameLoop
     {
-        public GameObject Focus { get; set; }
         public bool Running { get; set; }
 
         public abstract void ProcessUserInput();
         public abstract void Render(TimeSpan dt);
+        public abstract void Update(TimeSpan dt);
 
 
         public void Loop()
@@ -37,7 +37,7 @@ namespace WolfEngine
 
                 while (lag >= dt)
                 {
-                    Focus.Update(dt);
+                    Update(dt);
                     lag -= dt;
                 }
 
