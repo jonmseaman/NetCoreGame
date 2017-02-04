@@ -1,10 +1,11 @@
 #pragma once
 #include "TerminalPixel.h"
 
-ref class TerminalWindow : public WolfEngine::Graphics::ITermWindow {
+public ref class TerminalWindow : public WolfEngine::Graphics::ITermWindow {
 private:
 	static bool startedCurses = false;
 	array<TerminalPixel^>^ pixels;
+	void CreateNewScreen(int width, int height);
 public:
 	TerminalWindow();
 	virtual property int Height;

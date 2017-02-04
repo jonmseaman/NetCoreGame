@@ -13,7 +13,11 @@ void setupCurses() {
 	keypad(stdscr, TRUE);
 	curs_set(0); // Invisible cursor
 
-				 // Color
+	// Color
 	start_color();
 	TerminalGraphics::init_pairs();
+}
+
+chtype ToChType(TerminalPixel^ p) {
+	return p->ch | TerminalGraphics::color_pair(p->fg, p->bg);
 }
