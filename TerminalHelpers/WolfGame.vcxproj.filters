@@ -42,8 +42,17 @@
     <ClInclude Include="Components\CreatureGraphicsComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\SharedGraphicsData.h">
+    <ClInclude Include="Components\TerminalGraphics.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TerminalWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CursesHelper.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TerminalPixel.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -76,8 +85,14 @@
     <ClCompile Include="Components\SquareLevelGraphicsComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\SharedGraphicsData.cpp">
+    <ClCompile Include="Components\TerminalGraphics.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TerminalWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CursesHelper.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

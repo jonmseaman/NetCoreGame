@@ -1,4 +1,6 @@
-﻿using WolfEngine.Entity;
+﻿using System;
+using System.Collections.Generic;
+using WolfEngine.Entity;
 
 namespace WolfEngine.Level
 {
@@ -29,6 +31,11 @@ namespace WolfEngine.Level
         bool Contains(Creature c);
 
         /// <summary>
+        /// A list of all the creatures in the level.
+        /// </summary>
+        List<Creature> Creatures { get; }
+
+        /// <summary>
         /// Gets or sets the Tile at Location(x,y)
         /// </summary>
         Tile this[int x, int y] { get; set; }
@@ -41,6 +48,6 @@ namespace WolfEngine.Level
         /// <summary>
         /// Updates the entities in the level.
         /// </summary>
-        void Update();
+        void Update(TimeSpan dt);
     }
 }

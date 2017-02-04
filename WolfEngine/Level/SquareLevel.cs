@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using WolfEngine.Entity;
 
@@ -20,6 +21,8 @@ namespace WolfEngine.Level
         ///     The width of the level.
         /// </summary>
         public int LevelWidth { get; }
+
+        public List<Creature> Creatures => _creatureList;
 
         /// <summary>
         /// Renders the level.
@@ -145,20 +148,21 @@ namespace WolfEngine.Level
             // Render lower layer first. Creatures will be on top of the level.
             Graphics.Render(this);
 
+            // Render each entity in this
             foreach (var creature in _creatureList)
             {
                 creature.Render();
             }
         }
 
-        public override void Update()
+        public override void Update(TimeSpan dt)
         {
             Graphics.Update(this);
 
             // Update each entity in this
             foreach (var creature in _creatureList)
             {
-                creature.Update();
+                creature.Update(dt);
             }
         }
 
