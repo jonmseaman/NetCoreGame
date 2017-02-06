@@ -7,7 +7,7 @@ using WolfEngine;
 
 namespace Wolf
 {
-    class WolfGame : WolfEngine.Game
+    class WolfGame : Game
     {
         WolfEngine.Controller.IController _controller = new GameController();
 
@@ -20,6 +20,7 @@ namespace Wolf
         {
             _controller.ProcessUserInput();
         }
+
 
         public override void Render(TimeSpan dt)
         {
