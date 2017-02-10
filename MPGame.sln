@@ -10,11 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WolfEngine", "WolfEngine\WolfEngine.csproj", "{8F7426FE-A819-4DAB-BD87-5CCCC1B29B23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPEngine", "MPEngine\MPEngine.csproj", "{8F7426FE-A819-4DAB-BD87-5CCCC1B29B23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WolfGame", "WolfGame\WolfGame.csproj", "{E43425BA-CDA5-4593-9D77-42B95DE03C3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPGame", "MPGame\MPGame.csproj", "{E43425BA-CDA5-4593-9D77-42B95DE03C3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WolfEngine.Tests", "WolfEngine.Tests\WolfEngine.Tests.csproj", "{5D3AC88F-B5A3-4069-AAC8-5E8B2BF0EF3B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPEngine.Tests", "MPEngine.Tests\MPEngine.Tests.csproj", "{5D3AC88F-B5A3-4069-AAC8-5E8B2BF0EF3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

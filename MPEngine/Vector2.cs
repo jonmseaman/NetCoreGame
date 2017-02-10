@@ -155,5 +155,107 @@
         }
 
         #endregion
+
+        #region Public Methods
+        // Public methods code taken from MonoGame.Vector2.
+        // MIT License - Copyright (C) The Mono.Xna Team
+
+        /// <summary>
+        /// Performs vector addition on <paramref name="value1"/> and <paramref name="value2"/>.
+        /// </summary>
+        /// <param name="value1">The first vector to add.</param>
+        /// <param name="value2">The second vector to add.</param>
+        /// <returns>The result of the vector addition.</returns>
+        public static Vector2 Add(Vector2 value1, Vector2 value2)
+        {
+            value1.X += value2.X;
+            value1.Y += value2.Y;
+            return value1;
+        }
+
+        /// <summary>
+        /// Performs vector addition on <paramref name="value1"/> and
+        /// <paramref name="value2"/>, storing the result of the
+        /// addition in <paramref name="result"/>.
+        /// </summary>
+        /// <param name="value1">The first vector to add.</param>
+        /// <param name="value2">The second vector to add.</param>
+        /// <param name="result">The result of the vector addition.</param>
+        public static void Add(ref Vector2 value1, ref Vector2 value2, out Vector2 result)
+        {
+            result.X = value1.X + value2.X;
+            result.Y = value1.Y + value2.Y;
+        }
+
+        /// <summary>
+        /// Compares whether current instance is equal to specified <see cref="object"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="object"/> to compare.</param>
+        /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is Vector2)
+            {
+                return Equals((Vector2)obj);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Compares whether current instance is equal to specified <see cref="Vector2"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="Vector2"/> to compare.</param>
+        /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
+        public bool Equals(Vector2 other)
+        {
+            return (X == other.X) && (Y == other.Y);
+        }
+
+        /// <summary>
+        /// Gets the hash code of this <see cref="Vector2"/>.
+        /// </summary>
+        /// <returns>Hash code of this <see cref="Vector2"/>.</returns>
+        public override int GetHashCode()
+        {
+            return X.GetHashCode() + Y.GetHashCode();
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Vector2"/> that contains subtraction of on <see cref="Vector2"/> from a another.
+        /// </summary>
+        /// <param name="value1">Source <see cref="Vector2"/>.</param>
+        /// <param name="value2">Source <see cref="Vector2"/>.</param>
+        /// <returns>The result of the vector subtraction.</returns>
+        public static Vector2 Subtract(Vector2 value1, Vector2 value2)
+        {
+            value1.X -= value2.X;
+            value1.Y -= value2.Y;
+            return value1;
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Vector2"/> that contains subtraction of on <see cref="Vector2"/> from a another.
+        /// </summary>
+        /// <param name="value1">Source <see cref="Vector2"/>.</param>
+        /// <param name="value2">Source <see cref="Vector2"/>.</param>
+        /// <param name="result">The result of the vector subtraction as an output parameter.</param>
+        public static void Subtract(ref Vector2 value1, ref Vector2 value2, out Vector2 result)
+        {
+            result.X = value1.X - value2.X;
+            result.Y = value1.Y - value2.Y;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="string"/> representation of this <see cref="Vector2"/> in the format:
+        /// {X:[<see cref="X"/>] Y:[<see cref="Y"/>]}
+        /// </summary>
+        /// <returns>A <see cref="string"/> representation of this <see cref="Vector2"/>.</returns>
+        public override string ToString()
+        {
+            return "{X:" + X + " Y:" + Y + "}";
+        }
+
+        #endregion
     }
 }

@@ -4,6 +4,6 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WolfEngine\WolfEngine.csproj" />
+    <ProjectReference Include="..\MPEngine\MPEngine.csproj" />
   </ItemGroup>
 </Project>
