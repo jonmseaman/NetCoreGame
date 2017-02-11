@@ -15,6 +15,6 @@ namespace WolfEngine
         /// <summary>
         /// Run the loop while Running == True.
         /// </summary>
-        void Loop();
+        void Run();
     }
 }

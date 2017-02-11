@@ -14,7 +14,7 @@ namespace WolfEngine
         public abstract void Update(TimeSpan dt);
 
 
-        public void Loop()
+        public void Run()
         {
             Running = true;
 
