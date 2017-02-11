@@ -9,7 +9,8 @@ namespace MPGame
     {
         public override void ProcessUserInput()
         {
-            throw new NotImplementedException();
+            var list = new List<ConsoleKeyInfo>(5);
+            while (Console.KeyAvailable) list.Add(Console.ReadKey(true));
         }
 
         public override void Render(TimeSpan dt)
