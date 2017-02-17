@@ -1,4 +1,4 @@
-﻿namespace WolfEngine.Entity
+﻿namespace MPEngine.Entity
 {
     public class CreatureAttributes : Attributes
     {

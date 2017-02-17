@@ -1,6 +1,6 @@
-﻿using WolfEngine.Entity;
+﻿using MPEngine.Entity;
 
-namespace WolfEngine
+namespace MPEngine
 {
     /// <summary>
     /// Interface for game loop design pattern. Used to manage game loop.

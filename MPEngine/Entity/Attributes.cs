@@ -1,4 +1,4 @@
-﻿namespace WolfEngine.Entity
+﻿namespace MPEngine.Entity
 {
     /// <summary>
     /// Represents the attributes of a Creature.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WolfEngine.Entity
+namespace MPEngine.Entity
 {
     public class ItemAttributes : Attributes
     {

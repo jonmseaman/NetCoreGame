@@ -1,7 +1,7 @@
-﻿using WolfEngine.Entity;
+﻿using MPEngine.Entity;
 using Xunit;
 
-namespace WolfEngine.Tests.Entity
+namespace MPEngine.Tests.Entity
 {
     // ReSharper disable once InconsistentNaming
     public abstract class IInventoryTests

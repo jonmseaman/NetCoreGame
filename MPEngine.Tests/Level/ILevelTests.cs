@@ -1,8 +1,8 @@
-﻿using WolfEngine.Entity;
-using WolfEngine.Level;
+﻿using MPEngine.Entity;
+using MPEngine.Level;
 using Xunit;
 
-namespace WolfEngine.Tests.Level
+namespace MPEngine.Tests.Level
 {
     // ReSharper disable once InconsistentNaming
     public abstract class ILevelTests

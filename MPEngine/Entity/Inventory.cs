@@ -1,4 +1,4 @@
-﻿namespace WolfEngine.Entity
+﻿namespace MPEngine.Entity
 {
     /// <summary>
     /// An inventory with a fixed capacity.

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using WolfEngine;
+using MPEngine;
 
-namespace MP
+namespace MPGame
 {
-    class MPGame : Game
+    class MpGame : Game
     {
         public override void ProcessUserInput()
         {

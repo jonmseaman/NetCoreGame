@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
-using WolfEngine.Entity;
+using MPEngine.Entity;
 
-namespace WolfEngine
+namespace MPEngine
 {
     public abstract class Game : IGameLoop
     {

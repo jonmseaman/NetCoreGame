@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WolfEngine.Graphics
+namespace MPEngine.Graphics
 {
     public interface ITermWindow : IWindow
     {

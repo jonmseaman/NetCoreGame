@@ -1,5 +1,5 @@
 ﻿
-namespace WolfEngine.Controller
+namespace MPEngine.Controller
 {
     /// <summary>
     /// Handles input from an input device.

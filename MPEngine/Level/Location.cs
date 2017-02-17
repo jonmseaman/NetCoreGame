@@ -1,4 +1,4 @@
-﻿namespace WolfEngine.Level
+﻿namespace MPEngine.Level
 {
     /// <summary>
     /// Represents a location in a level.

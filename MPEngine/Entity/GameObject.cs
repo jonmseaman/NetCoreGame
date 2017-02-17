@@ -1,7 +1,7 @@
 ﻿using System;
-using WolfEngine.Level;
+using MPEngine.Level;
 
-namespace WolfEngine.Entity
+namespace MPEngine.Entity
 {
     public abstract class GameObject
     {

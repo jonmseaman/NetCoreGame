@@ -1,4 +1,4 @@
-﻿namespace WolfEngine
+﻿namespace MPEngine
 {
     public struct Vector2
     {

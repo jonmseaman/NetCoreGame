@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using WolfEngine.Entity;
+using MPEngine.Entity;
 
-namespace WolfEngine.Level
+namespace MPEngine.Level
 {
     /// <summary>
     /// Represents a level in game. 

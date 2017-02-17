@@ -1,4 +1,4 @@
-﻿namespace WolfEngine.Level
+﻿namespace MPEngine.Level
 {
     public interface ILevelGraphicsComponent
     {

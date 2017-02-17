@@ -1,7 +1,6 @@
-﻿using System;
-using WolfEngine.Entity;
+﻿using MPEngine.Entity;
 
-namespace WolfEngine.Tests.Entity
+namespace MPEngine.Tests.Entity
 {
     public class ItemTests
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using WolfEngine.Level;
+using MPEngine.Level;
 
-namespace WolfEngine.Entity
+namespace MPEngine.Entity
 {
     /// <summary>
     ///     Encapsulates basic behavior of creatures.
@@ -19,7 +19,7 @@ namespace WolfEngine.Entity
         public void Move(Direction dir)
         {
             // Update location
-            this.Location = Location.Add(Location, dir, 1);
+            this.Location = Level.Location.Add(Location, dir, 1);
 
             // OnMove event
             if (OnMove == null) return;            

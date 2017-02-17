@@ -1,9 +1,7 @@
-﻿using System;
-using WolfEngine.Entity;
-using WolfEngine.Level;
+﻿using MPEngine.Level;
 using Xunit;
 
-namespace WolfEngine.Tests.Level
+namespace MPEngine.Tests.Level
 {
     public class SquareLevelTests : ILevelTests
     {
