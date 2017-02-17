@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using WolfEngine;
 
-namespace MPGame
+namespace MP
 {
     class MPGame : Game
     {
