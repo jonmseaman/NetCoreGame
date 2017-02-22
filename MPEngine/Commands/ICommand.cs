@@ -3,7 +3,7 @@
     public interface ICommand
     {
         //Reverted a change that Jon made to make sure that inheritance works properly to ExitGameCommand
-        void Execute();
+        void Execute(object arg = null);
     }
 
     /// <summary>
@@ -19,6 +19,6 @@
             Receiver = receiver;
         }
 
-        public abstract void Execute();
+        public abstract void Execute(object arg = null);
     }
 }

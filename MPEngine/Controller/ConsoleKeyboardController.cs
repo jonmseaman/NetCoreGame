@@ -9,9 +9,9 @@ namespace MPEngine.Controller
 
         private HashSet<ConsoleKeyInfo> _oldKeys = new HashSet<ConsoleKeyInfo>();
         // Commands that should be activated on key press.
-        private Dictionary<ConsoleKeyInfo, ICommand> _keyPressedCommands = new Dictionary<ConsoleKeyInfo, ICommand>();
+        private Dictionary<ConsoleKey, ICommand> _keyPressedCommands = new Dictionary<ConsoleKey, ICommand>();
         // Commands that should be activated on key release.
-        private Dictionary<ConsoleKeyInfo, ICommand> _keyReleasedCommands = new Dictionary<ConsoleKeyInfo, ICommand>();
+        private Dictionary<ConsoleKey, ICommand> _keyReleasedCommands = new Dictionary<ConsoleKey, ICommand>();
 
 
         public void ProcessUserInput()
@@ -28,7 +28,7 @@ namespace MPEngine.Controller
             foreach (var keyInfo in newSet)
             {
                 ICommand cmd;
-                if (!_oldKeys.Contains(keyInfo) && _keyPressedCommands.TryGetValue(keyInfo, out cmd))
+                if (!_oldKeys.Contains(keyInfo) && _keyPressedCommands.TryGetValue(keyInfo.Key, out cmd))
                     cmd.Execute();
             }
         }
@@ -38,39 +38,39 @@ namespace MPEngine.Controller
             foreach (var keyInfo in _oldKeys)
             {
                 ICommand cmd;
-                if (!newSet.Contains(keyInfo) && _keyReleasedCommands.TryGetValue(keyInfo, out cmd))
+                if (!newSet.Contains(keyInfo) && _keyReleasedCommands.TryGetValue(keyInfo.Key, out cmd))
                     cmd.Execute();
             }
         }
 
         #region Operations
 
-        public void AddKeyPressedCommand(ConsoleKeyInfo key, ICommand cmd)
+        public void AddKeyPressedCommand(ConsoleKey key, ICommand cmd)
         {
             _keyPressedCommands.Add(key, cmd);
         }
 
-        public void AddKeyReleasedCommand(ConsoleKeyInfo key, ICommand cmd)
+        public void AddKeyReleasedCommand(ConsoleKey key, ICommand cmd)
         {
             _keyReleasedCommands.Add(key, cmd);
         }
 
-        public bool RemoveKeyPressedCommand(ConsoleKeyInfo key)
+        public bool RemoveKeyPressedCommand(ConsoleKey key)
         {
             return _keyPressedCommands.Remove(key);
         }
 
-        public bool RemoveKeyReleasedCommand(ConsoleKeyInfo key)
+        public bool RemoveKeyReleasedCommand(ConsoleKey key)
         {
             return _keyReleasedCommands.Remove(key);
         }
 
-        public bool HasKeyPressedCommand(ConsoleKeyInfo key)
+        public bool HasKeyPressedCommand(ConsoleKey key)
         {
             return _keyPressedCommands.ContainsKey(key);
         }
 
-        public bool HasKeyReleasedCommand(ConsoleKeyInfo key)
+        public bool HasKeyReleasedCommand(ConsoleKey key)
         {
             return _keyReleasedCommands.ContainsKey(key);
         }

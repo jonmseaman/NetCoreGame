@@ -1,25 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using MPEngine;
+using MPEngine.Commands;
+using MPEngine.Controller;
+using MPEngine.Entity;
 
 namespace MPGame
 {
     class MpGame : Game
     {
+        public IList<GameObject> GameObjects;
+        private IList<IController> _controllers = new List<IController>();
+
+        public MpGame()
+        {
+            GameObjects = new List<GameObject>()
+            {
+                new Creature()
+            };
+
+            var kb = new ConsoleKeyboardController();
+            kb.AddKeyPressedCommand(ConsoleKey.Escape, new RelayCommand(new Action(() =>
+            {
+                Console.WriteLine("Exiting...");
+                Thread.Sleep(250);
+                Environment.Exit(0);
+            })));
+            _controllers.Add(kb);
+        }
+
         public override void ProcessUserInput()
         {
-            var list = new List<ConsoleKeyInfo>(5);
-            while (Console.KeyAvailable) list.Add(Console.ReadKey(true));
+            foreach (var controller in _controllers)
+            {
+                controller.ProcessUserInput();
+            }
         }
 
         public override void Render(TimeSpan dt)
         {
-            throw new NotImplementedException();
+            foreach (var gameObject in GameObjects)
+            {
+                gameObject.Render();
+            }
         }
 
         public override void Update(TimeSpan dt)
         {
-            throw new NotImplementedException();
+            foreach (var gameObject in GameObjects)
+            {
+                gameObject.Update(dt);
+            }
         }
     }
 }
