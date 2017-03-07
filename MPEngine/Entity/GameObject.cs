@@ -10,11 +10,6 @@ namespace MPEngine.Entity
         /// </summary>
         public abstract void Update(TimeSpan dt);
 
-        /// <summary>
-        /// Renders the GameObject on screen.
-        /// </summary>
-        public abstract void Render();
-
         public Location Location;
     }
 }

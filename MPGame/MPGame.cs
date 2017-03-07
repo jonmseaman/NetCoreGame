@@ -5,6 +5,8 @@ using MPEngine;
 using MPEngine.Commands;
 using MPEngine.Controller;
 using MPEngine.Entity;
+using MPEngine.Entity.MovementCommands;
+using MPEngine.Level;
 
 namespace MPGame
 {
@@ -34,6 +36,17 @@ namespace MPGame
                 Environment.Exit(0);
             })));
             _controllers.Add(kb);
+
+            // Add player.
+            var player = new Creature()
+            {
+                Graphics = new SimpleCreatureGraphicsComponent()
+            };
+            kb.AddKeyPressedCommand(ConsoleKey.W, new MoveCommand(player, Direction.North));
+            kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(player, Direction.West));
+            kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(player, Direction.South));
+            kb.AddKeyPressedCommand(ConsoleKey.D, new MoveCommand(player, Direction.East));
+            GameObjects.Add(player);
         }
 
         public override void ProcessUserInput()

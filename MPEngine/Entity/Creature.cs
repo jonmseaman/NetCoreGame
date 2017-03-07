@@ -38,11 +38,6 @@ namespace MPEngine.Entity
             Input?.Update(this);
             Graphics?.Update(this);
         }
-
-        public override void Render()
-        {
-            Graphics?.Render(this);
-        }
     }
 
     #region Helpers

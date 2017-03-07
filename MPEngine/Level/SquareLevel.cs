@@ -143,18 +143,6 @@ namespace MPEngine.Level
 
         #region GameObject
 
-        public override void Render()
-        {
-            // Render lower layer first. Creatures will be on top of the level.
-            Graphics.Render(this);
-
-            // Render each entity in this
-            foreach (var creature in _creatureList)
-            {
-                creature.Render();
-            }
-        }
-
         public override void Update(TimeSpan dt)
         {
             Graphics.Update(this);
