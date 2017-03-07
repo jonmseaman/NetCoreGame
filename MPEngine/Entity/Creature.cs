@@ -8,6 +8,11 @@ namespace MPEngine.Entity
     /// </summary>
     public class Creature : GameObject
     {
+        public Creature()
+        {
+            Attributes = new CreatureAttributes();
+        }
+
         public CreatureAttributes Attributes { get; set; }
 
         protected IInputComponent Input;

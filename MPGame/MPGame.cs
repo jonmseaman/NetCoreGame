@@ -12,13 +12,19 @@ namespace MPGame
     {
         public IList<GameObject> GameObjects;
         private IList<IController> _controllers = new List<IController>();
+        private MainView View = new MainView();
 
         public MpGame()
         {
             GameObjects = new List<GameObject>()
             {
                 new Creature()
+                {
+                    Graphics = new SimpleCreatureGraphicsComponent()
+                }
             };
+
+            View.Model.Player = GameObjects[0] as Creature;
 
             var kb = new ConsoleKeyboardController();
             kb.AddKeyPressedCommand(ConsoleKey.Escape, new RelayCommand(new Action(() =>
@@ -40,10 +46,7 @@ namespace MPGame
 
         public override void Render(TimeSpan dt)
         {
-            foreach (var gameObject in GameObjects)
-            {
-                gameObject.Render();
-            }
+            View.Render(dt);
         }
 
         public override void Update(TimeSpan dt)
