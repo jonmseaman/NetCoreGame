@@ -19,13 +19,13 @@ namespace MPEngine.Entity
         public void Move(Direction dir)
         {
             // Update location
-            this.Location = Level.Location.Add(Location, dir, 1);
+            Location = Location.Add(Location, dir, 1);
 
             // OnMove event
-            if (OnMove == null) return;            
+            if (OnMove == null) return;
 
             var args = new CreatureMovedEventArgs(dir);
-            OnMove?.Invoke(this, args);
+            OnMove(this, args);
         }
 
         public override void Update(TimeSpan dt)
