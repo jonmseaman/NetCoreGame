@@ -7,6 +7,7 @@ using MPEngine.Controller;
 using MPEngine.Entity;
 using MPEngine.Entity.MovementCommands;
 using MPEngine.Level;
+using MPGame.UI;
 
 namespace MPGame
 {
@@ -14,7 +15,7 @@ namespace MPGame
     {
         public IList<GameObject> GameObjects;
         private IList<IController> _controllers = new List<IController>();
-        private MainView View = new MainView();
+        private MainView _view;
 
         public MpGame()
         {
@@ -25,8 +26,6 @@ namespace MPGame
                     Graphics = new SimpleCreatureGraphicsComponent()
                 }
             };
-
-            View.Model.Player = GameObjects[0] as Creature;
 
             var kb = new ConsoleKeyboardController();
             kb.AddKeyPressedCommand(ConsoleKey.Escape, new RelayCommand(new Action(() =>
@@ -42,6 +41,7 @@ namespace MPGame
             {
                 Graphics = new SimpleCreatureGraphicsComponent()
             };
+            _view = new MainView(player);
             kb.AddKeyPressedCommand(ConsoleKey.W, new MoveCommand(player, Direction.North));
             kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(player, Direction.West));
             kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(player, Direction.South));
@@ -59,7 +59,7 @@ namespace MPGame
 
         public override void Render(TimeSpan dt)
         {
-            View.Render(dt);
+            _view.Render();
         }
 
         public override void Update(TimeSpan dt)
@@ -68,6 +68,7 @@ namespace MPGame
             {
                 gameObject.Update(dt);
             }
+            _view.Update();
         }
     }
 }
