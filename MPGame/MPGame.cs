@@ -5,7 +5,7 @@ using MPEngine;
 using MPEngine.Commands;
 using MPEngine.Controller;
 using MPEngine.Entity;
-using MPEngine.Entity.MovementCommands;
+using MPEngine.Entity.Commands;
 using MPEngine.Level;
 using MPGame.UI;
 
@@ -46,6 +46,7 @@ namespace MPGame
             kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(player, Direction.West));
             kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(player, Direction.South));
             kb.AddKeyPressedCommand(ConsoleKey.D, new MoveCommand(player, Direction.East));
+            kb.AddKeyPressedCommand(ConsoleKey.T, new TakeDamageCommand(player));
             GameObjects.Add(player);
         }
 

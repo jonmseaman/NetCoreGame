@@ -58,7 +58,7 @@ namespace MPGame.UI
                 Console.Write(' ');
             // Empty part.
             Console.BackgroundColor = ConsoleColor.Black;
-            for (var i = count + 1; i < Width; i++)
+            for (var i = count; i < Width; i++)
                 Console.Write(' ');
 
             // Don't redraw if the stat hasn't been changed next time.

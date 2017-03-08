@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MPEngine.Commands;
+﻿using MPEngine.Commands;
 using MPEngine.Level;
 
-namespace MPEngine.Entity.MovementCommands
+namespace MPEngine.Entity.Commands
 {
     public class MoveCommand : Cmd<Creature>
     {
