@@ -30,8 +30,9 @@ namespace MPGame
             var kb = new ConsoleKeyboardController();
             kb.AddKeyPressedCommand(ConsoleKey.Escape, new RelayCommand(new Action(() =>
             {
+                Console.Clear();
                 Console.WriteLine("Exiting...");
-                Thread.Sleep(250);
+                Thread.Sleep(500);
                 Environment.Exit(0);
             })));
             _controllers.Add(kb);
