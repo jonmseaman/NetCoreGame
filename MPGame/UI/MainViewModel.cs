@@ -16,6 +16,11 @@ namespace MPGame.UI
                 Width = Console.WindowWidth / 2,
                 Left = Console.WindowWidth / 2
             };
+            StatusBar = new StatusBar(player)
+            {
+                Width = Console.WindowWidth,
+                Top = Console.WindowHeight - 1
+            };
 
             Player = player;
         }
@@ -25,5 +30,7 @@ namespace MPGame.UI
         public StatBar HealthBar { get; }
 
         public StatBar EnergyBar { get; }
+
+        public StatusBar StatusBar { get; }
     }
 }

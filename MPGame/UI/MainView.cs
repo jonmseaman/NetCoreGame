@@ -13,6 +13,7 @@ namespace MPGame.UI
             Model = new MainViewModel(player);
             _components.Add(Model.HealthBar);
             _components.Add(Model.EnergyBar);
+            _components.Add(Model.StatusBar);
         }
 
         public MainViewModel Model { get; set; }
