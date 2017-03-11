@@ -24,11 +24,6 @@ namespace MPEngine.Level
 
         public List<Creature> Creatures => _creatureList;
 
-        /// <summary>
-        /// Renders the level.
-        /// </summary>
-        public ILevelGraphicsComponent Graphics;
-
         public SquareLevel(int width)
         {
             LevelWidth = width;
@@ -145,8 +140,6 @@ namespace MPEngine.Level
 
         public override void Update(GameTime gameTime)
         {
-            Graphics.Update(this);
-
             // Update each entity in this
             foreach (var creature in _creatureList)
             {

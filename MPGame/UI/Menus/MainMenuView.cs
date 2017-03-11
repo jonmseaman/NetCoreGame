@@ -4,21 +4,23 @@ namespace MPGame.UI.Menus
 {
     public class MainMenuView : IComponent
     {
+        public MpGame Game { get; set; }
         public MainMenuViewModel Model { get; set; }
 
-        public MainMenuView()
+        public MainMenuView(MpGame game)
         {
-            Model = new MainMenuViewModel();
+            Game = game;
+            Model = new MainMenuViewModel(game);
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            Model.MenuItems.Update();
         }
 
         public void Render()
         {
-            throw new NotImplementedException();
+            Model.MenuItems.Render();
         }
     }
 }

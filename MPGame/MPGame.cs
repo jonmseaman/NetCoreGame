@@ -8,21 +8,17 @@ using MPEngine.Entity;
 using MPEngine.Entity.Commands;
 using MPEngine.Level;
 using MPGame.UI;
+using MPGame.UI.Menus;
 
 namespace MPGame
 {
-    internal class MpGame : Game
+    public class MpGame : Game
     {
         private IList<IController> _controllers = new List<IController>();
-        public IList<GameObject> GameObjects;
 
         public MpGame()
         {
-            GameObjects = new List<GameObject>
-            {
-                new Creature()
-            };
-
+            // Set up the controllers.
             var kb = new ConsoleKeyboardController();
             var exitCommand = new RelayCommand(() =>
             {
@@ -34,17 +30,18 @@ namespace MPGame
             kb.AddKeyPressedCommand(ConsoleKey.Escape, exitCommand);
             _controllers.Add(kb);
 
+            // Set up level
+            Level = new SquareLevel(256);
             // Add player.
-            var player = new Creature();
-            IComponent view = new GameView(player);
-            ActiveView = view;
-            kb.AddKeyPressedCommand(ConsoleKey.W, new MoveCommand(player, Direction.North));
-            kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(player, Direction.West));
-            kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(player, Direction.South));
-            kb.AddKeyPressedCommand(ConsoleKey.D, new MoveCommand(player, Direction.East));
-            kb.AddKeyPressedCommand(ConsoleKey.T, new TakeDamageCommand(player));
+            Player = new Creature();
+            Level.Add(Location.Zero, Player);
+            ActiveView = new MainMenuView(this);
+            kb.AddKeyPressedCommand(ConsoleKey.W, new MoveCommand(Player, Direction.North));
+            kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(Player, Direction.West));
+            kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(Player, Direction.South));
+            kb.AddKeyPressedCommand(ConsoleKey.D, new MoveCommand(Player, Direction.East));
+            kb.AddKeyPressedCommand(ConsoleKey.T, new TakeDamageCommand(Player));
 
-            GameObjects.Add(player);
         }
 
         public IComponent ActiveView { get; set; }
@@ -87,8 +84,7 @@ namespace MPGame
 
         public override void Update(GameTime gameTime)
         {
-            foreach (var gameObject in GameObjects)
-                gameObject.Update(gameTime);
+            Level.Update(gameTime);
             ActiveView.Update();
         }
 

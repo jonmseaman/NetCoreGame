@@ -13,6 +13,7 @@
 
         public int X { get; set; }
         public int Y { get; set; }
+        public static Location Zero { get; } = new Location(0, 0);
 
         public static Location Add(Location start, Direction dir, int distance)
         {
