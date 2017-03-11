@@ -6,41 +6,45 @@ namespace MPEngine.Controller
 {
     public class ConsoleKeyboardController : IController
     {
-
-        private HashSet<ConsoleKeyInfo> _oldKeys = new HashSet<ConsoleKeyInfo>();
         // Commands that should be activated on key press.
         private Dictionary<ConsoleKey, ICommand> _keyPressedCommands = new Dictionary<ConsoleKey, ICommand>();
         // Commands that should be activated on key release.
         private Dictionary<ConsoleKey, ICommand> _keyReleasedCommands = new Dictionary<ConsoleKey, ICommand>();
 
+        private static HashSet<ConsoleKeyInfo> _oldKeys = new HashSet<ConsoleKeyInfo>();
+        private static HashSet<ConsoleKeyInfo> _newKeys = new HashSet<ConsoleKeyInfo>();
+        private static DateTime _lastTime = DateTime.Now;
 
-        public void ProcessUserInput()
+
+        public void ProcessUserInput(GameTime gameTime)
         {
+            GetNewKeySet(gameTime.Time);
+            ProcessKeyPresses(_oldKeys, _newKeys);
+            ProcessKeyReleases(_oldKeys, _newKeys);
+        }
+
+        private static void GetNewKeySet(DateTime time)
+        {
+            if (_lastTime >= time) return;
             var newSet = new HashSet<ConsoleKeyInfo>();
             while (Console.KeyAvailable) newSet.Add(Console.ReadKey(true));
-            ProcessKeyPresses(_oldKeys, newSet);
-            ProcessKeyReleases(_oldKeys, newSet);
-            _oldKeys = newSet;
+            _oldKeys = _newKeys;
+            _newKeys = newSet;
+            _lastTime = time;
         }
 
         private void ProcessKeyPresses(HashSet<ConsoleKeyInfo> oldConsoleKeyet, HashSet<ConsoleKeyInfo> newSet)
         {
             foreach (var keyInfo in newSet)
-            {
-                ICommand cmd;
-                if (!_oldKeys.Contains(keyInfo) && _keyPressedCommands.TryGetValue(keyInfo.Key, out cmd))
+                if (!_oldKeys.Contains(keyInfo) && _keyPressedCommands.TryGetValue(keyInfo.Key, out ICommand cmd))
                     cmd.Execute();
-            }
         }
 
         private void ProcessKeyReleases(HashSet<ConsoleKeyInfo> oldConsoleKeyet, HashSet<ConsoleKeyInfo> newSet)
         {
             foreach (var keyInfo in _oldKeys)
-            {
-                ICommand cmd;
-                if (!newSet.Contains(keyInfo) && _keyReleasedCommands.TryGetValue(keyInfo.Key, out cmd))
+                if (!newSet.Contains(keyInfo) && _keyReleasedCommands.TryGetValue(keyInfo.Key, out ICommand cmd))
                     cmd.Execute();
-            }
         }
 
         #region Operations
@@ -82,6 +86,5 @@ namespace MPEngine.Controller
         }
 
         #endregion
-
     }
 }

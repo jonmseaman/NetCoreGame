@@ -9,7 +9,7 @@ namespace MPEngine
     {
         public bool Running { get; set; }
 
-        public abstract void ProcessUserInput();
+        public abstract void ProcessUserInput(GameTime gameTime);
         public abstract void Render(GameTime gameTime);
         public abstract void Update(GameTime gameTime);
 
@@ -28,14 +28,14 @@ namespace MPEngine
 
             while (Running)
             {
+                var gameTime = new GameTime(dt);
                 current = DateTime.Now;
                 elapsed = current - previous;
                 previous = current;
                 lag += elapsed;
 
-                ProcessUserInput();
+                ProcessUserInput(gameTime);
                 
-                var gameTime = new GameTime(dt);
                 while (lag >= dt)
                 {
                     Update(gameTime);

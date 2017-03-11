@@ -63,11 +63,11 @@ namespace MPGame
             GameObjects.Add(player);
         }
 
-        public override void ProcessUserInput()
+        public override void ProcessUserInput(GameTime gameTime)
         {
             foreach (var controller in _controllers)
             {
-                controller.ProcessUserInput();
+                controller.ProcessUserInput(gameTime);
             }
         }
 

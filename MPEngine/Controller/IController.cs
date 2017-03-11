@@ -9,6 +9,6 @@ namespace MPEngine.Controller
         /// <summary>
         /// Gets input from controller, executes actions associated with the input.
         /// </summary>
-        void ProcessUserInput();
+        void ProcessUserInput(GameTime gameTime);
     }
 }
