@@ -1,4 +1,6 @@
-﻿namespace MPGame
+﻿using MPGame.Game;
+
+namespace MPGame
 {
     class Program
     {
