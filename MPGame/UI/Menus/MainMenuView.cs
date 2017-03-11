@@ -1,4 +1,5 @@
 ﻿using System;
+using MPEngine;
 
 namespace MPGame.UI.Menus
 {
@@ -15,12 +16,12 @@ namespace MPGame.UI.Menus
 
         public void Update()
         {
-            Model.MenuItems.Update();
+            Model.Menu.Update();
         }
 
         public void Render()
         {
-            Model.MenuItems.Render();
+            Model.Menu.Render();
         }
     }
 }

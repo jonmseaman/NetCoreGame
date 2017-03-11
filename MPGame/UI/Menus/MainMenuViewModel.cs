@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
 using MPEngine.Commands;
+using MPGame.GameCommands;
 
 namespace MPGame.UI.Menus
 {
     public class MainMenuViewModel
     {
-        public ListView MenuItems = new ListView();
-        public List<ICommand> MenuItemCommands = new List<ICommand>();
+        public ListView Menu = new ListView();
+        public List<ICommand> Commands = new List<ICommand>();
 
         public MainMenuViewModel(MpGame game)
         {
-            MenuItems.ListItems.Add("Start");
-            MenuItems.ListItems.Add("Player");
-            MenuItems.ListItems.Add("Level");
+            Menu.ListItems.Add("Start");
+            Menu.ListItems.Add("Player");
+            Menu.ListItems.Add("Level");
+            Commands.Add(new StartGameCommand(game));
+            Commands.Add(new SelectPlayerCommand(game));
+            Commands.Add(new SelectLevelCommand(game));
         }
     }
 }
