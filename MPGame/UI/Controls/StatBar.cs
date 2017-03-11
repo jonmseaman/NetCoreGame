@@ -2,7 +2,7 @@
 
 namespace MPGame.UI.Controls
 {
-    public class StatBar : UIComponent
+    public class StatBar : UiComponent
     {
         private bool _statChanged = true;
         private int _statCurrent;

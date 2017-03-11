@@ -1,4 +1,4 @@
-﻿namespace MPGame.Menus
+﻿namespace MPGame.UI.Menus
 {
     public class MainMenuViewModel
     {

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using MPEngine.Commands;
-using MPEngine.Controller;
-using MPGame.UI;
-using MPGame.UI.Controls;
 
-namespace MPGame.Menus
+namespace MPGame.UI.Menus
 {
-    public class ListView : UIComponent
+    public class ListView : UiComponent
     {
         private int _activeItem;
         private List<Tuple<string, ICommand>> _listItems = new List<Tuple<string, ICommand>>();

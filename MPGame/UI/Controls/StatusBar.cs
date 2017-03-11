@@ -3,7 +3,7 @@ using MPEngine.Entity;
 
 namespace MPGame.UI.Controls
 {
-    public class StatusBar : UIComponent
+    public class StatusBar : UiComponent
     {
         private Creature _creature;
 

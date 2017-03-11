@@ -1,6 +1,6 @@
 ﻿using MPEngine.Commands;
 
-namespace MPGame.Menus
+namespace MPGame.UI.Menus
 {
     public class ListViewExecuteCommand : Cmd<ListView>
     {

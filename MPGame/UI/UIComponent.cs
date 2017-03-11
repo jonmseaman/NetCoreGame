@@ -1,6 +1,6 @@
-﻿namespace MPGame.UI.Controls
+﻿namespace MPGame.UI
 {
-    public abstract class UIComponent : IComponent
+    public abstract class UiComponent : IComponent
     {
         public int Top { get; set; }
         public int Left { get; set; }

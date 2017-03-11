@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MPGame.UI;
-using MPGame.UI.Controls;
 
-namespace MPGame.Menus
+namespace MPGame.UI.Menus
 {
     public class MainMenuView : IComponent
     {

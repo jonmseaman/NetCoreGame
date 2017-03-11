@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using MPEngine;
-using MPGame;
-
-class Program
+﻿namespace MPGame
 {
-    static void Main(string[] args)
+    class Program
     {
-        var game = new MpGame();
-        game.Run();
+        static void Main(string[] args)
+        {
+            var game = new MpGame();
+            game.Run();
+        }
     }
 }
