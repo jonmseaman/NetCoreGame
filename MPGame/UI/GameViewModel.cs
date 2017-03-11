@@ -3,9 +3,9 @@ using MPEngine.Entity;
 
 namespace MPGame.UI
 {
-    class MainViewModel
+    public class GameViewModel
     {
-        public MainViewModel(Creature player)
+        public GameViewModel(Creature player)
         {
             HealthBar = new HealthBar(player)
             {

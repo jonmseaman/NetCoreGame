@@ -2,7 +2,7 @@
 
 namespace MPGame.UI
 {
-    public class StatBar : IComponent
+    public class StatBar : UIComponent
     {
         private bool _statChanged = true;
         private int _statCurrent;
@@ -12,10 +12,6 @@ namespace MPGame.UI
         {
             BackgroundColor = bg;
         }
-
-        public int Top { get; set; }
-        public int Left { get; set; }
-        public int Width { get; set; }
 
         public int StatCurrent
         {
@@ -45,7 +41,7 @@ namespace MPGame.UI
 
         public ConsoleColor BackgroundColor { get; }
 
-        public virtual void Render()
+        public override void Render()
         {
             if (!_statChanged) return;
 
@@ -65,7 +61,7 @@ namespace MPGame.UI
             _statChanged = false;
         }
 
-        public virtual void Update()
+        public override void Update()
         {
             // Do nothing.
         }

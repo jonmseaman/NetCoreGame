@@ -3,7 +3,7 @@ using MPEngine.Entity;
 
 namespace MPGame.UI
 {
-    public class StatusBar : IComponent
+    public class StatusBar : UIComponent
     {
         private Creature _creature;
 
@@ -12,24 +12,12 @@ namespace MPGame.UI
             _creature = c;
         }
 
-        /// <summary>
-        ///     The position of the top of the status bar.
-        /// </summary>
-        public int Top { get; set; }
-
-        /// <summary>
-        ///     The left-most position of the status bar.
-        /// </summary>
-        public int Left { get; set; }
-
-        public int Width { get; set; }
-
-        public void Update()
+        public override void Update()
         {
             // Do nothing.
         }
 
-        public void Render()
+        public override void Render()
         {
             Console.CursorTop = Top;
             Console.CursorLeft = Left;

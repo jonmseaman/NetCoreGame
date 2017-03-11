@@ -3,7 +3,7 @@ using MPEngine.Entity;
 
 namespace MPGame.UI
 {
-    public sealed class EnergyBar : StatBar, IComponent
+    public sealed class EnergyBar : StatBar
     {
         private Creature _creature;
 

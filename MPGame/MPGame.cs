@@ -15,7 +15,7 @@ namespace MPGame
     {
         public IList<GameObject> GameObjects;
         private IList<IController> _controllers = new List<IController>();
-        private MainView _view;
+        private GameView _view;
 
         public MpGame()
         {
@@ -42,7 +42,7 @@ namespace MPGame
             {
                 Graphics = new SimpleCreatureGraphicsComponent()
             };
-            _view = new MainView(player);
+            _view = new GameView(player);
             kb.AddKeyPressedCommand(ConsoleKey.W, new MoveCommand(player, Direction.North));
             kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(player, Direction.West));
             kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(player, Direction.South));
