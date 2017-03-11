@@ -17,15 +17,13 @@ namespace MPGame
         public IList<GameObject> GameObjects;
         private IList<IController> _controllers = new List<IController>();
         private IComponent _view;
+        private IComponent _view2;
 
         public MpGame()
         {
             GameObjects = new List<GameObject>()
             {
                 new Creature()
-                {
-                    Graphics = new SimpleCreatureGraphicsComponent()
-                }
             };
 
             var kb = new ConsoleKeyboardController();
@@ -40,25 +38,26 @@ namespace MPGame
             _controllers.Add(kb);
 
             // Add player.
-            var player = new Creature()
-            {
-                Graphics = new SimpleCreatureGraphicsComponent()
-            };
-            //_view = new GameView(player);
-            var view = new ListView();
-            view.Add("Hello1", new NullCommand());
-            view.Add("Hello2", new NullCommand());
-            view.Add("Hello3", new NullCommand());
-            view.Add("Hello4", new NullCommand());
-            _view = view;
-            //kb.AddKeyPressedCommand(ConsoleKey.W, new MoveCommand(player, Direction.North));
-            //kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(player, Direction.West));
-            //kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(player, Direction.South));
-            //kb.AddKeyPressedCommand(ConsoleKey.D, new MoveCommand(player, Direction.East));
-            //kb.AddKeyPressedCommand(ConsoleKey.T, new TakeDamageCommand(player));
-            kb.AddKeyPressedCommand(ConsoleKey.S, new ListViewUpCommand(view));
-            kb.AddKeyPressedCommand(ConsoleKey.W, new ListViewDownCommand(view));
-            kb.AddKeyPressedCommand(ConsoleKey.Enter, new ListViewExecuteCommand(view));
+            var player = new Creature();
+            _view = new GameView(player);
+            var view2 = new ListView();
+            view2.Add("Hello1", new NullCommand());
+            view2.Add("Hello2", new NullCommand());
+            view2.Add("Hello3", new NullCommand());
+            view2.Add("Hello4", new NullCommand());
+            view2.Top = 1;
+            _view2 = view2;
+            kb.AddKeyPressedCommand(ConsoleKey.W, new MoveCommand(player, Direction.North));
+            kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(player, Direction.West));
+            kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(player, Direction.South));
+            kb.AddKeyPressedCommand(ConsoleKey.D, new MoveCommand(player, Direction.East));
+            kb.AddKeyPressedCommand(ConsoleKey.T, new TakeDamageCommand(player));
+
+            var kb1 = new ConsoleKeyboardController();
+            kb1.AddKeyPressedCommand(ConsoleKey.S, new ListViewUpCommand(view2));
+            kb1.AddKeyPressedCommand(ConsoleKey.W, new ListViewDownCommand(view2));
+            kb1.AddKeyPressedCommand(ConsoleKey.Enter, new ListViewExecuteCommand(view2));
+            _controllers.Add(kb1);
 
             GameObjects.Add(player);
         }
@@ -74,6 +73,7 @@ namespace MPGame
         public override void Render(GameTime gameTime)
         {
             _view.Render();
+            _view2.Render();
         }
 
         public override void Update(GameTime gameTime)
@@ -83,6 +83,7 @@ namespace MPGame
                 gameObject.Update(gameTime);
             }
             _view.Update();
+            _view2.Update();
         }
     }
 }

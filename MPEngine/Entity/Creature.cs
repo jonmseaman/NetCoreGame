@@ -17,8 +17,6 @@ namespace MPEngine.Entity
 
         protected IInputComponent Input;
 
-        public ICreatureGraphicsComponent Graphics;
-
         public event CreatureMovedEventHandler OnMove;
 
         public void Move(Direction dir)
@@ -36,7 +34,6 @@ namespace MPEngine.Entity
         public override void Update(GameTime gameTime)
         {
             Input?.Update(this);
-            Graphics?.Update(this);
         }
     }
 
