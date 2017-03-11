@@ -143,14 +143,14 @@ namespace MPEngine.Level
 
         #region GameObject
 
-        public override void Update(TimeSpan dt)
+        public override void Update(GameTime gameTime)
         {
             Graphics.Update(this);
 
             // Update each entity in this
             foreach (var creature in _creatureList)
             {
-                creature.Update(dt);
+                creature.Update(gameTime);
             }
         }
 

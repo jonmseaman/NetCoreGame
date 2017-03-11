@@ -10,8 +10,8 @@ namespace MPEngine
         public bool Running { get; set; }
 
         public abstract void ProcessUserInput();
-        public abstract void Render(TimeSpan dt);
-        public abstract void Update(TimeSpan dt);
+        public abstract void Render(GameTime gameTime);
+        public abstract void Update(GameTime gameTime);
 
 
         public void Run()
@@ -34,14 +34,15 @@ namespace MPEngine
                 lag += elapsed;
 
                 ProcessUserInput();
-
+                
+                var gameTime = new GameTime(dt);
                 while (lag >= dt)
                 {
-                    Update(dt);
+                    Update(gameTime);
                     lag -= dt;
                 }
 
-                Render(dt);
+                Render(gameTime);
 
                 // Sleep until next time to update.
                 elapsed = DateTime.Now - previous;

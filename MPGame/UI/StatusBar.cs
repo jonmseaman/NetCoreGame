@@ -27,9 +27,7 @@ namespace MPGame.UI
             var y = _creature.Location.Y;
             var loc = $"({x},{y})".PadRight(Width - 1);
             if (loc.Length <= Width)
-            {
                 Console.Write(loc);
-            }
         }
     }
 }

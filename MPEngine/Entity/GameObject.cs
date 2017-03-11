@@ -8,7 +8,7 @@ namespace MPEngine.Entity
         /// <summary>
         /// Update the GameObject by one tick.
         /// </summary>
-        public abstract void Update(TimeSpan dt);
+        public abstract void Update(GameTime gameTime);
 
         public Location Location;
     }

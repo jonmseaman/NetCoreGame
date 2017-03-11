@@ -48,6 +48,6 @@ namespace MPEngine.Level
         /// <summary>
         /// Updates the entities in the level.
         /// </summary>
-        void Update(TimeSpan dt);
+        void Update(GameTime gameTime);
     }
 }

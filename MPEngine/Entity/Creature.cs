@@ -33,7 +33,7 @@ namespace MPEngine.Entity
             OnMove(this, args);
         }
 
-        public override void Update(TimeSpan dt)
+        public override void Update(GameTime gameTime)
         {
             Input?.Update(this);
             Graphics?.Update(this);
