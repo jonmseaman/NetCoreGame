@@ -1,4 +1,4 @@
-﻿namespace MPGame.UI
+﻿namespace MPGame.UI.Controls
 {
     public interface IComponent
     {

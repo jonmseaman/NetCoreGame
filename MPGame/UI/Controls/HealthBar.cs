@@ -1,7 +1,7 @@
 ﻿using System;
 using MPEngine.Entity;
 
-namespace MPGame.UI
+namespace MPGame.UI.Controls
 {
     public sealed class HealthBar : StatBar
     {

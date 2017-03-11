@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MPGame.UI
+namespace MPGame.UI.Controls
 {
     public class StatBar : UIComponent
     {
