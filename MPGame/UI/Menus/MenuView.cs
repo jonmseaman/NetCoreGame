@@ -4,11 +4,18 @@ using MPEngine.Commands;
 
 namespace MPGame.UI.Menus
 {
-    public class ListView : UiComponent
+    public class MenuView : UiComponent
     {
         private int _activeItem;
         private bool _activeItemChanged = true;
         public List<string> ListItems { get; } = new List<string>();
+
+        public void Execute(object arg = null)
+        {
+            Commands[ActiveItem].Execute(arg);
+        }
+
+        public List<ICommand> Commands { get; } = new List<ICommand>();
 
         /// <summary>
         /// Gets or sets the index of the highlighted list item.

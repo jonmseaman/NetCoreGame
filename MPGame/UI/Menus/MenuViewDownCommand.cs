@@ -2,9 +2,9 @@
 
 namespace MPGame.UI.Menus
 {
-    public class ListViewDownCommand : Cmd<ListView>
+    public class MenuViewDownCommand : Cmd<MenuView>
     {
-        public ListViewDownCommand(ListView receiver) : base(receiver)
+        public MenuViewDownCommand(MenuView receiver) : base(receiver)
         {
         }
 

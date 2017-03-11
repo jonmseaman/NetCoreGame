@@ -16,31 +16,24 @@ namespace MPGame.Game
     public class MpGame : MPEngine.Game
     {
         private IList<IController> _controllers = new List<IController>();
+        private IMpGameState _state;
 
         public MpGame()
         {
-            // Set up the controllers.
-            var kb = new ConsoleKeyboardController();
-            var exitCommand = new ExitGameCommand(this);
-            kb.AddKeyPressedCommand(ConsoleKey.Escape, exitCommand);
-            _controllers.Add(kb);
-
-            // Set up level
-            Level = new SquareLevel(256);
-            // Add player.
-            Player = new Creature();
-            Level.Add(Location.Zero, Player);
-            ActiveView = new MainMenuView(this);
-            kb.AddKeyPressedCommand(ConsoleKey.W, new MoveCommand(Player, Direction.North));
-            kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(Player, Direction.West));
-            kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(Player, Direction.South));
-            kb.AddKeyPressedCommand(ConsoleKey.D, new MoveCommand(Player, Direction.East));
-            kb.AddKeyPressedCommand(ConsoleKey.T, new TakeDamageCommand(Player));
             // Set up state.
-            State = new MpGameMainMenuState(this);
+            SetState(new MpGameMainMenuState(this));
         }
 
-        public IMpGameState State { get; set; }
+        public IMpGameState GetState()
+        {
+            return _state;
+        }
+
+        public void SetState(IMpGameState value)
+        {
+            _state = value;
+            _state.Enter();
+        }
 
         public IComponent ActiveView { get; set; }
         public Creature Player { get; set; }
@@ -53,6 +46,7 @@ namespace MPGame.Game
             if (Player == null) SelectPlayer();
             if (Level == null) SelectLevel();
             Level.Add(new Location(), Player);
+            SetState(new MpGamePlayingState(this));
         }
 
         public void SelectPlayer()
@@ -62,7 +56,7 @@ namespace MPGame.Game
 
         public void SelectLevel()
         {
-            Level = new SquareLevel(50);
+            Level = new SquareLevel(2500);
         }
 
         public void ExitGame()
@@ -79,17 +73,17 @@ namespace MPGame.Game
 
         public override void ProcessUserInput(GameTime gameTime)
         {
-            State.ProcessUserInput(gameTime);
+            GetState().ProcessUserInput(gameTime);
         }
 
         public override void Render(GameTime gameTime)
         {
-            State.Render(gameTime);
+            GetState().Render(gameTime);
         }
 
         public override void Update(GameTime gameTime)
         {
-            State.Update(gameTime);
+            GetState().Update(gameTime);
         }
 
         #endregion

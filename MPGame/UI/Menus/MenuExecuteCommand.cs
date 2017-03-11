@@ -2,15 +2,15 @@
 
 namespace MPGame.UI.Menus
 {
-    public class ListViewUpCommand : Cmd<ListView>
+    public class MenuExecuteCommand : Cmd<MenuView>
     {
-        public ListViewUpCommand(ListView receiver) : base(receiver)
+        public MenuExecuteCommand(MenuView receiver) : base(receiver)
         {
         }
 
         public override void Execute(object arg = null)
         {
-            Receiver.ActiveItem++;
+            Receiver.Execute(arg);
         }
     }
 }

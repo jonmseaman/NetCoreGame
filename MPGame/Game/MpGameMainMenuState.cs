@@ -16,8 +16,9 @@ namespace MPGame.Game
             _mainMenu = new MainMenuView(game);
             var kb = new ConsoleKeyboardController();
             var menu = _mainMenu.Model.Menu;
-            kb.AddKeyPressedCommand(ConsoleKey.W, new ListViewDownCommand(menu));
-            kb.AddKeyPressedCommand(ConsoleKey.S, new ListViewUpCommand(menu));
+            kb.AddKeyPressedCommand(ConsoleKey.W, new MenuViewDownCommand(menu));
+            kb.AddKeyPressedCommand(ConsoleKey.S, new MenuViewUpCommand(menu));
+            kb.AddKeyPressedCommand(ConsoleKey.Enter, new MenuExecuteCommand(menu));
             kb.AddKeyPressedCommand(ConsoleKey.Escape, new ExitGameCommand(game));
             _controller = kb;
         }
@@ -35,6 +36,11 @@ namespace MPGame.Game
         public void Render(GameTime gameTime)
         {
             _mainMenu.Render();
+        }
+
+        public void Enter()
+        {
+            Console.Clear();
         }
     }
 }
