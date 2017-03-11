@@ -26,7 +26,7 @@ namespace MPGame.UI
             Player = player;
         }
 
-        public Creature Player { get; set; }
+        public Creature Player { get; }
 
         public StatBar HealthBar { get; }
 

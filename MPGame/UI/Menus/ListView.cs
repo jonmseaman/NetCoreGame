@@ -7,8 +7,8 @@ namespace MPGame.UI.Menus
     public class ListView : UiComponent
     {
         private int _activeItem;
-        private List<Tuple<string, ICommand>> _listItems = new List<Tuple<string, ICommand>>();
         private bool _activeItemChanged = true;
+        public List<string> ListItems { get; } = new List<string>();
 
         /// <summary>
         /// Gets or sets the index of the highlighted list item.
@@ -21,7 +21,7 @@ namespace MPGame.UI.Menus
                 _activeItemChanged = true;
                 _activeItem = value;
                 if (_activeItem < 0) _activeItem = 0;
-                if (_activeItem >= _listItems.Count) _activeItem = _listItems.Count - 1;
+                if (_activeItem >= ListItems.Count) _activeItem = ListItems.Count - 1;
             }
         }
 
@@ -34,44 +34,15 @@ namespace MPGame.UI.Menus
         {
             if (!_activeItemChanged) return;
             // Draw entire list.
-            for (var i = 0; i < _listItems.Count; i++)
+            for (var i = 0; i < ListItems.Count; i++)
             {
                 Console.CursorLeft = Left;
                 Console.CursorTop = Top + i;
                 if (i == ActiveItem) Console.BackgroundColor = ConsoleColor.Blue;
-                Console.Write($"{i + 1}: {_listItems[i].Item1}");
+                Console.Write($"{i + 1}: {ListItems[i]}");
                 if (i == ActiveItem) Console.BackgroundColor = ConsoleColor.Black;
             }
             _activeItemChanged = false;
         }
-
-        public void Execute()
-        {
-            _listItems[ActiveItem].Item2.Execute();
-        }
-
-        #region List Operations
-
-        public void Add(string item, ICommand cmd)
-        {
-            _listItems.Add(new Tuple<string, ICommand>(item, cmd));
-        }
-
-        public bool Remove(Tuple<string, ICommand> item)
-        {
-            return _listItems.Remove(item);
-        }
-
-        public void RemoveAt(int index)
-        {
-            _listItems.RemoveAt(index);
-        }
-
-        public void Clear()
-        {
-            _listItems.Clear();
-        }
-
-        #endregion
     }
 }

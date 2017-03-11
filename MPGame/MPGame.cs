@@ -8,37 +8,36 @@ using MPEngine.Entity;
 using MPEngine.Entity.Commands;
 using MPEngine.Level;
 using MPGame.UI;
-using MPGame.UI.Controls;
 
 namespace MPGame
 {
-    class MpGame : Game
+    internal class MpGame : Game
     {
-        public IList<GameObject> GameObjects;
         private IList<IController> _controllers = new List<IController>();
-        private IComponent _view;
+        public IList<GameObject> GameObjects;
 
         public MpGame()
         {
-            GameObjects = new List<GameObject>()
+            GameObjects = new List<GameObject>
             {
                 new Creature()
             };
 
             var kb = new ConsoleKeyboardController();
-            var exitCommand = new RelayCommand(new Action(() =>
+            var exitCommand = new RelayCommand(() =>
             {
                 Console.Clear();
                 Console.WriteLine("Exiting...");
                 Thread.Sleep(500);
                 Environment.Exit(0);
-            }));
+            });
             kb.AddKeyPressedCommand(ConsoleKey.Escape, exitCommand);
             _controllers.Add(kb);
 
             // Add player.
             var player = new Creature();
-            _view = new GameView(player);
+            IComponent view = new GameView(player);
+            ActiveView = view;
             kb.AddKeyPressedCommand(ConsoleKey.W, new MoveCommand(player, Direction.North));
             kb.AddKeyPressedCommand(ConsoleKey.A, new MoveCommand(player, Direction.West));
             kb.AddKeyPressedCommand(ConsoleKey.S, new MoveCommand(player, Direction.South));
@@ -48,26 +47,51 @@ namespace MPGame
             GameObjects.Add(player);
         }
 
+        public IComponent ActiveView { get; set; }
+        public Creature Player { get; set; }
+        public ILevel Level { get; set; }
+
+        #region Menu Functions
+
+        public void StartGame()
+        {
+            if (Player == null) SelectPlayer();
+            if (Level == null) SelectLevel();
+            Level.Add(new Location(), Player);
+        }
+
+        public void SelectPlayer()
+        {
+            Player = new Creature();
+        }
+
+        public void SelectLevel()
+        {
+            Level = new SquareLevel(50);
+        }
+
+        #endregion
+
+        #region Game
+
         public override void ProcessUserInput(GameTime gameTime)
         {
             foreach (var controller in _controllers)
-            {
                 controller.ProcessUserInput(gameTime);
-            }
         }
 
         public override void Render(GameTime gameTime)
         {
-            _view.Render();
+            ActiveView.Render();
         }
 
         public override void Update(GameTime gameTime)
         {
             foreach (var gameObject in GameObjects)
-            {
                 gameObject.Update(gameTime);
-            }
-            _view.Update();
+            ActiveView.Update();
         }
+
+        #endregion
     }
 }
