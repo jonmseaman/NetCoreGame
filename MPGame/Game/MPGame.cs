@@ -56,7 +56,7 @@ namespace MPGame.Game
 
         public void SelectLevel()
         {
-            Level = new SquareLevel(2500);
+            Level = new SquareLevel(256);
         }
 
         public void ExitGame()
