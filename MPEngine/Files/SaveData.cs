@@ -24,10 +24,10 @@ namespace MPEngine.Files
         public static IList<Player> LoadPlayers()
         {
             // Get list of files in PlayerSaveLocation.
-            var fileList = Directory.EnumerateFiles(PlayerSaveLocation);
+            var fileList = Directory.GetFiles(PlayerSaveLocation);
             // Load the players from that file.
             var serializer = _playerSerializer;
-            var players = new List<Player>(fileList.Count());
+            var players = new List<Player>(fileList.Length);
             foreach (var fileName in fileList)
             {
                 var reader = File.OpenRead(fileName);
