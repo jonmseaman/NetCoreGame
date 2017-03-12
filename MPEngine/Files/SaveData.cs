@@ -30,8 +30,10 @@ namespace MPEngine.Files
             var players = new List<Player>(fileList.Length);
             foreach (var fileName in fileList)
             {
-                var reader = File.OpenRead(fileName);
-                players.Add(serializer.Deserialize<Player>(reader));
+                using (var reader = File.OpenRead(fileName))
+                {
+                    players.Add(serializer.Deserialize<Player>(reader));
+                }
             }
 
             return players;
