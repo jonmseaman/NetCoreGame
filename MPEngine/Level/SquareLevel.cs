@@ -29,7 +29,8 @@ namespace MPEngine.Level
 
         public void MoveCreature(object sender, CreatureMovedEventArgs args)
         {
-            var c = (Creature) sender;
+            var c = sender as Creature;
+            if (c == null) return;
 
             // Keep the creature in the level.
             var x = c.Location.X;
