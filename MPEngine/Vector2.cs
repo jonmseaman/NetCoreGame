@@ -216,10 +216,9 @@
         /// Gets the hash code of this <see cref="Vector2"/>.
         /// </summary>
         /// <returns>Hash code of this <see cref="Vector2"/>.</returns>
-        public override int GetHashCode()
-        {
-            return X.GetHashCode() + Y.GetHashCode();
-        }
+        // ReSharper disable NonReadonlyMemberInGetHashCode
+        public override int GetHashCode() => X.GetHashCode() + Y.GetHashCode();
+        // ReSharper restore NonReadonlyMemberInGetHashCode
 
         /// <summary>
         /// Creates a new <see cref="Vector2"/> that contains subtraction of on <see cref="Vector2"/> from a another.
