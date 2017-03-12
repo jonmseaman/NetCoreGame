@@ -20,7 +20,7 @@ namespace MPEngine.Files
         /// </summary>
         private Dictionary<Type, XmlSerializer> _serializers = new Dictionary<Type, XmlSerializer>();
 
-        public SerializerImproved(Type[] types)
+        public SerializerImproved(IEnumerable<Type> types)
         {
             var extraTypesList = new List<Type>();
             foreach (var baseType in types)
