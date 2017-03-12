@@ -1,28 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using MPEngine.Entity;
 
 namespace MPEngine.Level
 {
     /// <summary>
-    ///     Represents a square level of fixed size.
+    /// Represents a square level of fixed size.
     /// </summary>
     public class SquareLevel : GameObject, ILevel, IEnumerable<Location>
     {
-        /// <summary>
-        /// Contains all the creatures in the level.
-        /// </summary>
-        private readonly List<Creature> _creatureList = new List<Creature>();
-
         private Tile[] _tiles;
-
-        /// <summary>
-        ///     The width of the level.
-        /// </summary>
-        public int LevelWidth { get; }
-
-        public List<Creature> Creatures => _creatureList;
 
         public SquareLevel(int width)
         {
@@ -30,9 +17,19 @@ namespace MPEngine.Level
             CreateNewRep();
         }
 
+        /// <summary>
+        /// The width of the level.
+        /// </summary>
+        public int LevelWidth { get; }
+
+        /// <summary>
+        /// Contains all the creatures in the level.
+        /// </summary>
+        public List<Creature> Creatures { get; } = new List<Creature>();
+
         public void MoveCreature(object sender, CreatureMovedEventArgs args)
         {
-            var c = (Creature)sender;
+            var c = (Creature) sender;
 
             // Keep the creature in the level.
             var x = c.Location.X;
@@ -44,9 +41,20 @@ namespace MPEngine.Level
             c.Location.Y = y >= LevelWidth ? LevelWidth - 1 : c.Location.Y;
         }
 
+        #region GameObject
+
+        public override void Update(GameTime gameTime)
+        {
+            // Update each entity in this
+            foreach (var creature in Creatures)
+                creature.Update(gameTime);
+        }
+
+        #endregion
+
         public Tile GetTile(int x, int y)
         {
-            return _tiles[LevelWidth*y + x];
+            return _tiles[LevelWidth * y + x];
         }
 
         #region ILevel
@@ -54,7 +62,7 @@ namespace MPEngine.Level
         public void Add(Location l, Creature c)
         {
             // Update private variables
-            _creatureList.Add(c);
+            Creatures.Add(c);
             c.Location = l;
 
             // Observe creature events.
@@ -63,7 +71,7 @@ namespace MPEngine.Level
 
         public bool Remove(Creature c)
         {
-            var removed = _creatureList.Remove(c);
+            var removed = Creatures.Remove(c);
 
             // Stop observing creature events.
             c.OnMove -= MoveCreature;
@@ -84,11 +92,11 @@ namespace MPEngine.Level
 
         public bool Contains(Creature c)
         {
-            return _creatureList.Contains(c);
+            return Creatures.Contains(c);
         }
 
         /// <summary>
-        ///     Gets or sets the Tile at location (x, y).
+        /// Gets or sets the Tile at location (x, y).
         /// </summary>
         /// <param name="x">
         /// x in interval [0, LevelWidth)
@@ -98,24 +106,24 @@ namespace MPEngine.Level
         /// </param>
         Tile ILevel.this[int x, int y]
         {
-            get { return _tiles[LevelWidth*y + x]; }
-            set { _tiles[LevelWidth*y + x] = value; }
+            get { return _tiles[LevelWidth * y + x]; }
+            set { _tiles[LevelWidth * y + x] = value; }
         }
 
         /// <summary>
-        ///     Gets or sets the Tile at (l.X, l.Y).
+        /// Gets or sets the Tile at (l.X, l.Y).
         /// </summary>
         /// <param name="l">The location of the tile. <code>0 &lt;= l.Y, l.Y &lt; LevelWidth</code></param>
         Tile ILevel.this[Location l]
         {
-            get { return _tiles[LevelWidth*l.Y + l.X]; }
-            set { _tiles[LevelWidth*l.Y + l.X] = value; }
+            get { return _tiles[LevelWidth * l.Y + l.X]; }
+            set { _tiles[LevelWidth * l.Y + l.X] = value; }
         }
 
         private void CreateNewRep()
         {
-            _tiles = new Tile[LevelWidth*LevelWidth];
-            _creatureList.Capacity = 0;
+            _tiles = new Tile[LevelWidth * LevelWidth];
+            Creatures.Capacity = 0;
         }
 
         #endregion
@@ -125,8 +133,8 @@ namespace MPEngine.Level
         public IEnumerator<Location> GetEnumerator()
         {
             for (var y = 0; y < LevelWidth; y++)
-                for (var x = 0; x < LevelWidth; x++)
-                    yield return new Location(x, y);
+            for (var x = 0; x < LevelWidth; x++)
+                yield return new Location(x, y);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -135,19 +143,5 @@ namespace MPEngine.Level
         }
 
         #endregion
-
-        #region GameObject
-
-        public override void Update(GameTime gameTime)
-        {
-            // Update each entity in this
-            foreach (var creature in _creatureList)
-            {
-                creature.Update(gameTime);
-            }
-        }
-
-        #endregion
-
     }
 }
