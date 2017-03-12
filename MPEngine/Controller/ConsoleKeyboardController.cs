@@ -33,16 +33,16 @@ namespace MPEngine.Controller
             _lastTime = time;
         }
 
-        private void ProcessKeyPresses(HashSet<ConsoleKeyInfo> oldConsoleKeyet, HashSet<ConsoleKeyInfo> newSet)
+        private void ProcessKeyPresses(HashSet<ConsoleKeyInfo> oldSet, HashSet<ConsoleKeyInfo> newSet)
         {
             foreach (var keyInfo in newSet)
-                if (!_oldKeys.Contains(keyInfo) && _keyPressedCommands.TryGetValue(keyInfo.Key, out ICommand cmd))
+                if (!oldSet.Contains(keyInfo) && _keyPressedCommands.TryGetValue(keyInfo.Key, out ICommand cmd))
                     cmd.Execute();
         }
 
-        private void ProcessKeyReleases(HashSet<ConsoleKeyInfo> oldConsoleKeyet, HashSet<ConsoleKeyInfo> newSet)
+        private void ProcessKeyReleases(HashSet<ConsoleKeyInfo> oldSet, HashSet<ConsoleKeyInfo> newSet)
         {
-            foreach (var keyInfo in _oldKeys)
+            foreach (var keyInfo in oldSet)
                 if (!newSet.Contains(keyInfo) && _keyReleasedCommands.TryGetValue(keyInfo.Key, out ICommand cmd))
                     cmd.Execute();
         }

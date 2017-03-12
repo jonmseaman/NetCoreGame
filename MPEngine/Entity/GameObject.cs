@@ -1,5 +1,4 @@
-﻿using System;
-using MPEngine.Level;
+﻿using MPEngine.Level;
 
 namespace MPEngine.Entity
 {

@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using MPEngine;
-using MPEngine.Commands;
-using MPEngine.Controller;
 using MPEngine.Entity;
-using MPEngine.Entity.Commands;
 using MPEngine.Level;
-using MPGame.GameCommands;
 using MPGame.UI;
-using MPGame.UI.Menus;
 
 namespace MPGame.Game
 {
     public class MpGame : MPEngine.Game
     {
-        private IList<IController> _controllers = new List<IController>();
         private IMpGameState _state;
 
         public MpGame()

@@ -32,10 +32,6 @@
                 case Direction.West:
                     end.X -= distance;
                     break;
-                case Direction.None:
-                default:
-                    // Nothing to do.
-                    break;
             }
 
             return end;

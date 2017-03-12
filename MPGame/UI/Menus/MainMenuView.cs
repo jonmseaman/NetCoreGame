@@ -1,6 +1,4 @@
-﻿using System;
-using MPEngine;
-using MPGame.Game;
+﻿using MPGame.Game;
 
 namespace MPGame.UI.Menus
 {

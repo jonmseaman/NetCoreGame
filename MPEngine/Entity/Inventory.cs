@@ -13,7 +13,7 @@
         /// <summary>
         /// Number of items currently stored in this.
         /// </summary>
-        private int _count = 0;
+        private int _count;
 
         /// <summary>
         /// Creates an inventory with a specific maximum capacity.

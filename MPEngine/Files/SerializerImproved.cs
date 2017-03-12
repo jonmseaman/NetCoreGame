@@ -9,10 +9,10 @@ using System.Xml.Serialization;
 namespace MPEngine.Files
 {
     /// <summary>
-    /// Serializes and deserializes objects with types derived from T.
+    /// Serializes and deserializes objects with types derived from
+    /// the types provided to the constructor.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class SerializerImproved<T>
+    public class SerializerImproved
     {
         private Type[] _extraTypes;
         /// <summary>
@@ -20,13 +20,19 @@ namespace MPEngine.Files
         /// </summary>
         private Dictionary<Type, XmlSerializer> _serializers = new Dictionary<Type, XmlSerializer>();
 
-        public SerializerImproved()
+        public SerializerImproved(Type[] types)
         {
-            var allTypes = typeof(T).GetTypeInfo().Assembly.GetTypes();
-            var extras = from type in allTypes
-                         where type.GetTypeInfo().IsSubclassOf(typeof(T)) || type == typeof(T)
-                         select type;
-            _extraTypes = extras.ToArray();
+            var extraTypesList = new List<Type>();
+            foreach (var baseType in types)
+            {
+                var allTypes = baseType.GetTypeInfo().Assembly.GetTypes();
+                var extras = from type in allTypes
+                             where type.GetTypeInfo().IsSubclassOf(baseType)
+                             select type;
+                extraTypesList.Add(baseType);
+                extraTypesList.AddRange(extras);
+            }
+            _extraTypes = extraTypesList.ToArray();
         }
 
         #region Serialize
@@ -46,19 +52,19 @@ namespace MPEngine.Files
             GetSerializer(o.GetType()).Serialize(writer, o);
         }
 
-        public T1 Deserialize<T1>(TextReader input)
+        public T Deserialize<T>(TextReader input)
         {
-            return (T1)GetSerializer(typeof(T1)).Deserialize(input);
+            return (T)GetSerializer(typeof(T)).Deserialize(input);
         }
 
-        public T1 Deserialize<T1>(Stream stream)
+        public T Deserialize<T>(Stream stream)
         {
-            return (T1) GetSerializer(typeof(T1)).Deserialize(stream);
+            return (T) GetSerializer(typeof(T)).Deserialize(stream);
         }
 
-        public T1 Deserialize<T1>(XmlReader reader)
+        public T Deserialize<T>(XmlReader reader)
         {
-            return (T1)GetSerializer(typeof(T1)).Deserialize(reader);
+            return (T)GetSerializer(typeof(T)).Deserialize(reader);
         }
 
         #endregion

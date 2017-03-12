@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Threading;
-using MPEngine.Entity;
 
 namespace MPEngine
 {
@@ -19,8 +17,6 @@ namespace MPEngine
             Running = true;
 
             var previous = DateTime.Now;
-            var current = DateTime.Now;
-            var elapsed = TimeSpan.Zero;
             var lag = TimeSpan.Zero;
 
             // Time per update.
@@ -29,8 +25,8 @@ namespace MPEngine
             while (Running)
             {
                 var gameTime = new GameTime(dt);
-                current = DateTime.Now;
-                elapsed = current - previous;
+                var current = DateTime.Now;
+                var elapsed = current - previous;
                 previous = current;
                 lag += elapsed;
 

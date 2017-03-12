@@ -8,7 +8,6 @@ using System.Xml.Serialization;
 using MPEngine.Entity;
 using MPEngine.Files;
 using MPEngine.Level;
-using MPEngine.Files;
 using Xunit;
 
 namespace MPEngine.Tests.Level
@@ -68,7 +67,7 @@ namespace MPEngine.Tests.Level
         {
             var list = _creatures;
             var serializer = new Serializer<Creature>();
-            
+
             foreach (var creature in list)
             {
                 var str = serializer.Serialize(creature);
@@ -82,8 +81,8 @@ namespace MPEngine.Tests.Level
             var list = _creatures;
             var allTypes = typeof(Creature).GetTypeInfo().Assembly.GetTypes();
             var extras = from type in allTypes
-                where type.GetTypeInfo().IsSubclassOf(typeof(Creature)) || type == typeof(Creature)
-                select type;
+                         where type.GetTypeInfo().IsSubclassOf(typeof(Creature)) || type == typeof(Creature)
+                         select type;
             var serializer = new XmlSerializer(typeof(List<Creature>), extras.ToArray());
             serializer.Serialize(Console.Out, list);
         }
@@ -95,7 +94,7 @@ namespace MPEngine.Tests.Level
             var definition = new LevelDefinitionTest();
 
             // Make serializer.
-            var serializer = new SerializerImproved<Creature>();
+            var serializer = new SerializerImproved(new[] { typeof(Creature) });
             serializer.Serialize(Console.Out, definition);
             Console.WriteLine();
             Console.WriteLine(new string('=', 80));
@@ -104,7 +103,7 @@ namespace MPEngine.Tests.Level
         [Fact]
         public void DeserializeLevelDefinitionTest()
         {
-            var serializer = new SerializerImproved<Creature>();
+            var serializer = new SerializerImproved(new[] { typeof(Creature) });
             var fname = "./Data/LevelDefinitionTest1.xml";
             var input = File.OpenRead(fname);
             var reader = XmlReader.Create(input);

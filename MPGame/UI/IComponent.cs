@@ -1,6 +1,4 @@
-﻿using MPEngine;
-
-namespace MPGame.UI
+﻿namespace MPGame.UI
 {
     public interface IComponent
     {

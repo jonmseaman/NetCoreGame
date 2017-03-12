@@ -1,6 +1,4 @@
-﻿using MPEngine.Entity;
-
-namespace MPEngine
+﻿namespace MPEngine
 {
     /// <summary>
     /// Interface for game loop design pattern. Used to manage game loop.

@@ -1,12 +1,10 @@
 ﻿using System;
 using MPEngine;
 using MPEngine.Controller;
-using MPEngine.Entity;
 using MPEngine.Entity.Commands;
 using MPEngine.Level;
 using MPGame.GameCommands;
 using MPGame.UI;
-using MPGame.UI.Menus;
 
 namespace MPGame.Game
 {
