@@ -7,7 +7,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using MPEngine.Entity;
 
-namespace MPEngine.Serialization
+namespace MPEngine.Files
 {
     /// <summary>
     /// Deserializes types derived from T.

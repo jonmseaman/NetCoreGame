@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MPEngine;
 using MPEngine.Entity;
 using MPGame.UI.Controls;
@@ -15,6 +16,11 @@ namespace MPGame.UI
             _components.Add(Model.HealthBar);
             _components.Add(Model.EnergyBar);
             _components.Add(Model.StatusBar);
+            _components.Add(new PlayerSheetView((Player)player)
+            {
+                Left = Console.WindowWidth / 2,
+                Top = 1
+            });
         }
 
         public GameViewModel Model { get; set; }

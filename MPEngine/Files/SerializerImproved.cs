@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace MPEngine.Serialization
+namespace MPEngine.Files
 {
     /// <summary>
     /// Serializes and deserializes objects with types derived from T.
@@ -28,6 +28,8 @@ namespace MPEngine.Serialization
                          select type;
             _extraTypes = extras.ToArray();
         }
+
+        #region Serialize
 
         public void Serialize(Stream stream, object o)
         {
@@ -59,6 +61,7 @@ namespace MPEngine.Serialization
             return (T1)GetSerializer(typeof(T1)).Deserialize(reader);
         }
 
+        #endregion
 
         private XmlSerializer GetSerializer(Type type)
         {

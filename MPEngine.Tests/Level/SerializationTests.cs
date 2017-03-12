@@ -6,8 +6,9 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 using MPEngine.Entity;
+using MPEngine.Files;
 using MPEngine.Level;
-using MPEngine.Serialization;
+using MPEngine.Files;
 using Xunit;
 
 namespace MPEngine.Tests.Level
@@ -18,7 +19,7 @@ namespace MPEngine.Tests.Level
         {
             public string LevelName { get; set; } = "First Level";
             public string FileName { get; set; } = "firstLevel.xml";
-            public List<Creature> CreatureList { get; set; } = new List<Creature>(3)
+            public List<Creature> CreatureList { get; set; } = new List<Creature>(4)
             {
                 new Creature()
                 {
@@ -45,7 +46,8 @@ namespace MPEngine.Tests.Level
                 new Creature()
                 {
                     Location = new Location(10, 30)
-                }
+                },
+                new Player()
             };
             public Player Player { get; set; } = new Player()
             {
@@ -66,7 +68,6 @@ namespace MPEngine.Tests.Level
         {
             var list = _creatures;
             var serializer = new Serializer<Creature>();
-            var xmlwriter = XmlWriter.Create(Console.Out);
             
             foreach (var creature in list)
             {

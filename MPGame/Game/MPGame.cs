@@ -51,7 +51,10 @@ namespace MPGame.Game
 
         public void SelectPlayer()
         {
-            Player = new Creature();
+            Player = new Player()
+            {
+                Name = "Jon"
+            };
         }
 
         public void SelectLevel()

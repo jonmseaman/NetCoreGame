@@ -11,6 +11,7 @@
     <ProjectReference Include="..\MPEngine\MPEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\Players\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 </Project>
