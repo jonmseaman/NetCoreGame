@@ -11,7 +11,7 @@ namespace Engine.Tests.Files
         public void LoadPlayersTest()
         {
             var players = SaveData.LoadPlayers();
-            Assert.True(players.Count == 3);
+            Assert.True(players.Count >= 3);
         }
 
         [Fact]
