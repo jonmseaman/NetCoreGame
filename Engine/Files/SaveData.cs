@@ -37,5 +37,16 @@ namespace Engine.Files
 
             return players;
         }
+
+        public static void SavePlayer(string fileName, Player player)
+        {
+            var serializer = _playerSerializer;
+            var filePath = Path.Combine(PlayerSaveLocation, fileName);
+            filePath = Path.ChangeExtension(filePath, "xml");
+            using (var writer = File.OpenWrite(filePath))
+            {
+                serializer.Serialize(writer, player);
+            }
+        }
     }
 }
