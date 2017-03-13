@@ -2,15 +2,15 @@
 
 namespace Game.UI.Menus
 {
-    public class MenuExecuteCommand : Cmd<MenuView>
+    public class MenuExecuteCommand : Cmd<MainMenuView>
     {
-        public MenuExecuteCommand(MenuView receiver) : base(receiver)
+        public MenuExecuteCommand(MainMenuView receiver) : base(receiver)
         {
         }
 
         public override void Execute(object arg = null)
         {
-            Receiver.Execute(arg);
+            Receiver.MenuExecute(arg);
         }
     }
 }

@@ -51,5 +51,11 @@ namespace Game.UI.Menus
             }
             _activeItemChanged = false;
         }
+
+        public void Add(string itemText, ICommand cmd)
+        {
+            ListItems.Add(itemText);
+            Commands.Add(cmd);
+        }
     }
 }

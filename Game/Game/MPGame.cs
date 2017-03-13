@@ -9,27 +9,27 @@ namespace Game.Game
 {
     public class MpGame : Engine.Game
     {
-        private IMpGameState _state;
+        private IGameState _state;
 
         public MpGame()
         {
             // Set up state.
-            SetState(new MpGameMainMenuState(this));
+            SetState(new GameMainMenuState(this));
         }
 
-        public IMpGameState GetState()
+        public IGameState GetState()
         {
             return _state;
         }
 
-        public void SetState(IMpGameState value)
+        public void SetState(IGameState value)
         {
+            _state?.Exit();
             _state = value;
             _state.Enter();
         }
 
-        public IComponent ActiveView { get; set; }
-        public Creature Player { get; set; }
+        public Player Player { get; set; }
         public ILevel Level { get; set; }
 
         #region Menu Functions
@@ -39,7 +39,7 @@ namespace Game.Game
             if (Player == null) SelectPlayer();
             if (Level == null) SelectLevel();
             Level.Add(new Location(), Player);
-            SetState(new MpGamePlayingState(this));
+            SetState(new GamePlayingState(this));
         }
 
         public void SelectPlayer()

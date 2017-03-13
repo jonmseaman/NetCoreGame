@@ -8,12 +8,12 @@ using Game.UI;
 
 namespace Game.Game
 {
-    public class MpGamePlayingState : IMpGameState
+    public class GamePlayingState : IGameState
     {
         private IComponent _view;
         private IController _controller;
 
-        public MpGamePlayingState(MpGame game)
+        public GamePlayingState(MpGame game)
         {
             // Add player.
             var player = game.Player;
@@ -49,6 +49,11 @@ namespace Game.Game
         public void Enter()
         {
             Console.Clear();
+        }
+
+        public void Exit()
+        {
+            // Do nothing.
         }
     }
 }
