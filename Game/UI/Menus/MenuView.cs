@@ -7,7 +7,6 @@ namespace Game.UI.Menus
     public class MenuView : UiComponent
     {
         private int _activeItem;
-        private bool _activeItemChanged = true;
         public List<string> ListItems { get; } = new List<string>();
 
         public void Execute(object arg = null)
@@ -25,7 +24,7 @@ namespace Game.UI.Menus
             get { return _activeItem; }
             set
             {
-                _activeItemChanged = true;
+                NeedsUpdate = true;
                 _activeItem = value;
                 if (_activeItem < 0) _activeItem = 0;
                 if (_activeItem >= ListItems.Count) _activeItem = ListItems.Count - 1;
@@ -37,9 +36,8 @@ namespace Game.UI.Menus
             // Do nothing.
         }
 
-        public override void Render()
+        public override void Redraw()
         {
-            if (!_activeItemChanged) return;
             // Draw entire list.
             for (var i = 0; i < ListItems.Count; i++)
             {
@@ -49,7 +47,6 @@ namespace Game.UI.Menus
                 Console.Write($"{i + 1}: {ListItems[i]}");
                 if (i == ActiveItem) Console.BackgroundColor = ConsoleColor.Black;
             }
-            _activeItemChanged = false;
         }
 
         public void Add(string itemText, ICommand cmd)

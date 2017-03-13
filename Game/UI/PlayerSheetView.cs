@@ -29,9 +29,8 @@ namespace Game.UI
             // Do nothing.
         }
 
-        public override void Render()
+        public override void Redraw()
         {
-            if (!UpdateView) return;
             var attrs = Player.Attributes;
             Left += 1;
             // Update view.
@@ -66,7 +65,6 @@ namespace Game.UI
             Console.CursorLeft = Left;
             Console.WriteLine($"Experience: \t{attrs.Experience}");
 
-            UpdateView = false;
             Left -= 1;
         }
     }

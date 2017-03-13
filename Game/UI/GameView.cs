@@ -34,5 +34,11 @@ namespace Game.UI
             foreach (var component in _components)
                 component.Render();
         }
+
+        public void Redraw()
+        {
+            foreach (var component in _components)
+                component.Redraw();
+        }
     }
 }

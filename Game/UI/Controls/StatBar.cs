@@ -4,7 +4,6 @@ namespace Game.UI.Controls
 {
     public class StatBar : UiComponent
     {
-        private bool _statChanged = true;
         private int _statCurrent;
         private int _statMax;
 
@@ -21,7 +20,7 @@ namespace Game.UI.Controls
                 if (value != _statCurrent)
                 {
                     _statCurrent = value;
-                    _statChanged = true;
+                    NeedsUpdate = true;
                 }
             }
         }
@@ -34,17 +33,20 @@ namespace Game.UI.Controls
                 if (value != _statMax)
                 {
                     _statMax = value;
-                    _statChanged = true;
+                    NeedsUpdate = true;
                 }
             }
         }
 
         public ConsoleColor BackgroundColor { get; }
 
-        public override void Render()
+        public override void Update()
         {
-            if (!_statChanged) return;
+            // Do nothing.
+        }
 
+        public override void Redraw()
+        {
             var count = Width * StatCurrent / StatMax;
             Console.CursorLeft = Left;
             Console.CursorTop = Top;
@@ -56,14 +58,6 @@ namespace Game.UI.Controls
             Console.BackgroundColor = ConsoleColor.Black;
             for (var i = count; i < Width; i++)
                 Console.Write(' ');
-
-            // Don't redraw if the stat hasn't been changed next time.
-            _statChanged = false;
-        }
-
-        public override void Update()
-        {
-            // Do nothing.
         }
     }
 }

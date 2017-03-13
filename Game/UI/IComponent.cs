@@ -10,5 +10,10 @@
         /// Renders the UI Component on screen.
         /// </summary>
         void Render();
+
+        /// <summary>
+        /// Redraws the entire component.
+        /// </summary>
+        void Redraw();
     }
 }

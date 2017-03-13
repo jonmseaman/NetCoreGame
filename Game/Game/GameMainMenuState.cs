@@ -17,11 +17,10 @@ namespace Game.Game
         {
             _mainMenu = new MainMenuView(game);
             var kb = new ConsoleKeyboardController();
-            var menu = _mainMenu.Model.MainMenu;
             kb.AddKeyPressedCommand(ConsoleKey.W, new MenuViewUpCommand(_mainMenu));
             kb.AddKeyPressedCommand(ConsoleKey.S, new MenuViewDownCommand(_mainMenu));
             kb.AddKeyPressedCommand(ConsoleKey.Enter, new MenuExecuteCommand(_mainMenu));
-            kb.AddKeyPressedCommand(ConsoleKey.Escape, new ExitGameCommand(game));
+            kb.AddKeyPressedCommand(ConsoleKey.Escape, new MenuExitCommand(_mainMenu));
             _controller = kb;
         }
 
