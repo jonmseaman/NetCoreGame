@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Engine.Commands;
+using Engine.Entity;
 using Game.Game;
 using Game.GameCommands;
 
@@ -8,6 +9,9 @@ namespace Game.UI.Menus
     public class MainMenuViewModel
     {
         public MenuView MainMenu = new MenuView();
+        public Player Player;
+        // TODO: Add level information view.
+
 
         public Stack<MenuView> MenuStack = new Stack<MenuView>();
         public Stack<IComponent> ViewStack = new Stack<IComponent>();
@@ -23,17 +27,7 @@ namespace Game.UI.Menus
             ViewStack.Push(MainMenu);
         }
 
-    }
-
-    public class MainMenuEnterPlayerSelectCommand : Cmd<MainMenuView>
-    {
-        public MainMenuEnterPlayerSelectCommand(MainMenuView mainMenuView) : base(mainMenuView)
-        {
-        }
-
-        public override void Execute(object arg = null)
-        {
-            Receiver.EnterPlayerSelect();
-        }
+        public PlayerSelectView PlayerSelectView { get; set; }
+        public PlayerSheetView PlayerSheet { get; set; }
     }
 }

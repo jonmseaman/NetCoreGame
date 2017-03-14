@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Engine.Entity;
 
 namespace Game.UI
@@ -6,13 +7,41 @@ namespace Game.UI
     public class PlayerSheetView : UiComponent
     {
         private Player _player;
+        private List<string> _lines;
 
         public PlayerSheetView(Player player)
         {
             Player = player;
+            Width = Console.WindowWidth / 4;
         }
 
-        public bool UpdateView { get; set; } = true;
+        private void UpdateLines()
+        {
+            var attrs = Player.Attributes;
+            const int attrpad = 17;
+            var pad = Width - 2;
+            _lines = new List<string>()
+            {
+                $"{Player.Name}",
+                $"Health: ({attrs.Health}/{attrs.MaxHealth})",
+                $"Energy: ({attrs.Energy}/{attrs.MaxEnergy})",
+                "",
+                "Attributes: ",
+                "\tStamina".PadRight(attrpad) + attrs.Stamina,
+                "\tStrength".PadRight(attrpad) + attrs.Strength,
+                "\tIntellect".PadRight(attrpad) + attrs.Intellect,
+                "\tAgility".PadRight(attrpad) + attrs.Agility,
+                "\tSpirit".PadRight(attrpad) + attrs.Spirit,
+                "",
+                $"Level: \t\t{attrs.Level}",
+                $"Experience: \t{attrs.Experience}"
+            };
+            // Pad lines.
+            for (int i = 0; i < _lines.Count; i++)
+            {
+                _lines[i] = _lines[i].PadRight(pad);
+            }
+        }
 
         public Player Player
         {
@@ -20,51 +49,26 @@ namespace Game.UI
             set
             {
                 _player = value;
-                UpdateView = true;
+                NeedsUpdate = true;
             }
         }
 
         public override void Update()
         {
-            // Do nothing.
+            if (NeedsUpdate) UpdateLines();
         }
 
         public override void Redraw()
         {
-            var attrs = Player.Attributes;
             Left += 1;
-            // Update view.
+
             Console.CursorTop = Top;
             Console.CursorLeft = Left;
-            Console.WriteLine($"{Player.Name}");
-            Console.CursorLeft = Left;
-            Console.WriteLine($"Health: ({attrs.Health}/{attrs.MaxHealth})");
-            Console.CursorLeft = Left;
-            Console.WriteLine($"Energy: ({attrs.Energy},{attrs.MaxEnergy})");
-            Console.CursorLeft = Left;
-            Console.CursorTop += 1;
-
-            // Attributes
-            Console.WriteLine("Attributes: ");
-            int attrpad = 17;
-            Console.CursorLeft = Left;
-            Console.WriteLine("\tStamina".PadRight(attrpad) + attrs.Stamina);
-            Console.CursorLeft = Left;
-            Console.WriteLine("\tStrength".PadRight(attrpad) + attrs.Strength);
-            Console.CursorLeft = Left;
-            Console.WriteLine("\tIntellect".PadRight(attrpad) + attrs.Intellect);
-            Console.CursorLeft = Left;
-            Console.WriteLine("\tAgility".PadRight(attrpad) + attrs.Agility);
-            Console.CursorLeft = Left;
-            Console.WriteLine("\tSpirit".PadRight(attrpad) + attrs.Spirit);
-
-            // Experience.
-            Console.CursorLeft = Left;
-            Console.CursorTop += 1;
-            Console.WriteLine($"Level: \t\t{attrs.Level}");
-            Console.CursorLeft = Left;
-            Console.WriteLine($"Experience: \t{attrs.Experience}");
-
+            foreach (var line in _lines)
+            {
+                Console.CursorLeft = Left;
+                Console.WriteLine(line);
+            }
             Left -= 1;
         }
     }

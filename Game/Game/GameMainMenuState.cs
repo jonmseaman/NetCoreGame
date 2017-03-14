@@ -17,8 +17,12 @@ namespace Game.Game
         {
             _mainMenu = new MainMenuView(game);
             var kb = new ConsoleKeyboardController();
-            kb.AddKeyPressedCommand(ConsoleKey.W, new MenuViewUpCommand(_mainMenu));
-            kb.AddKeyPressedCommand(ConsoleKey.S, new MenuViewDownCommand(_mainMenu));
+            var up = new MenuViewUpCommand(_mainMenu);
+            var down = new MenuViewDownCommand(_mainMenu);
+            kb.AddKeyPressedCommand(ConsoleKey.W, up);
+            kb.AddKeyPressedCommand(ConsoleKey.UpArrow, up);
+            kb.AddKeyPressedCommand(ConsoleKey.S, down);
+            kb.AddKeyPressedCommand(ConsoleKey.DownArrow, down);
             kb.AddKeyPressedCommand(ConsoleKey.Enter, new MenuExecuteCommand(_mainMenu));
             kb.AddKeyPressedCommand(ConsoleKey.Escape, new MenuExitCommand(_mainMenu));
             _controller = kb;

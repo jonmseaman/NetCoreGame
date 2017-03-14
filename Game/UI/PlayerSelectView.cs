@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Engine.Commands;
 using Engine.Entity;
 using Game.Annotations;
 using Game.UI.Menus;
@@ -18,7 +18,7 @@ namespace Game.UI
 
         public PlayerSelectView(IEnumerable<Player> players)
         {
-            Menu.Add("New".PadLeft(20), new NullCommand());
+            Menu.Add("New", new PlayerSelectViewNewCommand(this));
             foreach (var player in players)
                 Menu.Add(player.Name, new PlayerSelectViewSelectCommand(this, player));
         }
@@ -33,6 +33,13 @@ namespace Game.UI
             }
         }
 
+        public void NewPlayer()
+        {
+            SelectedPlayer = new Player();
+        }
+
+
+        #region IComponent
         public override void Update()
         {
             Menu.Left = Left;
@@ -49,6 +56,7 @@ namespace Game.UI
         {
             Menu.Redraw();
         }
+        #endregion
 
         #region INotifyPropertyChanged
 
@@ -61,5 +69,6 @@ namespace Game.UI
         }
 
         #endregion
+
     }
 }
