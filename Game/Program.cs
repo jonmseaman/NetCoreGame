@@ -1,9 +1,8 @@
-﻿using System;
-using Game.Game;
+﻿using Game.Game;
 
 namespace Game
 {
-    class Program
+    internal class Program
     {
         public static void Main(string[] args)
         {

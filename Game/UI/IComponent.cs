@@ -6,6 +6,7 @@
         /// Updates the UI component.
         /// </summary>
         void Update();
+
         /// <summary>
         /// Renders the UI Component on screen.
         /// </summary>

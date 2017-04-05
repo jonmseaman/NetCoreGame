@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using Engine;
 using Engine.Controller;
-using Game.GameCommands;
-using Game.UI;
 using Game.UI.Menus;
 
 namespace Game.Game
 {
     public class GameMainMenuState : IGameState
     {
-        private MainMenuView _mainMenu;
         private IController _controller;
+        private MainMenuView _mainMenu;
 
         public GameMainMenuState(MpGame game)
         {
@@ -29,6 +26,7 @@ namespace Game.Game
         }
 
         #region IGameState
+
         public void ProcessUserInput(GameTime gameTime)
         {
             _controller.ProcessUserInput(gameTime);

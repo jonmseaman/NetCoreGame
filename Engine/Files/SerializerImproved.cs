@@ -15,6 +15,7 @@ namespace Engine.Files
     public class SerializerImproved
     {
         private Type[] _extraTypes;
+
         /// <summary>
         /// A cache for the serializers.
         /// </summary>
@@ -27,12 +28,22 @@ namespace Engine.Files
             {
                 var allTypes = baseType.GetTypeInfo().Assembly.GetTypes();
                 var extras = from type in allTypes
-                             where type.GetTypeInfo().IsSubclassOf(baseType)
-                             select type;
+                    where type.GetTypeInfo().IsSubclassOf(baseType)
+                    select type;
                 extraTypesList.Add(baseType);
                 extraTypesList.AddRange(extras);
             }
             _extraTypes = extraTypesList.ToArray();
+        }
+
+        private XmlSerializer GetSerializer(Type type)
+        {
+            if (!_serializers.TryGetValue(type, out XmlSerializer serializer))
+            {
+                serializer = new XmlSerializer(type, _extraTypes);
+                _serializers.Add(type, serializer);
+            }
+            return serializer;
         }
 
         #region Serialize
@@ -54,7 +65,7 @@ namespace Engine.Files
 
         public T Deserialize<T>(TextReader input)
         {
-            return (T)GetSerializer(typeof(T)).Deserialize(input);
+            return (T) GetSerializer(typeof(T)).Deserialize(input);
         }
 
         public T Deserialize<T>(Stream stream)
@@ -64,19 +75,9 @@ namespace Engine.Files
 
         public T Deserialize<T>(XmlReader reader)
         {
-            return (T)GetSerializer(typeof(T)).Deserialize(reader);
+            return (T) GetSerializer(typeof(T)).Deserialize(reader);
         }
 
         #endregion
-
-        private XmlSerializer GetSerializer(Type type)
-        {
-            if (!_serializers.TryGetValue(type, out XmlSerializer serializer))
-            {
-                serializer = new XmlSerializer(type, _extraTypes);
-                _serializers.Add(type, serializer);
-            }
-            return serializer;
-        }
     }
 }

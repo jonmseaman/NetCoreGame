@@ -1,7 +1,7 @@
 ﻿namespace Engine.Entity
 {
     /// <summary>
-    /// Provides an interface for a container that holds <see cref="Item"/>.
+    /// Provides an interface for a container that holds <see cref="Item" />.
     /// </summary>
     public interface IInventory
     {

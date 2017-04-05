@@ -9,11 +9,6 @@ namespace Game.UI.Menus
         private int _activeItem;
         public List<string> ListItems { get; } = new List<string>();
 
-        public void Execute(object arg = null)
-        {
-            Commands[ActiveItem].Execute(arg);
-        }
-
         public List<ICommand> Commands { get; } = new List<ICommand>();
 
         /// <summary>
@@ -29,6 +24,11 @@ namespace Game.UI.Menus
                 if (_activeItem < 0) _activeItem = 0;
                 if (_activeItem >= ListItems.Count) _activeItem = ListItems.Count - 1;
             }
+        }
+
+        public void Execute(object arg = null)
+        {
+            Commands[ActiveItem].Execute(arg);
         }
 
         public override void Update()

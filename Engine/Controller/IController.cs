@@ -1,5 +1,4 @@
-﻿
-namespace Engine.Controller
+﻿namespace Engine.Controller
 {
     /// <summary>
     /// Handles input from an input device.

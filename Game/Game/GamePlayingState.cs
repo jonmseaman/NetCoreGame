@@ -10,8 +10,8 @@ namespace Game.Game
 {
     public class GamePlayingState : IGameState
     {
-        private IComponent _view;
         private IController _controller;
+        private IComponent _view;
 
         public GamePlayingState(MpGame game)
         {

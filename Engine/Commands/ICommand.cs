@@ -12,12 +12,12 @@
     /// <typeparam name="T">Type of Receiver.</typeparam>
     public abstract class Cmd<T> : ICommand
     {
-        protected T Receiver { get; }
-
         protected Cmd(T receiver)
         {
             Receiver = receiver;
         }
+
+        protected T Receiver { get; }
 
         public abstract void Execute(object arg = null);
     }

@@ -6,7 +6,7 @@
     public class Inventory : IInventory
     {
         /// <summary>
-        /// Underlying container for <see cref="Inventory"/>
+        /// Underlying container for <see cref="Inventory" />
         /// </summary>
         private readonly Item[] _inventory;
 
@@ -22,16 +22,13 @@
         public Inventory(int capacity)
         {
             _inventory = new Item[capacity];
-            for (int i = 0; i < _inventory.Length; i++)
-            {
+            for (var i = 0; i < _inventory.Length; i++)
                 _inventory[i] = null;
-            }
         }
 
         #region IInventory
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="itemIndex"></param>
         /// <returns></returns>
@@ -49,8 +46,7 @@
         public bool Add(Item item)
         {
             var added = false;
-            for (int i = 0; i < _inventory.Length; ++i)
-            {
+            for (var i = 0; i < _inventory.Length; ++i)
                 if (_inventory[i] == null)
                 {
                     _inventory[i] = item;
@@ -58,13 +54,12 @@
                     added = true;
                     break;
                 }
-            }
             return added;
         }
 
         public bool AddAt(Item item, int index)
         {
-            bool added = false;
+            var added = false;
             if (_inventory[index] == null)
             {
                 _inventory[index] = item;
@@ -77,17 +72,15 @@
 
         public void Clear()
         {
-            for (int i = 0; i < _inventory.Length; i++)
-            {
+            for (var i = 0; i < _inventory.Length; i++)
                 _inventory[i] = null;
-            }
             _count = 0;
         }
 
         public bool Remove(Item item)
         {
-            bool removed = false;
-            for (int i = 0; i < _inventory.Length; i++)
+            var removed = false;
+            for (var i = 0; i < _inventory.Length; i++)
             {
                 var invItem = _inventory[i];
                 if (invItem != null && invItem.Equals(item))
@@ -112,6 +105,7 @@
             }
             return removed;
         }
+
         #endregion
     }
 }

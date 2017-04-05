@@ -14,7 +14,7 @@ namespace Game.UI
             _components.Add(Model.HealthBar);
             _components.Add(Model.EnergyBar);
             _components.Add(Model.StatusBar);
-            _components.Add(new PlayerSheetView((Player)player)
+            _components.Add(new PlayerSheetView((Player) player)
             {
                 Left = Console.WindowWidth / 2,
                 Top = 1

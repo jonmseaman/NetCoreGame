@@ -26,6 +26,5 @@ namespace Engine.Tests.Level
             var topRight = new Location(max, max);
             Assert.True(level.Contains(topRight));
         }
-
     }
 }

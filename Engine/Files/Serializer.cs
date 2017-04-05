@@ -18,6 +18,7 @@ namespace Engine.Files
         /// A dictionary mapping a type's name to its serializer.
         /// </summary>
         private Dictionary<string, XmlSerializer> _serializers = new Dictionary<string, XmlSerializer>();
+
         private XmlSerializerNamespaces _xmlns = new XmlSerializerNamespaces();
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace Engine.Files
 
         public void Serialize(TextWriter output, T o)
         {
-            var xml = XmlWriter.Create(output, new XmlWriterSettings()
+            var xml = XmlWriter.Create(output, new XmlWriterSettings
             {
                 Indent = true,
                 OmitXmlDeclaration = true
@@ -131,9 +132,9 @@ namespace Engine.Files
             var ctor = type.GetTypeInfo().GetConstructor(Type.EmptyTypes);
             // Add the type if it has a parameterless ctor and derives from T.
             var shouldAdd = type.GetTypeInfo().IsSubclassOf(typeof(T))
-                 && ctor != null;
+                            && ctor != null;
             // Or, add the type if it is T and has a parameterless ctor.
-            shouldAdd = (type == typeof(T) && ctor != null) || shouldAdd;
+            shouldAdd = type == typeof(T) && ctor != null || shouldAdd;
 
             if (shouldAdd && !_serializers.ContainsKey(type.Name))
             {

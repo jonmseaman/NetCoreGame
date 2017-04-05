@@ -20,7 +20,8 @@ namespace Game.UI.Menus
 
         public void HandlePropertyChanged(object sender, PropertyChangedEventArgs args)
         {
-            if (sender == Model.PlayerSelectView && args.PropertyName.Equals(nameof(Model.PlayerSelectView.SelectedPlayer)))
+            if (sender == Model.PlayerSelectView &&
+                args.PropertyName.Equals(nameof(Model.PlayerSelectView.SelectedPlayer)))
             {
                 var p = Model.PlayerSelectView.SelectedPlayer;
                 Model.Player = p;
@@ -40,6 +41,7 @@ namespace Game.UI.Menus
         }
 
         #region Menu Actions
+
         public void MenuExecute(object arg = null)
         {
             Model.MenuStack.Peek().Execute(arg);
@@ -69,14 +71,16 @@ namespace Game.UI.Menus
             if (Model.MenuStack.Count == 0) Game.ExitGame();
             Redraw();
         }
+
         public void EnterPlayerSelect()
         {
             var players = SaveData.LoadPlayers();
-            Model.PlayerSelectView = new PlayerSelectView(players) { Left = 30 };
+            Model.PlayerSelectView = new PlayerSelectView(players) {Left = 30};
             var view = Model.PlayerSelectView;
             view.PropertyChanged += HandlePropertyChanged;
             EnterSubMenu(view, view.Menu);
         }
+
         #endregion
 
         #region IComponent

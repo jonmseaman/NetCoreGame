@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Engine.Entity;
@@ -38,8 +37,8 @@ namespace Game.UI
             SelectedPlayer = new Player();
         }
 
-
         #region IComponent
+
         public override void Update()
         {
             Menu.Left = Left;
@@ -56,6 +55,7 @@ namespace Game.UI
         {
             Menu.Redraw();
         }
+
         #endregion
 
         #region INotifyPropertyChanged
@@ -69,6 +69,5 @@ namespace Game.UI
         }
 
         #endregion
-
     }
 }

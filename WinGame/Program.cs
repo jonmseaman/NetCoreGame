@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Deployment.Application;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Net.Mime;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WinGame
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var outputDir = ".";
             var zipPath = "./Game/win10-x64.zip";

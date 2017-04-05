@@ -6,14 +6,13 @@ namespace Engine.Controller
 {
     public class ConsoleKeyboardController : IController
     {
+        private static HashSet<ConsoleKeyInfo> _oldKeys = new HashSet<ConsoleKeyInfo>();
+        private static HashSet<ConsoleKeyInfo> _newKeys = new HashSet<ConsoleKeyInfo>();
+        private static DateTime _lastTime = DateTime.Now;
         // Commands that should be activated on key press.
         private Dictionary<ConsoleKey, ICommand> _keyPressedCommands = new Dictionary<ConsoleKey, ICommand>();
         // Commands that should be activated on key release.
         private Dictionary<ConsoleKey, ICommand> _keyReleasedCommands = new Dictionary<ConsoleKey, ICommand>();
-
-        private static HashSet<ConsoleKeyInfo> _oldKeys = new HashSet<ConsoleKeyInfo>();
-        private static HashSet<ConsoleKeyInfo> _newKeys = new HashSet<ConsoleKeyInfo>();
-        private static DateTime _lastTime = DateTime.Now;
 
 
         public void ProcessUserInput(GameTime gameTime)

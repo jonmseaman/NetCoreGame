@@ -17,7 +17,7 @@ namespace Engine.Files
                 Directory.CreateDirectory(PlayerSaveLocation);
             if (!Directory.Exists(LevelSaveLocation))
                 Directory.CreateDirectory(LevelSaveLocation);
-            _playerSerializer = new SerializerImproved(new[] { typeof(Player) });
+            _playerSerializer = new SerializerImproved(new[] {typeof(Player)});
         }
 
         public static IList<Player> LoadPlayers()
@@ -28,12 +28,10 @@ namespace Engine.Files
             var serializer = _playerSerializer;
             var players = new List<Player>(fileList.Length);
             foreach (var fileName in fileList)
-            {
                 using (var reader = File.OpenRead(fileName))
                 {
                     players.Add(serializer.Deserialize<Player>(reader));
                 }
-            }
 
             return players;
         }

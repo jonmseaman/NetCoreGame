@@ -3,7 +3,6 @@ using System.Threading;
 using Engine;
 using Engine.Entity;
 using Engine.Level;
-using Game.UI;
 
 namespace Game.Game
 {
@@ -17,6 +16,9 @@ namespace Game.Game
             SetState(new GameMainMenuState(this));
         }
 
+        public Player Player { get; set; }
+        public ILevel Level { get; set; }
+
         public IGameState GetState()
         {
             return _state;
@@ -28,9 +30,6 @@ namespace Game.Game
             _state = value;
             _state.Enter();
         }
-
-        public Player Player { get; set; }
-        public ILevel Level { get; set; }
 
         #region Menu Functions
 
@@ -44,7 +43,7 @@ namespace Game.Game
 
         public void SelectPlayer()
         {
-            Player = new Player()
+            Player = new Player
             {
                 Name = "Jon"
             };

@@ -9,7 +9,7 @@ namespace Engine.Tests.Entity
         public abstract IInventory NewInstance(int capacity);
 
         /// <summary>
-        ///     Creates a new inventory with <see cref="size" /> items.
+        /// Creates a new inventory with <see cref="size" /> items.
         /// </summary>
         /// <param name="size">The number of items to be put in inv.</param>
         /// <param name="capacity">The capacity of the new inventory.</param>

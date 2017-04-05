@@ -2,10 +2,10 @@
 {
     public class CreatureAttributes : Attributes
     {
-        private int _health = 100;
-        private int _maxHealth = 100;
         private int _energy = 100;
+        private int _health = 100;
         private int _maxEnergy = 100;
+        private int _maxHealth = 100;
 
         /// <summary>
         /// Gets or sets the amount of damage a creature can take before death.

@@ -14,6 +14,7 @@ namespace Engine
         /// Gets the time this object was created.
         /// </summary>
         public DateTime Time { get; }
+
         /// <summary>
         /// Gets the time elapsed since the last update.
         /// </summary>

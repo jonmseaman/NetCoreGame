@@ -4,18 +4,18 @@ using Engine.Level;
 namespace Engine.Entity
 {
     /// <summary>
-    ///     Encapsulates basic behavior of creatures.
+    /// Encapsulates basic behavior of creatures.
     /// </summary>
     public class Creature : GameObject
     {
+        protected IInputComponent Input;
+
         public Creature()
         {
             Attributes = new CreatureAttributes();
         }
 
         public CreatureAttributes Attributes { get; set; }
-
-        protected IInputComponent Input;
 
         public event CreatureMovedEventHandler OnMove;
 

@@ -7,10 +7,6 @@ namespace Engine
     {
         public bool Running { get; set; }
 
-        public abstract void ProcessUserInput(GameTime gameTime);
-        public abstract void Render(GameTime gameTime);
-        public abstract void Update(GameTime gameTime);
-
 
         public void Run()
         {
@@ -31,7 +27,7 @@ namespace Engine
                 lag += elapsed;
 
                 ProcessUserInput(gameTime);
-                
+
                 while (lag >= dt)
                 {
                     Update(gameTime);
@@ -45,10 +41,12 @@ namespace Engine
 
                 var sleep = dt - elapsed;
                 if (sleep > TimeSpan.Zero)
-                {
                     Thread.Sleep(sleep);
-                }
             }
         }
+
+        public abstract void ProcessUserInput(GameTime gameTime);
+        public abstract void Render(GameTime gameTime);
+        public abstract void Update(GameTime gameTime);
     }
 }

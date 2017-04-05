@@ -6,8 +6,8 @@ namespace Game.UI
 {
     public class PlayerSheetView : UiComponent
     {
-        private Player _player;
         private List<string> _lines;
+        private Player _player;
 
         public PlayerSheetView(Player player)
         {
@@ -15,12 +15,22 @@ namespace Game.UI
             Width = Console.WindowWidth / 4;
         }
 
+        public Player Player
+        {
+            get { return _player; }
+            set
+            {
+                _player = value;
+                NeedsUpdate = true;
+            }
+        }
+
         private void UpdateLines()
         {
             var attrs = Player.Attributes;
             const int attrpad = 17;
             var pad = Width - 2;
-            _lines = new List<string>()
+            _lines = new List<string>
             {
                 $"{Player.Name}",
                 $"Health: ({attrs.Health}/{attrs.MaxHealth})",
@@ -37,20 +47,8 @@ namespace Game.UI
                 $"Experience: \t{attrs.Experience}"
             };
             // Pad lines.
-            for (int i = 0; i < _lines.Count; i++)
-            {
+            for (var i = 0; i < _lines.Count; i++)
                 _lines[i] = _lines[i].PadRight(pad);
-            }
-        }
-
-        public Player Player
-        {
-            get { return _player; }
-            set
-            {
-                _player = value;
-                NeedsUpdate = true;
-            }
         }
 
         public override void Update()

@@ -7,6 +7,6 @@
         East = 2,
         South = 3,
         West = 4,
-        DirectionCount = 5,
+        DirectionCount = 5
     }
 }

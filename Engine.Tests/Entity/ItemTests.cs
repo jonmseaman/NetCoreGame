@@ -13,7 +13,5 @@ namespace Engine.Tests.Entity
         public DefaultItem() : base("DefaultItem")
         {
         }
-
-        
     }
 }

@@ -9,18 +9,18 @@ namespace Game.UI.Menus
     public class MainMenuViewModel
     {
         public MenuView MainMenu = new MenuView();
-        public Player Player;
         // TODO: Add level information view.
 
 
         public Stack<MenuView> MenuStack = new Stack<MenuView>();
+        public Player Player;
         public Stack<IComponent> ViewStack = new Stack<IComponent>();
 
 
         public MainMenuViewModel(MpGame game, MainMenuView mainMenuView)
         {
             MainMenu.Add("Start", new StartGameCommand(game));
-            MainMenu.Add("Player",new MainMenuEnterPlayerSelectCommand(mainMenuView));
+            MainMenu.Add("Player", new MainMenuEnterPlayerSelectCommand(mainMenuView));
             MainMenu.Add("Level", new NullCommand());
             MainMenu.Add("Exit", new ExitGameCommand(game));
             MenuStack.Push(MainMenu);

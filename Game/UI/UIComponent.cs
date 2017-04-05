@@ -15,6 +15,7 @@
             if (NeedsUpdate) Redraw();
             NeedsUpdate = false;
         }
+
         public abstract void Redraw();
     }
 }

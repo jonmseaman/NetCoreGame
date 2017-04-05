@@ -17,7 +17,7 @@ namespace Engine.Tests.Files
         [Fact]
         public void SavePlayerTest()
         {
-            var player = new Player()
+            var player = new Player
             {
                 Name = "Jon",
                 Location = new Location(4, 5)

@@ -6,6 +6,7 @@ namespace Game.UI
     public class PlayerSelectViewSelectCommand : Cmd<PlayerSelectView>
     {
         private Player _player;
+
         public PlayerSelectViewSelectCommand(PlayerSelectView playerSelectView, Player player) : base(playerSelectView)
         {
             _player = player;
