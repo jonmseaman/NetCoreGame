@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Player>
+  <Name>Player2</Name>
+  <Location>
+    <X>0</X>
+    <Y>0</Y>
+  </Location>
+  <Attributes>
+    <Stamina>0</Stamina>
+    <Strength>0</Strength>
+    <Agility>0</Agility>
+    <Intellect>0</Intellect>
+    <Spirit>0</Spirit>
+    <Health>100</Health>
+    <MaxHealth>100</MaxHealth>
+    <Energy>100</Energy>
+    <MaxEnergy>100</MaxEnergy>
+    <Experience>0</Experience>
+    <Level>1</Level>
+  </Attributes>
+</Player>
